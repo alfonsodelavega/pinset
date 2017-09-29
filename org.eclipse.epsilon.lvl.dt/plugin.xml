@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="org.eclipse.epsilon.lvl.dt.editor.LvlEditor"
+            contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
+            default="true"
+            extensions="lvl"
+            icon="icons/edl.png"
+            id="org.eclipse.epsilon.lvl.dt.editor.LvlEditor"
+            name="Lavoisier Language Editor"/>
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTypeImages">
+      <launchConfigurationTypeImage
+            configTypeID="org.epsilon.lvl.eclipse.dt.launching.LvlLaunchConfigurationDelegate"
+            icon="icons/edl.png"
+            id="LVL File"/>
+   </extension>
+  
+   <extension
+         point="org.eclipse.debug.core.launchConfigurationTypes">
+      <launchConfigurationType
+            delegate="org.eclipse.epsilon.lvl.dt.launching.LvlLaunchConfigurationDelegate"
+            id="org.epsilon.lvl.eclipse.dt.launching.LvlLaunchConfigurationDelegate"
+            modes="run, debug"
+            name="LVL File"/>
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+      <launchConfigurationTabGroup
+            class="org.eclipse.epsilon.lvl.dt.launching.LvlLaunchConfigurationTabGroup"
+            description="Create a configuration to launch an LVL File"
+            id="org.eclipse.epsilon.lvl.dt.launching.LvlLaunchConfigurationTabGroup"
+            type="org.epsilon.lvl.eclipse.dt.launching.LvlLaunchConfigurationDelegate"/>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <wizard
+            category="org.eclipse.epsilon.dt"
+            class="org.eclipse.epsilon.lvl.dt.wizards.NewLvlFileWizard"
+            icon="icons/edl.png"
+            id="org.eclipse.epsilon.lvl.dt.wizards.NewLvlFileWizard"
+            name="LVL File"/>
+   </extension>
+
+</plugin>

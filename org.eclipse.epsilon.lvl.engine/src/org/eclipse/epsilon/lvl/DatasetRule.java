@@ -5,15 +5,11 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.epsilon.common.module.IModule;
 import org.eclipse.epsilon.common.parse.AST;
 import org.eclipse.epsilon.common.util.AstUtil;
@@ -22,7 +18,6 @@ import org.eclipse.epsilon.eol.dom.AnnotatableModuleElement;
 import org.eclipse.epsilon.eol.dom.ExecutableBlock;
 import org.eclipse.epsilon.eol.dom.Parameter;
 import org.eclipse.epsilon.eol.exceptions.EolRuntimeException;
-import org.eclipse.epsilon.eol.execute.Return;
 import org.eclipse.epsilon.eol.execute.context.IEolContext;
 import org.eclipse.epsilon.eol.execute.context.Variable;
 import org.eclipse.epsilon.eol.execute.introspection.IPropertyGetter;
@@ -81,11 +76,10 @@ public class DatasetRule extends AnnotatableModuleElement {
 
     EolModelElementType parameterType = (EolModelElementType) parameter.getType(context);
     IModel model = parameterType.getModel();
-    System.out.println("Model name: " + model.getName());
     IPropertyGetter getter = model.getPropertyGetter();
     getter.setContext(context);
 
-    // as some constructs are emf-dependent, we prepare the emf model here
+    // as some constructs are emf-dependent, prepare the emf model
     AbstractEmfModel emfModel = null;
     EClass eClass = null;
     if (model instanceof AbstractEmfModel) {
@@ -93,48 +87,21 @@ public class DatasetRule extends AnnotatableModuleElement {
       eClass = emfModel.classForName(parameterType.getTypeName());
     }
 
-    // get the first element to check features existence
     Collection<?> oElements = parameterType.getAllOfKind();
-    Iterator<?> iterator = oElements.iterator();
-    Object ou = iterator.next(); // this fails if empty collection
-    for (String feature : simpleFeatures) {
-      if (!getter.hasProperty(ou, feature)) {
-        throw new EolRuntimeException("Feature " + feature +
-            " not found in type " + parameterType.getName());
-      }
-    }
+    // use the first element to check features existence
+    Object ou = oElements.iterator().next(); // this fails if empty collection
 
-    // Check simplereferences correctness
+    validateSimpleFeatures(ou, getter, parameterType.getName());
+
     for (SimpleReference ref : simpleReferences) {
-      if (!getter.hasProperty(ou, ref.getName())) {
-        throw new EolRuntimeException("Feature " + ref.getName() +
-            " not found in type " + parameterType.getName());
-      }
-      // We need a valid object from the reference to check its features
-      // we could do it with emf too, but this is independent of any tech
-      Object refObject = null;
-      while (refObject == null && iterator.hasNext()) {
-        ou = iterator.next();
-        refObject = getter.invoke(ou, ref.getName());
-      }
-      if (refObject != null) {
-        for (String feat : ref.getFeatures()) {
-          if (!getter.hasProperty(refObject, feat)) {
-            throw new EolRuntimeException("Feature " + feat +
-                " not found in type of reference " + ref.getName());
-          }
-        }
-      }
+      ref.validate(ou, getter, oElements.iterator(), parameterType.getName());
       // references without declared attributes include all (if model is emf)
-      if (ref.getFeatures().isEmpty()) {
+      if (ref.includesAllAttributes()) {
         if (emfModel == null || eClass == null) {
           throw new EolRuntimeException("Single reference EMF functionalities "
               + "are not available in non-emf models");
         } else {
-          EReference eRef = (EReference)eClass.getEStructuralFeature(ref.getName());
-          for (EAttribute attr : eRef.getEReferenceType().getEAttributes()) {
-            ref.getFeatures().add(attr.getName());
-          }
+          ref.populateFeatures(eClass);
         }
       }
     }
@@ -158,17 +125,8 @@ public class DatasetRule extends AnnotatableModuleElement {
     if (project == null) {
       return;
     }
-//    IFolder folder = project.getFolder("gen");
-//    try {
-//      for (IResource res : folder.members()) {
-//        res.delete(false, null);
-//      }
-//    } catch (CoreException e1) {
-//      e1.printStackTrace();
-//    }
+
     String filePath = project.getLocation() + "/gen/" + name + ".csv";
-
-
     PrintWriter pw = null;
     try {
         pw = new PrintWriter(new File(filePath));
@@ -178,10 +136,7 @@ public class DatasetRule extends AnnotatableModuleElement {
     }
 
     List<String> columnNames = new ArrayList<String>();
-
-    //System.out.println("\nDataset " + name);
     for (String feature : simpleFeatures) {
-      //System.out.print(feature + ", ");
       columnNames.add(feature);
     }
     for (SimpleReference reference : simpleReferences) {
@@ -190,24 +145,21 @@ public class DatasetRule extends AnnotatableModuleElement {
       }
     }
     for (ColumnDefinition c : columns) {
-      //System.out.print(c.getName() + ", ");
       columnNames.add(c.getName());
     }
-    //System.out.println();
     pw.write(String.join(",", columnNames) +"\n");
 
     for (Object o : oElements) {
       // check if element is filtered
-      if (!isIncluded(o, context, parameter.getName())){
+      if (!isIncluded(o, context, parameter.getName())) {
         continue;
       }
       List<String> recordValues = new ArrayList<String>();
       for (String feature : simpleFeatures) {
         recordValues.add(getter.invoke(o, feature).toString());
-        //System.out.print(getter.invoke(o, feature) + ", ");
       }
       for (SimpleReference reference : simpleReferences) {
-        EObject refObject = (EObject)getter.invoke(o, reference.getName());
+        Object refObject = getter.invoke(o, reference.getName());
         if (refObject == null) {
           // No object present in reference, blank for all columns
           for (int i = 0; i < reference.getFeatures().size(); i++) {
@@ -219,37 +171,23 @@ public class DatasetRule extends AnnotatableModuleElement {
           }
         }
       }
-//      context.getFrameStack().enterLocal(FrameType.PROTECTED, c.getBlock());
-      context.getFrameStack().put(
-          Variable.createReadOnlyVariable(parameter.getName(), o));
       for (ColumnDefinition c : columns) {
-        Object res = null;
-        try{
-          res = context.getExecutorFactory().execute(c.getBlock(), context);
-        } catch (EolRuntimeException r) {
-          res = "";
-        }
-//        String res = c.getBlock().execute(context, Variable.createReadOnlyVariable(parameter.getName(), o));
-        if (res != null) {
-          String value = "";
-          if (res instanceof Return) {
-            //System.out.print(((Return)res).getValue() + ", ");
-            value = ((Return)res).getValue().toString();
-          } else {
-            //System.out.print(res + ", ");
-            value = res.toString();
-          }
-          recordValues.add(value);
-        } else {
-          recordValues.add("nullnull");
-          //System.out.print("nullnull, ");
-        }
+        Object result = c.execute(context, parameter.getName(), o);
+        recordValues.add(result + "");
       }
-//      context.getFrameStack().leaveLocal(c.getBlock());
       pw.write(String.join(",", recordValues) +"\n");
-      //System.out.println();
     }
     pw.close();
+  }
+
+  private void validateSimpleFeatures(Object ou, IPropertyGetter getter, String type)
+      throws EolRuntimeException {
+    for (String feature : simpleFeatures)  {
+      if (!getter.hasProperty(ou, feature)) {
+        throw new EolRuntimeException("Feature " + feature +
+            " not found in type " + type);
+      }
+    }
   }
 
   public Parameter getParameter() {

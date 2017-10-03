@@ -34,6 +34,8 @@ public class LvlModule extends EolModule {
 
   protected List<DatasetRule> declaredProcessRules = new ArrayList<DatasetRule>();
   private String outputFolder = "";
+  private String separator = ",";
+  private String extension = ".csv";
 
   @Override
   public ModuleElement adapt(AST cst, ModuleElement parentAst) {
@@ -108,5 +110,21 @@ public class LvlModule extends EolModule {
 
   public String getOutputFolder() {
     return outputFolder;
+  }
+
+  public String getSeparator() {
+    return separator;
+  }
+
+  public void setSeparator(String separator) {
+    this.separator = separator;
+  }
+
+  public String getExtension() {
+    return extension;
+  }
+
+  public void setExtension(String extension) {
+    this.extension = extension;
   }
 }

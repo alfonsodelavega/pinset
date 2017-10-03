@@ -1,8 +1,6 @@
 package org.eclipse.epsilon.lvl;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -22,6 +20,7 @@ import org.eclipse.epsilon.eol.execute.introspection.IPropertyGetter;
 import org.eclipse.epsilon.eol.models.IModel;
 import org.eclipse.epsilon.eol.parse.EolParser;
 import org.eclipse.epsilon.eol.types.EolModelElementType;
+import org.eclipse.epsilon.lvl.output.DatasetFile;
 import org.eclipse.epsilon.lvl.parse.LvlParser;
 
 public class DatasetRule extends AnnotatableModuleElement {
@@ -98,10 +97,12 @@ public class DatasetRule extends AnnotatableModuleElement {
       }
     }
 
-    String filePath = ((LvlModule)module).getOutputFolder() + "/" + name + ".csv";
-    PrintWriter pw = null;
+    String filePath = ((LvlModule)module).getOutputFolder()
+        + "/" + name + ((LvlModule)module).getExtension();
+    DatasetFile df = null;
     try {
-        pw = new PrintWriter(new File(filePath));
+        df = new DatasetFile(filePath);
+        df.setSeparator(((LvlModule)module).getSeparator());
     } catch (FileNotFoundException e) {
         e.printStackTrace();
         return;
@@ -119,7 +120,7 @@ public class DatasetRule extends AnnotatableModuleElement {
     for (ColumnDefinition c : columns) {
       columnNames.add(c.getName());
     }
-    pw.write(String.join(",", columnNames) +"\n");
+    df.newRecord(columnNames);
 
     for (Object o : oElements) {
       // check if element is filtered
@@ -147,9 +148,9 @@ public class DatasetRule extends AnnotatableModuleElement {
         Object result = c.execute(context, parameter.getName(), o);
         recordValues.add(result + "");
       }
-      pw.write(String.join(",", recordValues) +"\n");
+      df.newRecord(recordValues);
     }
-    pw.close();
+    df.close();
   }
 
   private void validateSimpleFeatures(Object ou, IPropertyGetter getter, String type)
@@ -165,12 +166,15 @@ public class DatasetRule extends AnnotatableModuleElement {
   public Parameter getParameter() {
     return parameter;
   }
+
   public void setParameter(Parameter parameter) {
     this.parameter = parameter;
   }
+
   public String getName() {
     return name;
   }
+
   public void setName(String name) {
     this.name = name;
   }

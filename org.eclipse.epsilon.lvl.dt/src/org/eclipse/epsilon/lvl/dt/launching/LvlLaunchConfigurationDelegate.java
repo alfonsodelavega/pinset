@@ -10,16 +10,37 @@
  ******************************************************************************/
 package org.eclipse.epsilon.lvl.dt.launching;
 
-import org.eclipse.epsilon.lvl.LvlModule;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.epsilon.eol.IEolModule;
 import org.eclipse.epsilon.eol.dt.debug.EolDebugger;
 import org.eclipse.epsilon.eol.dt.launching.EpsilonLaunchConfigurationDelegate;
+import org.eclipse.epsilon.lvl.LvlModule;
+import org.eclipse.epsilon.lvl.dt.launching.tabs.LvlOutputConfigurationTab;
 
 public class LvlLaunchConfigurationDelegate extends EpsilonLaunchConfigurationDelegate {
 
   @Override
   public IEolModule createModule() {
-    return new LvlModule();
+    LvlModule module = new LvlModule();
+    // set output folder here
+    if (configuration != null) {
+      try {
+        String workspacePath = ResourcesPlugin.getWorkspace()
+                                              .getRoot()
+                                              .getLocation()
+                                              .toString();
+        String outputFolder = workspacePath + configuration.getAttribute(
+                LvlOutputConfigurationTab.getOutputFolder(),
+                "");
+        module.setOutputFolder(outputFolder);
+      } catch (CoreException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      }
+
+    }
+    return module;
   }
 
   @Override

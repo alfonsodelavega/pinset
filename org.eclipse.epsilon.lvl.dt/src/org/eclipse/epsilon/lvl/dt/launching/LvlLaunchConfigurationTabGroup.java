@@ -12,6 +12,7 @@ package org.eclipse.epsilon.lvl.dt.launching;
 
 import org.eclipse.debug.ui.ILaunchConfigurationTab;
 import org.eclipse.epsilon.common.dt.launching.tabs.EpsilonLaunchConfigurationTabGroup;
+import org.eclipse.epsilon.lvl.dt.launching.tabs.LvlOutputConfigurationTab;
 import org.eclipse.epsilon.lvl.dt.launching.tabs.LvlSourceConfigurationTab;
 
 public class LvlLaunchConfigurationTabGroup extends EpsilonLaunchConfigurationTabGroup{
@@ -19,6 +20,11 @@ public class LvlLaunchConfigurationTabGroup extends EpsilonLaunchConfigurationTa
   @Override
   public ILaunchConfigurationTab getSourceConfigurationTab() {
     return new LvlSourceConfigurationTab();
+  }
+
+  @Override
+  public ILaunchConfigurationTab[] getOtherConfigurationTabs() {
+    return new ILaunchConfigurationTab[]{new LvlOutputConfigurationTab()};
   }
 
 }

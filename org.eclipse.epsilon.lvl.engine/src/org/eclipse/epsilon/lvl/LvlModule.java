@@ -33,6 +33,7 @@ import org.eclipse.epsilon.lvl.parse.LvlParser;
 public class LvlModule extends EolModule {
 
   protected List<DatasetRule> declaredProcessRules = new ArrayList<DatasetRule>();
+  private String outputFolder = "";
 
   @Override
   public ModuleElement adapt(AST cst, ModuleElement parentAst) {
@@ -81,11 +82,9 @@ public class LvlModule extends EolModule {
   }
 
   public Object executeImpl() throws EolRuntimeException {
-
     for (DatasetRule processRule : declaredProcessRules) {
         processRule.execute(context);
     }
-
     return null;
   }
 
@@ -101,5 +100,13 @@ public class LvlModule extends EolModule {
 
   public List<DatasetRule> getDeclaredProcessRules() {
     return declaredProcessRules;
+  }
+
+  public void setOutputFolder(String attribute) {
+    outputFolder = attribute;
+  }
+
+  public String getOutputFolder() {
+    return outputFolder;
   }
 }

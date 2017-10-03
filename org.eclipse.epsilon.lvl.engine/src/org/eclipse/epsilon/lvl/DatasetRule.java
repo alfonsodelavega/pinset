@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IResource;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.epsilon.common.module.IModule;
 import org.eclipse.epsilon.common.parse.AST;
@@ -25,12 +23,6 @@ import org.eclipse.epsilon.eol.models.IModel;
 import org.eclipse.epsilon.eol.parse.EolParser;
 import org.eclipse.epsilon.eol.types.EolModelElementType;
 import org.eclipse.epsilon.lvl.parse.LvlParser;
-import org.eclipse.ui.IEditorInput;
-import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.IWorkbench;
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.IWorkbenchWindow;
-import org.eclipse.ui.PlatformUI;
 
 public class DatasetRule extends AnnotatableModuleElement {
 
@@ -105,28 +97,8 @@ public class DatasetRule extends AnnotatableModuleElement {
         }
       }
     }
-    // Get the project where to store the generated tables
-    //   This only works if there is an editor opened (enough)
-    IProject project = null;
-    IWorkbench workbench = PlatformUI.getWorkbench();
-    IWorkbenchWindow window = workbench.getWorkbenchWindows()[0];
-    IWorkbenchPage activePage = window.getActivePage();
-    IEditorPart activeEditor = activePage.getActiveEditor();
-    if (activeEditor != null) {
-       IEditorInput input = activeEditor.getEditorInput();
-       project = input.getAdapter(IProject.class);
-       if (project == null) {
-          IResource resource = input.getAdapter(IResource.class);
-          if (resource != null) {
-             project = resource.getProject();
-          }
-       }
-    }
-    if (project == null) {
-      return;
-    }
 
-    String filePath = project.getLocation() + "/gen/" + name + ".csv";
+    String filePath = ((LvlModule)module).getOutputFolder() + "/" + name + ".csv";
     PrintWriter pw = null;
     try {
         pw = new PrintWriter(new File(filePath));

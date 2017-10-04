@@ -1,0 +1,25 @@
+dataset Dummy01_As over a : A {
+  attributes [x, en]
+  column twiceX : a.x * 2
+}
+
+dataset Dummy02_AsAndPartialBs over a : A {
+  attributes [x, en]
+  reference b[y]
+}
+
+dataset Dummy03_AsAndFullBs over a : A {
+  attributes [x, en]
+  reference b
+}
+
+dataset Dummy04_AsAndNumberOfDs over a : A {
+  attributes [x]
+  column numberOfDs : a.ds.size()
+}
+
+dataset Dummy05_filteredAs over a : A {
+  guard : a.x > 5
+  attributes [x]
+  column numberOfDs : a.ds.size()
+}

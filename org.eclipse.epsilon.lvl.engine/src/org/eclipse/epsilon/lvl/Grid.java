@@ -12,6 +12,7 @@ import org.eclipse.epsilon.eol.dom.IExecutableModuleElement;
 import org.eclipse.epsilon.eol.exceptions.EolRuntimeException;
 import org.eclipse.epsilon.eol.execute.context.IEolContext;
 import org.eclipse.epsilon.eol.execute.context.Variable;
+import org.eclipse.epsilon.lvl.output.ReturnValueParser;
 import org.eclipse.epsilon.lvl.parse.LvlParser;
 
 public class Grid extends AnnotatableModuleElement {
@@ -39,40 +40,40 @@ public class Grid extends AnnotatableModuleElement {
         module.createAst(bodyAST.getFirstChild(), this);
   }
 
-  public Collection<String> getHeaders(IEolContext context) {
+  public Collection<String> getHeaders(IEolContext context)
+      throws EolRuntimeException {
     if (headers == null) {
       initHeaders(context);
     }
     return headers;
   }
 
-  private void initHeaders(IEolContext context) {
-    try {
-      initKeys(context);
-      headers = new ArrayList<String>();
-      for (Object key : keys) {
-        context.getFrameStack().put(
-            Variable.createReadOnlyVariable(KEY_KEYWORD, key));
-        String header = "" + context.getExecutorFactory().execute(headerBlock, context);
-        headers.add(header.trim().replaceAll("\\s+", "_"));
+  private void initHeaders(IEolContext context) throws EolRuntimeException {
+    initKeys(context);
+    headers = new ArrayList<String>();
+    for (Object key : keys) {
+      context.getFrameStack().put(
+          Variable.createReadOnlyVariable(KEY_KEYWORD, key));
+      Object result = context.getExecutorFactory().execute(headerBlock, context);
+      if (result == null) {
+        throw new EolRuntimeException(String.format(
+            "There has been a problem when generating a header for key %s",
+            key));
       }
-    } catch (EolRuntimeException e) {
-      e.printStackTrace();
+      String header = "" + result;
+      headers.add(header.trim().replaceAll("\\s+", "_"));
     }
   }
 
   @SuppressWarnings("unchecked")
-  private void initKeys(IEolContext context) {
+  private void initKeys(IEolContext context) throws EolRuntimeException {
     if (keys == null) {
-      try {
-        keys = (Collection<Object>)context.getExecutorFactory().execute(keysBlock, context);
-      } catch (EolRuntimeException e) {
-        e.printStackTrace();
-      }
+      keys = (Collection<Object>)context.getExecutorFactory().execute(keysBlock, context);
     }
   }
 
-  public List<String> getCellValues(IEolContext context, String varName, Object obj) {
+  public List<String> getCellValues(IEolContext context, String varName,
+      Object obj) throws EolRuntimeException {
     initKeys(context);
     List<String> values = new ArrayList<String>();
     context.getFrameStack().put(
@@ -81,9 +82,10 @@ public class Grid extends AnnotatableModuleElement {
       context.getFrameStack().put(
           Variable.createReadOnlyVariable(KEY_KEYWORD, key));
       try {
-        values.add("" + context.getExecutorFactory().execute(bodyBlock, context));
+        values.add(ReturnValueParser.getStringOrBlank(
+            context.getExecutorFactory().execute(bodyBlock, context)));
       } catch (EolRuntimeException e) {
-        e.printStackTrace();
+        values.add("");
       }
     }
     return values;

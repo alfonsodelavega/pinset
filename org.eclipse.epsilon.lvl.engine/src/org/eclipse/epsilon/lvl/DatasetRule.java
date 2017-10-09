@@ -21,6 +21,7 @@ import org.eclipse.epsilon.eol.models.IModel;
 import org.eclipse.epsilon.eol.parse.EolParser;
 import org.eclipse.epsilon.eol.types.EolModelElementType;
 import org.eclipse.epsilon.lvl.output.DatasetFile;
+import org.eclipse.epsilon.lvl.output.ReturnValueParser;
 import org.eclipse.epsilon.lvl.parse.LvlParser;
 
 public class DatasetRule extends AnnotatableModuleElement {
@@ -136,7 +137,8 @@ public class DatasetRule extends AnnotatableModuleElement {
       }
       List<String> recordValues = new ArrayList<String>();
       for (String feature : simpleFeatures) {
-        recordValues.add(getter.invoke(o, feature).toString());
+        recordValues.add(ReturnValueParser.getStringOrBlank(
+            getter.invoke(o, feature)));
       }
       for (SimpleReference reference : simpleReferences) {
         Object refObject = getter.invoke(o, reference.getName());
@@ -147,13 +149,14 @@ public class DatasetRule extends AnnotatableModuleElement {
           }
         } else {
           for (String feature : reference.getFeatures()) {
-            recordValues.add(getter.invoke(refObject, feature).toString());
+            recordValues.add(ReturnValueParser.getStringOrBlank(
+                getter.invoke(refObject, feature)));
           }
         }
       }
       for (ColumnDefinition c : columns) {
         Object result = c.execute(context, parameter.getName(), o);
-        recordValues.add(result + "");
+        recordValues.add(ReturnValueParser.getStringOrBlank(result));
       }
       for (Grid mc : grids) {
         recordValues.addAll(mc.getCellValues(context, parameter.getName(), o));

@@ -45,6 +45,10 @@ tokens {
   COLUMNDEFINITION;
   GUARD;
   SIMPLEREFERENCE;
+  GRID;
+  GKEYS;
+  GHEADER;
+  GBODY;
 }
 
 datasetRule
@@ -57,6 +61,7 @@ datasetRule
     simpleFeatures?
     simpleReference*
     columnDefinition*
+    grid*
   cb='}'!
   {$r.setType(DATASET);}
   ;
@@ -89,4 +94,32 @@ simpleReference
 columnDefinition
   : cd='column'^ NAME expressionOrStatementBlock
   {$cd.setType(COLUMNDEFINITION);}
+  ;
+
+grid
+  @after {
+    $tree.getExtraTokens().add($ob);
+    $tree.getExtraTokens().add($cb);
+  }
+  : cd='grid'^ ob='{'
+    gkeys
+    gheader
+    gbody
+  cb='}'
+  {$cd.setType(GRID);}
+  ;
+
+gkeys
+  : gk='keys'^ expressionOrStatementBlock
+  {$gk.setType(GKEYS);}
+  ;
+
+gheader
+  : gh='header'^ expressionOrStatementBlock
+  {$gh.setType(GHEADER);}
+  ;
+
+gbody
+  : gb='body'^ expressionOrStatementBlock
+  {$gb.setType(GBODY);}
   ;

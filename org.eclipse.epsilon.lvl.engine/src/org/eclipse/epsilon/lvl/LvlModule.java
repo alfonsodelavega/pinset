@@ -48,6 +48,8 @@ public class LvlModule extends EolModule {
       return new ColumnDefinition();
     case LvlParser.SIMPLEREFERENCE:
       return new SimpleReference();
+    case LvlParser.GRID:
+      return new Grid();
     }
     return super.adapt(cst, parentAst);
   }

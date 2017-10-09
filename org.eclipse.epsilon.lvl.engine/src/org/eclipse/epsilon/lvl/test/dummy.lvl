@@ -23,3 +23,12 @@ dataset Dummy05_filteredAs over a : A {
   attributes [x]
   column numberOfDs : a.ds.size()
 }
+
+dataset Dummy06_grid over a : A {
+  attributes [x]
+  grid {
+    keys   : 1.to(5)
+    header : "x_plus_" + key
+    body   : a.x + key
+  }
+}

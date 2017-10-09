@@ -38,6 +38,10 @@ public class LvlEditor extends EolEditor{
     lvlKeywords.add("guard");
     lvlKeywords.add("attributes");
     lvlKeywords.add("reference");
+    lvlKeywords.add("grid");
+    lvlKeywords.add("keys");
+    lvlKeywords.add("header");
+    lvlKeywords.add("body");
     lvlKeywords.addAll(super.getKeywords());
 
     return lvlKeywords;

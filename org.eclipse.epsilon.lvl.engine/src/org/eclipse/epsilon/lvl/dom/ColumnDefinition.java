@@ -33,7 +33,7 @@ public class ColumnDefinition extends AnnotatableModuleElement {
     block = (IExecutableModuleElement) module.createAst(cst.getSecondChild(), this);
   }
 
-  public String getValue(IEolContext context, String varName, Object obj) {
+  public String getValue(Object obj, IEolContext context, String varName) {
     context.getFrameStack().put(
         Variable.createReadOnlyVariable(varName, obj));
     return ReturnValueParser.obtainAndParseValue(context, block);

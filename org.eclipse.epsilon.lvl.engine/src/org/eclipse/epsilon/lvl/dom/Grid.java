@@ -40,7 +40,7 @@ public class Grid extends AnnotatableModuleElement {
         module.createAst(bodyAST.getFirstChild(), this);
   }
 
-  public Collection<String> getHeaders(IEolContext context)
+  public Collection<String> getNames(IEolContext context)
       throws EolRuntimeException {
     if (headers == null) {
       initHeaders(context);
@@ -72,8 +72,8 @@ public class Grid extends AnnotatableModuleElement {
     }
   }
 
-  public List<String> getCellValues(IEolContext context, String varName,
-      Object obj) throws EolRuntimeException {
+  public List<String> getValues(Object obj, IEolContext context, String varName)
+      throws EolRuntimeException {
     initKeys(context);
     List<String> values = new ArrayList<String>();
     context.getFrameStack().put(

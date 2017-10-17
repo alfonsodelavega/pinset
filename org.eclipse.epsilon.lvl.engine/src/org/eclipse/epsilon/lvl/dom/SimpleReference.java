@@ -14,6 +14,7 @@ import org.eclipse.epsilon.eol.dom.AnnotatableModuleElement;
 import org.eclipse.epsilon.eol.exceptions.EolRuntimeException;
 import org.eclipse.epsilon.eol.execute.introspection.IPropertyGetter;
 import org.eclipse.epsilon.eol.parse.EolParser;
+import org.eclipse.epsilon.lvl.output.ReturnValueParser;
 
 public class SimpleReference extends AnnotatableModuleElement {
   protected String name;
@@ -33,14 +34,6 @@ public class SimpleReference extends AnnotatableModuleElement {
     if (features.isEmpty()) {
       includesAllAttributes = true;
     }
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public List<String> getFeatures() {
-    return features;
   }
 
   public boolean includesAllAttributes() {
@@ -75,5 +68,31 @@ public class SimpleReference extends AnnotatableModuleElement {
     for (EAttribute attr : eRef.getEReferenceType().getEAttributes()) {
       features.add(attr.getName());
     }
+  }
+
+  public List<String> getNames() {
+    List<String> res = new ArrayList<String>();
+    for (String feature : features) {
+      res.add(name + "_" + feature);
+    }
+    return res;
+  }
+
+  public List<String> getValues(Object o, IPropertyGetter getter)
+      throws EolRuntimeException {
+    List<String> res = new ArrayList<String>();
+    Object refObject = getter.invoke(o, name);
+    if (refObject == null) {
+      // No object present in reference, blank for all columns
+      for (int i = 0; i < features.size(); i++) {
+        res.add("");
+      }
+    } else {
+      for (String feature : features) {
+        res.add(ReturnValueParser.getStringOrBlank(
+            getter.invoke(refObject, feature)));
+      }
+    }
+    return res;
   }
 }

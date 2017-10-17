@@ -119,15 +119,13 @@ public class DatasetRule extends AnnotatableModuleElement {
       columnNames.add(feature);
     }
     for (SimpleReference reference : simpleReferences) {
-      for (String feature : reference.getFeatures()) {
-        columnNames.add(reference.getName() + "_" + feature);
-      }
+      columnNames.addAll(reference.getNames());
     }
     for (ColumnDefinition c : columns) {
       columnNames.add(c.getName());
     }
     for (Grid grid : grids) {
-      columnNames.addAll(grid.getHeaders(context));
+      columnNames.addAll(grid.getNames(context));
     }
     df.newRecord(columnNames);
 
@@ -142,24 +140,13 @@ public class DatasetRule extends AnnotatableModuleElement {
             getter.invoke(o, feature)));
       }
       for (SimpleReference reference : simpleReferences) {
-        Object refObject = getter.invoke(o, reference.getName());
-        if (refObject == null) {
-          // No object present in reference, blank for all columns
-          for (int i = 0; i < reference.getFeatures().size(); i++) {
-            recordValues.add("");
-          }
-        } else {
-          for (String feature : reference.getFeatures()) {
-            recordValues.add(ReturnValueParser.getStringOrBlank(
-                getter.invoke(refObject, feature)));
-          }
-        }
+        recordValues.addAll(reference.getValues(o, getter));
       }
       for (ColumnDefinition c : columns) {
-        recordValues.add(c.getValue(context, parameter.getName(), o));
+        recordValues.add(c.getValue(o, context, parameter.getName()));
       }
       for (Grid mc : grids) {
-        recordValues.addAll(mc.getCellValues(context, parameter.getName(), o));
+        recordValues.addAll(mc.getValues(o, context, parameter.getName()));
       }
       df.newRecord(recordValues);
     }

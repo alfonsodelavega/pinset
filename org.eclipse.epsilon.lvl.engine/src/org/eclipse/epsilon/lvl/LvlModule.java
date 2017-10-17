@@ -26,6 +26,10 @@ import org.eclipse.epsilon.eol.EolModule;
 import org.eclipse.epsilon.eol.dom.ExecutableBlock;
 import org.eclipse.epsilon.eol.exceptions.EolRuntimeException;
 import org.eclipse.epsilon.eol.execute.context.IEolContext;
+import org.eclipse.epsilon.lvl.dom.ColumnDefinition;
+import org.eclipse.epsilon.lvl.dom.DatasetRule;
+import org.eclipse.epsilon.lvl.dom.Grid;
+import org.eclipse.epsilon.lvl.dom.SimpleReference;
 import org.eclipse.epsilon.lvl.parse.LvlLexer;
 import org.eclipse.epsilon.lvl.parse.LvlParser;
 

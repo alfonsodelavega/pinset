@@ -11,8 +11,8 @@
 package org.eclipse.epsilon.lvl.dt.launching;
 
 import org.eclipse.epsilon.common.module.ModuleElement;
-import org.eclipse.epsilon.lvl.DatasetRule;
 import org.eclipse.epsilon.eol.dt.debug.EolDebugger;
+import org.eclipse.epsilon.lvl.dom.DatasetRule;
 
 public class LvlDebugger extends EolDebugger {
 

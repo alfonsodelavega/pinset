@@ -1,4 +1,4 @@
-package org.eclipse.epsilon.lvl;
+package org.eclipse.epsilon.lvl.dom;
 
 import java.util.ArrayList;
 import java.util.Iterator;

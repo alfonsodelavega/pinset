@@ -11,7 +11,7 @@
 package org.eclipse.epsilon.lvl.dt.editor.outline;
 
 import org.eclipse.epsilon.eol.dt.editor.outline.EolModuleElementLabelProvider;
-import org.eclipse.epsilon.lvl.DatasetRule;
+import org.eclipse.epsilon.lvl.dom.DatasetRule;
 import org.eclipse.epsilon.lvl.dt.LvlPlugin;
 import org.eclipse.swt.graphics.Image;
 

@@ -5,7 +5,7 @@ import java.util.List;
 import org.eclipse.epsilon.common.module.ModuleElement;
 import org.eclipse.epsilon.eol.dt.editor.outline.EolModuleContentProvider;
 import org.eclipse.epsilon.lvl.LvlModule;
-import org.eclipse.epsilon.lvl.DatasetRule;
+import org.eclipse.epsilon.lvl.dom.DatasetRule;
 
 public class LvlModuleContentProvider extends EolModuleContentProvider {
 

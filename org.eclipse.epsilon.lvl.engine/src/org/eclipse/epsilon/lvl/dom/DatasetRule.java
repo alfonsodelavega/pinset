@@ -1,4 +1,4 @@
-package org.eclipse.epsilon.lvl;
+package org.eclipse.epsilon.lvl.dom;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -20,6 +20,7 @@ import org.eclipse.epsilon.eol.execute.introspection.IPropertyGetter;
 import org.eclipse.epsilon.eol.models.IModel;
 import org.eclipse.epsilon.eol.parse.EolParser;
 import org.eclipse.epsilon.eol.types.EolModelElementType;
+import org.eclipse.epsilon.lvl.LvlModule;
 import org.eclipse.epsilon.lvl.output.DatasetFile;
 import org.eclipse.epsilon.lvl.output.ReturnValueParser;
 import org.eclipse.epsilon.lvl.parse.LvlParser;
@@ -68,7 +69,7 @@ public class DatasetRule extends AnnotatableModuleElement {
   }
 
 
-  protected void execute(IEolContext context) throws EolRuntimeException {
+  public void execute(IEolContext context) throws EolRuntimeException {
 
     EolModelElementType parameterType = (EolModelElementType) parameter.getType(context);
     IModel model = parameterType.getModel();

@@ -1,4 +1,4 @@
-package org.eclipse.epsilon.lvl;
+package org.eclipse.epsilon.lvl.dom;
 
 import org.eclipse.epsilon.common.module.IModule;
 import org.eclipse.epsilon.common.parse.AST;

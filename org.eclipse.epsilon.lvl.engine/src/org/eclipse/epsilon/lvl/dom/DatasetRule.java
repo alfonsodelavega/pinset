@@ -156,8 +156,7 @@ public class DatasetRule extends AnnotatableModuleElement {
         }
       }
       for (ColumnDefinition c : columns) {
-        Object result = c.execute(context, parameter.getName(), o);
-        recordValues.add(ReturnValueParser.getStringOrBlank(result));
+        recordValues.add(c.getValue(context, parameter.getName(), o));
       }
       for (Grid mc : grids) {
         recordValues.addAll(mc.getCellValues(context, parameter.getName(), o));

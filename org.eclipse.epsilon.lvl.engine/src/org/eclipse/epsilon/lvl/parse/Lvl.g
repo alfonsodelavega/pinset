@@ -39,7 +39,7 @@ grammar Lvl;
 
 options {backtrack=true; output=AST; ASTLabelType='org.eclipse.epsilon.common.parse.AST'; superClass='org.eclipse.epsilon.common.parse.EpsilonParser';}
 
-import EolLexerRules, EolParserRules, LvlParserRules;
+import EolLexerRules, EolParserRules, ErlParserRules, LvlParserRules;
 
 tokens {
   LVLMODULE;
@@ -96,5 +96,5 @@ lvlModule
   ;
 
 lvlModuleContent
-  :	datasetRule | operationDeclaration
+  :	pre | datasetRule | operationDeclaration
   ;

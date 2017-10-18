@@ -66,11 +66,6 @@ datasetRule
   {$r.setType(DATASET);}
   ;
 
-guard
-  : g='guard'^ expressionOrStatementBlock
-  {$g.setType(GUARD);}
-  ;
-
 simpleFeatures
   @after {
     $tree.getExtraTokens().add($ob);

@@ -5,7 +5,8 @@ Bundle-SymbolicName: org.eclipse.epsilon.lvl.engine
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: Eclipse.org
 Require-Bundle: org.eclipse.epsilon.eol.engine,
- org.eclipse.epsilon.emc.emf
+ org.eclipse.epsilon.emc.emf,
+ org.eclipse.epsilon.erl.engine
 Export-Package: org.eclipse.epsilon.lvl,
  org.eclipse.epsilon.lvl.dom,
  org.eclipse.epsilon.lvl.parse

@@ -3,13 +3,13 @@ package org.eclipse.epsilon.lvl.dom;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.epsilon.common.module.IModule;
 import org.eclipse.epsilon.common.parse.AST;
 import org.eclipse.epsilon.common.util.AstUtil;
-import org.eclipse.epsilon.emc.emf.AbstractEmfModel;
 import org.eclipse.epsilon.eol.dom.AnnotatableModuleElement;
 import org.eclipse.epsilon.eol.dom.ExecutableBlock;
 import org.eclipse.epsilon.eol.dom.Parameter;
@@ -80,32 +80,18 @@ public class DatasetRule extends AnnotatableModuleElement {
     IPropertyGetter getter = model.getPropertyGetter();
     getter.setContext(context);
 
-    // as some constructs are emf-dependent, prepare the emf model
-    AbstractEmfModel emfModel = null;
-    EClass eClass = null;
-    if (model instanceof AbstractEmfModel) {
-      emfModel = (AbstractEmfModel)model;
-      eClass = emfModel.classForName(parameterType.getTypeName());
-    }
-
     Collection<?> oElements = parameterType.getAllOfKind();
-    // use the first element to check features existence
-    Object ou = oElements.iterator().next(); // this fails if empty collection
-
-    validateSimpleFeatures(ou, getter, parameterType.getName());
-
-    for (SimpleReference ref : simpleReferences) {
-      ref.validate(ou, getter, oElements.iterator(), parameterType.getName());
-      // references without declared attributes include all (if model is emf)
-      if (ref.includesAllAttributes()) {
-        if (emfModel == null || eClass == null) {
-          throw new EolRuntimeException("Single reference EMF functionalities "
-              + "are not available in non-emf models");
-        } else {
-          ref.populateFeatures(eClass);
-        }
-      }
+    if (oElements.isEmpty()) {
+      return; // if no elements are to appear in the table, it is not generated
     }
+
+    // use the first element to check features existence
+    Object ou = oElements.iterator().next();
+    validateSimpleFeatures(ou, parameterType.getName(), getter);
+
+    validateSimpleReferences(oElements, parameterType.getName(), getter);
+
+    validateFeatures(oElements, getter, context, parameter.getName());
 
     String filePath = ((LvlModule)module).getOutputFolder()
         + "/" + name + ((LvlModule)module).getExtension();
@@ -163,12 +149,45 @@ public class DatasetRule extends AnnotatableModuleElement {
     df.close();
   }
 
-  private void validateSimpleFeatures(Object ou, IPropertyGetter getter, String type)
-      throws EolRuntimeException {
+  private void validateSimpleFeatures(Object ou, String oType,
+      IPropertyGetter getter) throws EolRuntimeException {
     for (String feature : simpleFeatures)  {
       if (!getter.hasProperty(ou, feature)) {
-        throw new EolRuntimeException("Feature " + feature +
-            " not found in type " + type);
+        throw new EolRuntimeException(String.format(
+            "Feature %s not found in type %s", feature, oType));
+      }
+    }
+  }
+
+  private void validateSimpleReferences(Collection<?> oElements, String oType,
+      IPropertyGetter getter)
+      throws EolRuntimeException {
+    Iterator<?> iterator = oElements.iterator();
+    Object obj = iterator.next();
+    for (SimpleReference ref : simpleReferences) {
+      ref.validate(obj, getter, iterator, oType);
+      // references without declared attributes include all (if model is emf)
+      if (ref.includesAllAttributes()) {
+        if (!(obj instanceof EObject)) {
+          throw new EolRuntimeException("Single reference EMF functionalities "
+              + "are not available in non-emf models");
+        } else {
+          ref.populateFeatures(((EObject)obj).eClass());
+        }
+      }
+    }
+  }
+
+  private void validateFeatures(Collection<?> oElements,
+      IPropertyGetter getter, IEolContext context, String varName)
+      throws EolRuntimeException {
+    for (Features fs : features) {
+      // validation happens until an obj element generates a successful (not null)
+      //   result in the fromBlock, which can be checked with the getter
+      for (Object obj : oElements) {
+        if (fs.validate(obj, getter, context, varName)) {
+          break; // features object validated, no need to keep iterating
+        }
       }
     }
   }

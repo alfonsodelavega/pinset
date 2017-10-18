@@ -38,8 +38,30 @@ public class Features extends AnnotatableModuleElement {
     prefix = prefixAST.getFirstChild().getText();
   }
 
-  public List<String> getNames()
-      throws EolRuntimeException {
+  public boolean validate(Object obj, IPropertyGetter getter,
+      IEolContext context, String varName) throws EolRuntimeException {
+    context.getFrameStack().put(
+        Variable.createReadOnlyVariable(varName, obj));
+    Object fromObject = fromBlock.execute(context);
+    if (fromObject == null) {
+      return false; // validation did not happen due to null fromBlock execution
+    } else {
+      for (String feature : features) {
+        if (!getter.hasProperty(fromObject, feature)) {
+          String className = fromObject.getClass().getSimpleName();
+          if (fromObject instanceof EObject) {
+            className = ((EObject)fromObject).eClass().getName();
+          }
+          throw new EolRuntimeException(String.format(
+              "Instances of type %s do not have a %s feature",
+              className, feature));
+        }
+      }
+    }
+    return true;
+  }
+
+  public List<String> getNames() {
     ArrayList<String> result = new ArrayList<String>();
     for (String feature : features) {
       result.add(prefix + feature);
@@ -60,15 +82,6 @@ public class Features extends AnnotatableModuleElement {
       }
     } else {
       for (String feature : features) {
-        if (!getter.hasProperty(fromObject, feature)) {
-          String className = fromObject.getClass().getSimpleName();
-          if (fromObject instanceof EObject) {
-            className = ((EObject)fromObject).eClass().getName();
-          }
-          throw new EolRuntimeException(String.format(
-              "Instances of type %s do not have a %s feature",
-              className, feature));
-        }
         values.add(ReturnValueParser.getStringOrBlank(
             getter.invoke(fromObject, feature)));
       }

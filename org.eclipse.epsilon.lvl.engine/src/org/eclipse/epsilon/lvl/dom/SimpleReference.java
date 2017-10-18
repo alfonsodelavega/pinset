@@ -43,8 +43,8 @@ public class SimpleReference extends AnnotatableModuleElement {
   public void validate(Object ou, IPropertyGetter getter,
       Iterator<?> iterator, String type) throws EolRuntimeException {
     if (!getter.hasProperty(ou, name)) {
-      throw new EolRuntimeException("Feature " + name +
-          " not found in type " + type);
+      throw new EolRuntimeException(
+          String.format("Feature %s not found in type %s", name, type));
     }
     // We need a valid object from the reference to check its features
     // we could do it with emf too, but this is independent of any tech
@@ -56,15 +56,15 @@ public class SimpleReference extends AnnotatableModuleElement {
     if (refObject != null) {
       for (String feat : features) {
         if (!getter.hasProperty(refObject, feat)) {
-          throw new EolRuntimeException("Feature " + feat +
-              " not found in type of reference " + name);
+          throw new EolRuntimeException(String.format(
+              "Feature %s not found in type of reference %s", feat, name));
         }
       }
     }
   }
 
-  public void populateFeatures(EClass eClass) {
-    EReference eRef = (EReference)eClass.getEStructuralFeature(name);
+  public void populateFeatures(EClass referencingEClass) {
+    EReference eRef = (EReference)referencingEClass.getEStructuralFeature(name);
     for (EAttribute attr : eRef.getEReferenceType().getEAttributes()) {
       features.add(attr.getName());
     }

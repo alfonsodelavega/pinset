@@ -32,3 +32,11 @@ dataset Dummy06_grid over a : A {
     body   : a.x + key
   }
 }
+
+dataset Dummy07_features over a : A {
+  attributes [x]
+  features [y, z] {
+    from : a.b
+    prefix : "b_"
+  }
+}

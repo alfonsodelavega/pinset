@@ -1,4 +1,4 @@
-// $ANTLR 3.1b1 /home/fonso/repos/lvl-fromEpsilon/org.eclipse.epsilon.lvl.engine/src/org/eclipse/epsilon/lvl/parse/Lvl.g 2017-10-18 09:53:03
+// $ANTLR 3.1b1 /home/fonso/repos/lvl-fromEpsilon/org.eclipse.epsilon.lvl.engine/src/org/eclipse/epsilon/lvl/parse/Lvl.g 2017-10-18 13:53:36
 
 package org.eclipse.epsilon.lvl.parse;
 
@@ -51,7 +51,7 @@ import org.antlr.runtime.tree.*;
  ******************************************************************************/
 public class LvlParser extends org.eclipse.epsilon.common.parse.EpsilonParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "FLOAT", "DIGIT", "EXPONENT", "FLOAT_TYPE_SUFFIX", "INT", "POINT", "POINT_POINT", "ARROW", "BOOLEAN", "EscapeSequence", "STRING", "StrangeNameLiteral", "Letter", "SpecialNameChar", "JavaIDDigit", "NAME", "WS", "COMMENT", "LINE_COMMENT", "Annotation", "FORMAL", "PARAMLIST", "ASSIGNMENT", "SPECIAL_ASSIGNMENT", "HELPERMETHOD", "StatementBlock", "FOR", "IF", "ELSE", "WHILE", "SWITCH", "CASE", "DEFAULT", "RETURN", "BREAK", "BREAKALL", "CONTINUE", "TRANSACTION", "COLLECTION", "ABORT", "CollectionType", "ModelElementType", "PARAMETERS", "NewExpression", "VAR", "NEW", "ANNOTATIONBLOCK", "EXECUTABLEANNOTATION", "DELETE", "THROW", "EXPRLIST", "EXPRRANGE", "NativeType", "MultiplicativeExpression", "OPERATOR", "EXPRESSIONINBRACKETS", "FeatureCall", "EOLMODULE", "BLOCK", "FEATURECALL", "TYPE", "ENUMERATION_VALUE", "IMPORT", "MODELDECLARATION", "NAMESPACE", "ALIAS", "DRIVER", "MODELDECLARATIONPARAMETERS", "MODELDECLARATIONPARAMETER", "ITEMSELECTOR", "MAP", "KEYVAL", "KEYVALLIST", "PRE", "POST", "EXTENDS", "GUARD", "DATASET", "SIMPLEFEATURES", "COLUMNDEFINITION", "SIMPLEREFERENCE", "GRID", "GKEYS", "GHEADER", "GBODY", "LVLMODULE", "'model'", "';'", "'alias'", "','", "'driver'", "'{'", "'}'", "'='", "'operation'", "'function'", "'('", "')'", "':'", "'import'", "'$'", "'!'", "'#'", "'::'", "'Native'", "'Collection'", "'Sequence'", "'List'", "'Bag'", "'Set'", "'OrderedSet'", "'Map'", "'<'", "'>'", "'for'", "'in'", "'if'", "'switch'", "'case'", "'default'", "'else'", "'while'", "'return'", "'throw'", "'delete'", "'break'", "'breakAll'", "'continue'", "'abort'", "'transaction'", "':='", "'+='", "'-='", "'*='", "'/='", "'::='", "'or'", "'and'", "'xor'", "'implies'", "'=='", "'>='", "'<='", "'<>'", "'+'", "'-'", "'*'", "'/'", "'not'", "'++'", "'['", "']'", "'|'", "'new'", "'var'", "'ext'", "'pre'", "'post'", "'guard'", "'extends'", "'dataset'", "'over'", "'attributes'", "'reference'", "'column'", "'grid'", "'keys'", "'header'", "'body'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "FLOAT", "DIGIT", "EXPONENT", "FLOAT_TYPE_SUFFIX", "INT", "POINT", "POINT_POINT", "ARROW", "BOOLEAN", "EscapeSequence", "STRING", "StrangeNameLiteral", "Letter", "SpecialNameChar", "JavaIDDigit", "NAME", "WS", "COMMENT", "LINE_COMMENT", "Annotation", "FORMAL", "PARAMLIST", "ASSIGNMENT", "SPECIAL_ASSIGNMENT", "HELPERMETHOD", "StatementBlock", "FOR", "IF", "ELSE", "WHILE", "SWITCH", "CASE", "DEFAULT", "RETURN", "BREAK", "BREAKALL", "CONTINUE", "TRANSACTION", "COLLECTION", "ABORT", "CollectionType", "ModelElementType", "PARAMETERS", "NewExpression", "VAR", "NEW", "ANNOTATIONBLOCK", "EXECUTABLEANNOTATION", "DELETE", "THROW", "EXPRLIST", "EXPRRANGE", "NativeType", "MultiplicativeExpression", "OPERATOR", "EXPRESSIONINBRACKETS", "FeatureCall", "EOLMODULE", "BLOCK", "FEATURECALL", "TYPE", "ENUMERATION_VALUE", "IMPORT", "MODELDECLARATION", "NAMESPACE", "ALIAS", "DRIVER", "MODELDECLARATIONPARAMETERS", "MODELDECLARATIONPARAMETER", "ITEMSELECTOR", "MAP", "KEYVAL", "KEYVALLIST", "PRE", "POST", "EXTENDS", "GUARD", "DATASET", "NAMESLIST", "SIMPLEFEATURES", "COLUMNDEFINITION", "SIMPLEREFERENCE", "GRID", "GKEYS", "GHEADER", "GBODY", "FEATURES", "FEATURESFROM", "FEATURESPREFIX", "LVLMODULE", "'model'", "';'", "'alias'", "','", "'driver'", "'{'", "'}'", "'='", "'operation'", "'function'", "'('", "')'", "':'", "'import'", "'$'", "'!'", "'#'", "'::'", "'Native'", "'Collection'", "'Sequence'", "'List'", "'Bag'", "'Set'", "'OrderedSet'", "'Map'", "'<'", "'>'", "'for'", "'in'", "'if'", "'switch'", "'case'", "'default'", "'else'", "'while'", "'return'", "'throw'", "'delete'", "'break'", "'breakAll'", "'continue'", "'abort'", "'transaction'", "':='", "'+='", "'-='", "'*='", "'/='", "'::='", "'or'", "'and'", "'xor'", "'implies'", "'=='", "'>='", "'<='", "'<>'", "'+'", "'-'", "'*'", "'/'", "'not'", "'++'", "'['", "']'", "'|'", "'new'", "'var'", "'ext'", "'pre'", "'post'", "'guard'", "'extends'", "'dataset'", "'over'", "'attributes'", "'reference'", "'column'", "'grid'", "'keys'", "'header'", "'body'", "'features'", "'from'", "'prefix'"
     };
     public static final int T__144=144;
     public static final int T__143=143;
@@ -81,6 +81,7 @@ public class LvlParser extends org.eclipse.epsilon.common.parse.EpsilonParser {
     public static final int T__133=133;
     public static final int T__132=132;
     public static final int T__135=135;
+    public static final int FEATURESFROM=91;
     public static final int T__134=134;
     public static final int T__131=131;
     public static final int NewExpression=47;
@@ -88,7 +89,7 @@ public class LvlParser extends org.eclipse.epsilon.common.parse.EpsilonParser {
     public static final int CASE=35;
     public static final int Letter=16;
     public static final int LINE_COMMENT=22;
-    public static final int GHEADER=87;
+    public static final int GHEADER=88;
     public static final int T__129=129;
     public static final int T__126=126;
     public static final int JavaIDDigit=18;
@@ -109,12 +110,12 @@ public class LvlParser extends org.eclipse.epsilon.common.parse.EpsilonParser {
     public static final int T__160=160;
     public static final int TRANSACTION=41;
     public static final int FLOAT_TYPE_SUFFIX=7;
-    public static final int SIMPLEREFERENCE=84;
+    public static final int SIMPLEREFERENCE=85;
     public static final int ITEMSELECTOR=73;
     public static final int COMMENT=21;
     public static final int ModelElementType=45;
     public static final int IMPORT=66;
-    public static final int SIMPLEFEATURES=82;
+    public static final int SIMPLEFEATURES=83;
     public static final int DELETE=52;
     public static final int ARROW=11;
     public static final int T__159=159;
@@ -128,9 +129,10 @@ public class LvlParser extends org.eclipse.epsilon.common.parse.EpsilonParser {
     public static final int T__150=150;
     public static final int T__153=153;
     public static final int T__152=152;
-    public static final int GRID=85;
+    public static final int GRID=86;
     public static final int Annotation=23;
-    public static final int GBODY=88;
+    public static final int GBODY=89;
+    public static final int FEATURES=90;
     public static final int CONTINUE=40;
     public static final int ENUMERATION_VALUE=65;
     public static final int OPERATOR=58;
@@ -139,20 +141,17 @@ public class LvlParser extends org.eclipse.epsilon.common.parse.EpsilonParser {
     public static final int T__148=148;
     public static final int T__147=147;
     public static final int T__149=149;
-    public static final int T__91=91;
+    public static final int NAMESLIST=82;
     public static final int T__100=100;
     public static final int NAMESPACE=68;
-    public static final int T__92=92;
     public static final int COLLECTION=42;
     public static final int NEW=49;
     public static final int EXTENDS=79;
-    public static final int T__93=93;
     public static final int T__102=102;
     public static final int PRE=77;
     public static final int T__94=94;
     public static final int T__101=101;
     public static final int POST=78;
-    public static final int T__90=90;
     public static final int ALIAS=69;
     public static final int DRIVER=70;
     public static final int DATASET=81;
@@ -166,9 +165,16 @@ public class LvlParser extends org.eclipse.epsilon.common.parse.EpsilonParser {
     public static final int T__97=97;
     public static final int StatementBlock=29;
     public static final int T__98=98;
+    public static final int T__177=177;
+    public static final int T__176=176;
+    public static final int T__179=179;
+    public static final int T__178=178;
     public static final int ABORT=43;
+    public static final int T__173=173;
     public static final int StrangeNameLiteral=15;
     public static final int T__172=172;
+    public static final int T__175=175;
+    public static final int T__174=174;
     public static final int FOR=30;
     public static final int BLOCK=62;
     public static final int T__171=171;
@@ -177,12 +183,12 @@ public class LvlParser extends org.eclipse.epsilon.common.parse.EpsilonParser {
     public static final int SpecialNameChar=17;
     public static final int BOOLEAN=12;
     public static final int NAME=19;
-    public static final int GKEYS=86;
+    public static final int GKEYS=87;
     public static final int SWITCH=34;
     public static final int T__169=169;
     public static final int FeatureCall=60;
     public static final int T__122=122;
-    public static final int LVLMODULE=89;
+    public static final int LVLMODULE=93;
     public static final int T__121=121;
     public static final int T__124=124;
     public static final int FLOAT=4;
@@ -208,9 +214,10 @@ public class LvlParser extends org.eclipse.epsilon.common.parse.EpsilonParser {
     public static final int T__110=110;
     public static final int T__113=113;
     public static final int T__112=112;
-    public static final int COLUMNDEFINITION=83;
+    public static final int COLUMNDEFINITION=84;
     public static final int EscapeSequence=13;
     public static final int EOLMODULE=61;
+    public static final int FEATURESPREFIX=92;
     public static final int DIGIT=5;
     public static final int EXECUTABLEANNOTATION=51;
     public static final int T__108=108;
@@ -287,7 +294,7 @@ public class LvlParser extends org.eclipse.epsilon.common.parse.EpsilonParser {
                 int alt1=2;
                 int LA1_0 = input.LA(1);
 
-                if ( (LA1_0==103) ) {
+                if ( (LA1_0==107) ) {
                     alt1=1;
                 }
 
@@ -317,7 +324,7 @@ public class LvlParser extends org.eclipse.epsilon.common.parse.EpsilonParser {
                 int alt2=2;
                 int LA2_0 = input.LA(1);
 
-                if ( ((LA2_0>=98 && LA2_0<=99)||LA2_0==160||LA2_0==164) ) {
+                if ( ((LA2_0>=102 && LA2_0<=103)||LA2_0==164||LA2_0==168) ) {
                     alt2=1;
                 }
 
@@ -347,7 +354,7 @@ public class LvlParser extends org.eclipse.epsilon.common.parse.EpsilonParser {
 
 
             // AST REWRITE
-            // elements: lvlModuleContent, importStatement
+            // elements: importStatement, lvlModuleContent
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -430,18 +437,18 @@ public class LvlParser extends org.eclipse.epsilon.common.parse.EpsilonParser {
             // /home/fonso/repos/lvl-fromEpsilon/org.eclipse.epsilon.lvl.engine/src/org/eclipse/epsilon/lvl/parse/Lvl.g:99:3: ( pre | datasetRule | operationDeclaration )
             int alt3=3;
             switch ( input.LA(1) ) {
-            case 160:
+            case 164:
                 {
                 alt3=1;
                 }
                 break;
-            case 164:
+            case 168:
                 {
                 alt3=2;
                 }
                 break;
-            case 98:
-            case 99:
+            case 102:
+            case 103:
                 {
                 alt3=3;
                 }
@@ -520,90 +527,94 @@ public class LvlParser extends org.eclipse.epsilon.common.parse.EpsilonParser {
     // $ANTLR end lvlModuleContent
 
     // Delegated rules
-    public Lvl_EolParserRules.switchStatement_return switchStatement() throws RecognitionException { return gEolParserRules.switchStatement(); }
-    public Lvl_EolParserRules.parameterList_return parameterList() throws RecognitionException { return gEolParserRules.parameterList(); }
-    public Lvl_EolParserRules.typeName_return typeName() throws RecognitionException { return gEolParserRules.typeName(); }
-    public Lvl_ErlParserRules.extendz_return extendz() throws RecognitionException { return gErlParserRules.extendz(); }
-    public Lvl_ErlParserRules.pre_return pre() throws RecognitionException { return gErlParserRules.pre(); }
-    public Lvl_EolParserRules.caseStatement_return caseStatement() throws RecognitionException { return gEolParserRules.caseStatement(); }
-    public Lvl_EolParserRules.expressionStatement_return expressionStatement() throws RecognitionException { return gEolParserRules.expressionStatement(); }
-    public Lvl_EolParserRules.formalParameterList_return formalParameterList() throws RecognitionException { return gEolParserRules.formalParameterList(); }
-    public Lvl_EolParserRules.assignmentStatement_return assignmentStatement() throws RecognitionException { return gEolParserRules.assignmentStatement(); }
-    public Lvl_EolParserRules.expressionList_return expressionList() throws RecognitionException { return gEolParserRules.expressionList(); }
-    public Lvl_LvlParserRules.simpleFeatures_return simpleFeatures() throws RecognitionException { return gLvlParserRules.simpleFeatures(); }
-    public Lvl_EolParserRules.statementBlock_return statementBlock() throws RecognitionException { return gEolParserRules.statementBlock(); }
-    public Lvl_EolParserRules.featureCall_return featureCall() throws RecognitionException { return gEolParserRules.featureCall(); }
-    public Lvl_EolParserRules.literalMapCollection_return literalMapCollection() throws RecognitionException { return gEolParserRules.literalMapCollection(); }
-    public Lvl_EolParserRules.operationDeclarationOrAnnotationBlock_return operationDeclarationOrAnnotationBlock() throws RecognitionException { return gEolParserRules.operationDeclarationOrAnnotationBlock(); }
-    public Lvl_EolParserRules.defaultStatement_return defaultStatement() throws RecognitionException { return gEolParserRules.defaultStatement(); }
-    public Lvl_EolParserRules.annotation_return annotation() throws RecognitionException { return gEolParserRules.annotation(); }
-    public Lvl_EolParserRules.transactionStatement_return transactionStatement() throws RecognitionException { return gEolParserRules.transactionStatement(); }
+    public Lvl_EolParserRules.itemSelectorExpression_return itemSelectorExpression() throws RecognitionException { return gEolParserRules.itemSelectorExpression(); }
     public Lvl_EolParserRules.abortStatement_return abortStatement() throws RecognitionException { return gEolParserRules.abortStatement(); }
-    public Lvl_EolParserRules.breakAllStatement_return breakAllStatement() throws RecognitionException { return gEolParserRules.breakAllStatement(); }
-    public Lvl_EolParserRules.modelDeclarationParameter_return modelDeclarationParameter() throws RecognitionException { return gEolParserRules.modelDeclarationParameter(); }
-    public Lvl_EolParserRules.variableDeclarationExpression_return variableDeclarationExpression() throws RecognitionException { return gEolParserRules.variableDeclarationExpression(); }
-    public Lvl_EolParserRules.pathName_return pathName() throws RecognitionException { return gEolParserRules.pathName(); }
-    public Lvl_EolParserRules.statementB_return statementB() throws RecognitionException { return gEolParserRules.statementB(); }
-    public Lvl_EolParserRules.shortcutOperatorExpression_return shortcutOperatorExpression() throws RecognitionException { return gEolParserRules.shortcutOperatorExpression(); }
-    public Lvl_EolParserRules.expressionOrStatementBlock_return expressionOrStatementBlock() throws RecognitionException { return gEolParserRules.expressionOrStatementBlock(); }
-    public Lvl_EolParserRules.formalParameter_return formalParameter() throws RecognitionException { return gEolParserRules.formalParameter(); }
-    public Lvl_EolParserRules.whileStatement_return whileStatement() throws RecognitionException { return gEolParserRules.whileStatement(); }
-    public Lvl_EolParserRules.logicalExpressionInBrackets_return logicalExpressionInBrackets() throws RecognitionException { return gEolParserRules.logicalExpressionInBrackets(); }
-    public Lvl_EolParserRules.ifStatement_return ifStatement() throws RecognitionException { return gEolParserRules.ifStatement(); }
+    public Lvl_ErlParserRules.pre_return pre() throws RecognitionException { return gErlParserRules.pre(); }
+    public Lvl_LvlParserRules.columnDefinition_return columnDefinition() throws RecognitionException { return gLvlParserRules.columnDefinition(); }
+    public Lvl_EolParserRules.typeName_return typeName() throws RecognitionException { return gEolParserRules.typeName(); }
+    public Lvl_EolParserRules.forStatement_return forStatement() throws RecognitionException { return gEolParserRules.forStatement(); }
+    public Lvl_EolParserRules.additiveExpression_return additiveExpression() throws RecognitionException { return gEolParserRules.additiveExpression(); }
+    public Lvl_EolParserRules.modelDeclaration_return modelDeclaration() throws RecognitionException { return gEolParserRules.modelDeclaration(); }
+    public Lvl_LvlParserRules.gbody_return gbody() throws RecognitionException { return gLvlParserRules.gbody(); }
+    public Lvl_EolParserRules.block_return block() throws RecognitionException { return gEolParserRules.block(); }
     public Lvl_EolParserRules.declarativeFeatureCall_return declarativeFeatureCall() throws RecognitionException { return gEolParserRules.declarativeFeatureCall(); }
     public Lvl_EolParserRules.unaryExpression_return unaryExpression() throws RecognitionException { return gEolParserRules.unaryExpression(); }
-    public Lvl_EolParserRules.primitiveExpression_return primitiveExpression() throws RecognitionException { return gEolParserRules.primitiveExpression(); }
-    public Lvl_EolParserRules.breakStatement_return breakStatement() throws RecognitionException { return gEolParserRules.breakStatement(); }
+    public Lvl_EolParserRules.keyvalExpression_return keyvalExpression() throws RecognitionException { return gEolParserRules.keyvalExpression(); }
+    public Lvl_EolParserRules.assignmentStatement_return assignmentStatement() throws RecognitionException { return gEolParserRules.assignmentStatement(); }
+    public Lvl_ErlParserRules.extendz_return extendz() throws RecognitionException { return gErlParserRules.extendz(); }
+    public Lvl_EolParserRules.executableAnnotation_return executableAnnotation() throws RecognitionException { return gEolParserRules.executableAnnotation(); }
+    public Lvl_EolParserRules.annotation_return annotation() throws RecognitionException { return gEolParserRules.annotation(); }
+    public Lvl_EolParserRules.relationalExpression_return relationalExpression() throws RecognitionException { return gEolParserRules.relationalExpression(); }
+    public Lvl_LvlParserRules.simpleReference_return simpleReference() throws RecognitionException { return gLvlParserRules.simpleReference(); }
     public Lvl_EolParserRules.literalSequentialCollection_return literalSequentialCollection() throws RecognitionException { return gEolParserRules.literalSequentialCollection(); }
+    public Lvl_EolParserRules.featureCall_return featureCall() throws RecognitionException { return gEolParserRules.featureCall(); }
+    public Lvl_EolParserRules.transactionStatement_return transactionStatement() throws RecognitionException { return gEolParserRules.transactionStatement(); }
+    public Lvl_EolParserRules.breakAllStatement_return breakAllStatement() throws RecognitionException { return gEolParserRules.breakAllStatement(); }
+    public Lvl_EolParserRules.primitiveExpression_return primitiveExpression() throws RecognitionException { return gEolParserRules.primitiveExpression(); }
+    public Lvl_EolParserRules.statement_return statement() throws RecognitionException { return gEolParserRules.statement(); }
+    public Lvl_EolParserRules.modelDeclarationParameter_return modelDeclarationParameter() throws RecognitionException { return gEolParserRules.modelDeclarationParameter(); }
+    public Lvl_EolParserRules.expressionList_return expressionList() throws RecognitionException { return gEolParserRules.expressionList(); }
+    public Lvl_EolParserRules.multiplicativeExpression_return multiplicativeExpression() throws RecognitionException { return gEolParserRules.multiplicativeExpression(); }
     public Lvl_EolParserRules.literal_return literal() throws RecognitionException { return gEolParserRules.literal(); }
-    public Lvl_EolParserRules.collectionType_return collectionType() throws RecognitionException { return gEolParserRules.collectionType(); }
+    public Lvl_EolParserRules.expressionRange_return expressionRange() throws RecognitionException { return gEolParserRules.expressionRange(); }
+    public Lvl_EolParserRules.defaultStatement_return defaultStatement() throws RecognitionException { return gEolParserRules.defaultStatement(); }
+    public Lvl_EolParserRules.switchStatement_return switchStatement() throws RecognitionException { return gEolParserRules.switchStatement(); }
+    public Lvl_EolParserRules.simpleFeatureCall_return simpleFeatureCall() throws RecognitionException { return gEolParserRules.simpleFeatureCall(); }
+    public Lvl_LvlParserRules.simpleFeatures_return simpleFeatures() throws RecognitionException { return gLvlParserRules.simpleFeatures(); }
+    public Lvl_EolParserRules.logicalExpression_return logicalExpression() throws RecognitionException { return gEolParserRules.logicalExpression(); }
     public Lvl_EolParserRules.modelDeclarationParameters_return modelDeclarationParameters() throws RecognitionException { return gEolParserRules.modelDeclarationParameters(); }
+    public Lvl_EolParserRules.whileStatement_return whileStatement() throws RecognitionException { return gEolParserRules.whileStatement(); }
+    public Lvl_EolParserRules.statementOrStatementBlock_return statementOrStatementBlock() throws RecognitionException { return gEolParserRules.statementOrStatementBlock(); }
+    public Lvl_LvlParserRules.grid_return grid() throws RecognitionException { return gLvlParserRules.grid(); }
+    public Lvl_EolParserRules.statementBlock_return statementBlock() throws RecognitionException { return gEolParserRules.statementBlock(); }
+    public Lvl_EolParserRules.continueStatement_return continueStatement() throws RecognitionException { return gEolParserRules.continueStatement(); }
+    public Lvl_LvlParserRules.gkeys_return gkeys() throws RecognitionException { return gLvlParserRules.gkeys(); }
+    public Lvl_EolParserRules.keyvalExpressionList_return keyvalExpressionList() throws RecognitionException { return gEolParserRules.keyvalExpressionList(); }
     public Lvl_EolParserRules.throwStatement_return throwStatement() throws RecognitionException { return gEolParserRules.throwStatement(); }
     public Lvl_LvlParserRules.gheader_return gheader() throws RecognitionException { return gLvlParserRules.gheader(); }
-    public Lvl_EolParserRules.executableAnnotation_return executableAnnotation() throws RecognitionException { return gEolParserRules.executableAnnotation(); }
-    public Lvl_EolParserRules.forStatement_return forStatement() throws RecognitionException { return gEolParserRules.forStatement(); }
-    public Lvl_LvlParserRules.gkeys_return gkeys() throws RecognitionException { return gLvlParserRules.gkeys(); }
-    public Lvl_EolParserRules.modelDeclaration_return modelDeclaration() throws RecognitionException { return gEolParserRules.modelDeclaration(); }
-    public Lvl_EolParserRules.block_return block() throws RecognitionException { return gEolParserRules.block(); }
-    public Lvl_EolParserRules.statementA_return statementA() throws RecognitionException { return gEolParserRules.statementA(); }
-    public Lvl_EolParserRules.relationalExpression_return relationalExpression() throws RecognitionException { return gEolParserRules.relationalExpression(); }
-    public Lvl_EolParserRules.keyvalExpressionList_return keyvalExpressionList() throws RecognitionException { return gEolParserRules.keyvalExpressionList(); }
-    public Lvl_EolParserRules.returnStatement_return returnStatement() throws RecognitionException { return gEolParserRules.returnStatement(); }
-    public Lvl_ErlParserRules.guard_return guard() throws RecognitionException { return gErlParserRules.guard(); }
-    public Lvl_EolParserRules.logicalExpression_return logicalExpression() throws RecognitionException { return gEolParserRules.logicalExpression(); }
-    public Lvl_EolParserRules.nativeType_return nativeType() throws RecognitionException { return gEolParserRules.nativeType(); }
-    public Lvl_LvlParserRules.simpleReference_return simpleReference() throws RecognitionException { return gLvlParserRules.simpleReference(); }
-    public Lvl_EolParserRules.newExpression_return newExpression() throws RecognitionException { return gEolParserRules.newExpression(); }
-    public Lvl_EolParserRules.modelDriver_return modelDriver() throws RecognitionException { return gEolParserRules.modelDriver(); }
-    public Lvl_LvlParserRules.gbody_return gbody() throws RecognitionException { return gLvlParserRules.gbody(); }
-    public Lvl_EolParserRules.itemSelectorExpression_return itemSelectorExpression() throws RecognitionException { return gEolParserRules.itemSelectorExpression(); }
-    public Lvl_EolParserRules.modelAlias_return modelAlias() throws RecognitionException { return gEolParserRules.modelAlias(); }
-    public Lvl_EolParserRules.keyvalExpression_return keyvalExpression() throws RecognitionException { return gEolParserRules.keyvalExpression(); }
-    public Lvl_EolParserRules.postfixExpression_return postfixExpression() throws RecognitionException { return gEolParserRules.postfixExpression(); }
-    public Lvl_EolParserRules.elseStatement_return elseStatement() throws RecognitionException { return gEolParserRules.elseStatement(); }
-    public Lvl_EolParserRules.operationDeclaration_return operationDeclaration() throws RecognitionException { return gEolParserRules.operationDeclaration(); }
-    public Lvl_LvlParserRules.columnDefinition_return columnDefinition() throws RecognitionException { return gLvlParserRules.columnDefinition(); }
-    public Lvl_EolParserRules.annotationBlock_return annotationBlock() throws RecognitionException { return gEolParserRules.annotationBlock(); }
-    public Lvl_EolParserRules.expressionRange_return expressionRange() throws RecognitionException { return gEolParserRules.expressionRange(); }
-    public Lvl_EolParserRules.statementOrStatementBlock_return statementOrStatementBlock() throws RecognitionException { return gEolParserRules.statementOrStatementBlock(); }
     public Lvl_ErlParserRules.post_return post() throws RecognitionException { return gErlParserRules.post(); }
-    public Lvl_EolParserRules.continueStatement_return continueStatement() throws RecognitionException { return gEolParserRules.continueStatement(); }
-    public Lvl_EolParserRules.additiveExpression_return additiveExpression() throws RecognitionException { return gEolParserRules.additiveExpression(); }
-    public Lvl_EolParserRules.multiplicativeExpression_return multiplicativeExpression() throws RecognitionException { return gEolParserRules.multiplicativeExpression(); }
-    public Lvl_EolParserRules.deleteStatement_return deleteStatement() throws RecognitionException { return gEolParserRules.deleteStatement(); }
-    public Lvl_EolParserRules.statement_return statement() throws RecognitionException { return gEolParserRules.statement(); }
-    public Lvl_EolParserRules.importStatement_return importStatement() throws RecognitionException { return gEolParserRules.importStatement(); }
-    public Lvl_LvlParserRules.grid_return grid() throws RecognitionException { return gLvlParserRules.grid(); }
-    public Lvl_EolParserRules.simpleFeatureCall_return simpleFeatureCall() throws RecognitionException { return gEolParserRules.simpleFeatureCall(); }
+    public Lvl_EolParserRules.variableDeclarationExpression_return variableDeclarationExpression() throws RecognitionException { return gEolParserRules.variableDeclarationExpression(); }
+    public Lvl_LvlParserRules.featuresprefix_return featuresprefix() throws RecognitionException { return gLvlParserRules.featuresprefix(); }
+    public Lvl_EolParserRules.expressionStatement_return expressionStatement() throws RecognitionException { return gEolParserRules.expressionStatement(); }
+    public Lvl_EolParserRules.formalParameter_return formalParameter() throws RecognitionException { return gEolParserRules.formalParameter(); }
+    public Lvl_EolParserRules.statementB_return statementB() throws RecognitionException { return gEolParserRules.statementB(); }
+    public Lvl_EolParserRules.elseStatement_return elseStatement() throws RecognitionException { return gEolParserRules.elseStatement(); }
+    public Lvl_EolParserRules.logicalExpressionInBrackets_return logicalExpressionInBrackets() throws RecognitionException { return gEolParserRules.logicalExpressionInBrackets(); }
+    public Lvl_EolParserRules.pathName_return pathName() throws RecognitionException { return gEolParserRules.pathName(); }
+    public Lvl_EolParserRules.newExpression_return newExpression() throws RecognitionException { return gEolParserRules.newExpression(); }
+    public Lvl_EolParserRules.parameterList_return parameterList() throws RecognitionException { return gEolParserRules.parameterList(); }
     public Lvl_LvlParserRules.datasetRule_return datasetRule() throws RecognitionException { return gLvlParserRules.datasetRule(); }
-    public Lvl_EolParserRules.packagedType_return packagedType() throws RecognitionException { return gEolParserRules.packagedType(); }
+    public Lvl_EolParserRules.collectionType_return collectionType() throws RecognitionException { return gEolParserRules.collectionType(); }
+    public Lvl_EolParserRules.ifStatement_return ifStatement() throws RecognitionException { return gEolParserRules.ifStatement(); }
+    public Lvl_EolParserRules.deleteStatement_return deleteStatement() throws RecognitionException { return gEolParserRules.deleteStatement(); }
+    public Lvl_EolParserRules.annotationBlock_return annotationBlock() throws RecognitionException { return gEolParserRules.annotationBlock(); }
+    public Lvl_EolParserRules.shortcutOperatorExpression_return shortcutOperatorExpression() throws RecognitionException { return gEolParserRules.shortcutOperatorExpression(); }
     public Lvl_EolParserRules.expressionListOrRange_return expressionListOrRange() throws RecognitionException { return gEolParserRules.expressionListOrRange(); }
+    public Lvl_EolParserRules.modelDriver_return modelDriver() throws RecognitionException { return gEolParserRules.modelDriver(); }
+    public Lvl_EolParserRules.literalMapCollection_return literalMapCollection() throws RecognitionException { return gEolParserRules.literalMapCollection(); }
+    public Lvl_EolParserRules.postfixExpression_return postfixExpression() throws RecognitionException { return gEolParserRules.postfixExpression(); }
+    public Lvl_EolParserRules.operationDeclarationOrAnnotationBlock_return operationDeclarationOrAnnotationBlock() throws RecognitionException { return gEolParserRules.operationDeclarationOrAnnotationBlock(); }
+    public Lvl_EolParserRules.formalParameterList_return formalParameterList() throws RecognitionException { return gEolParserRules.formalParameterList(); }
+    public Lvl_EolParserRules.operationDeclaration_return operationDeclaration() throws RecognitionException { return gEolParserRules.operationDeclaration(); }
+    public Lvl_ErlParserRules.guard_return guard() throws RecognitionException { return gErlParserRules.guard(); }
+    public Lvl_LvlParserRules.features_return features() throws RecognitionException { return gLvlParserRules.features(); }
+    public Lvl_LvlParserRules.nameslist_return nameslist() throws RecognitionException { return gLvlParserRules.nameslist(); }
+    public Lvl_EolParserRules.returnStatement_return returnStatement() throws RecognitionException { return gEolParserRules.returnStatement(); }
+    public Lvl_EolParserRules.nativeType_return nativeType() throws RecognitionException { return gEolParserRules.nativeType(); }
+    public Lvl_EolParserRules.breakStatement_return breakStatement() throws RecognitionException { return gEolParserRules.breakStatement(); }
+    public Lvl_EolParserRules.caseStatement_return caseStatement() throws RecognitionException { return gEolParserRules.caseStatement(); }
+    public Lvl_EolParserRules.importStatement_return importStatement() throws RecognitionException { return gEolParserRules.importStatement(); }
+    public Lvl_EolParserRules.expressionOrStatementBlock_return expressionOrStatementBlock() throws RecognitionException { return gEolParserRules.expressionOrStatementBlock(); }
+    public Lvl_EolParserRules.modelAlias_return modelAlias() throws RecognitionException { return gEolParserRules.modelAlias(); }
+    public Lvl_EolParserRules.packagedType_return packagedType() throws RecognitionException { return gEolParserRules.packagedType(); }
+    public Lvl_EolParserRules.statementA_return statementA() throws RecognitionException { return gEolParserRules.statementA(); }
+    public Lvl_LvlParserRules.featuresfrom_return featuresfrom() throws RecognitionException { return gLvlParserRules.featuresfrom(); }
 
 
  
 
-    public static final BitSet FOLLOW_importStatement_in_lvlModule77 = new BitSet(new long[]{0x0000000000000000L,0x0000008C00000000L,0x0000001100000000L});
-    public static final BitSet FOLLOW_lvlModuleContent_in_lvlModule81 = new BitSet(new long[]{0x0000000000000000L,0x0000000C00000000L,0x0000001100000000L});
+    public static final BitSet FOLLOW_importStatement_in_lvlModule77 = new BitSet(new long[]{0x0000000000000000L,0x000008C000000000L,0x0000011000000000L});
+    public static final BitSet FOLLOW_lvlModuleContent_in_lvlModule81 = new BitSet(new long[]{0x0000000000000000L,0x000000C000000000L,0x0000011000000000L});
     public static final BitSet FOLLOW_EOF_in_lvlModule85 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_pre_in_lvlModuleContent112 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_datasetRule_in_lvlModuleContent116 = new BitSet(new long[]{0x0000000000000002L});

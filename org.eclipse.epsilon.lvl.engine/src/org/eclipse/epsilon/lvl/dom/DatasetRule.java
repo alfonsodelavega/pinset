@@ -34,6 +34,7 @@ public class DatasetRule extends AnnotatableModuleElement {
   protected ExecutableBlock<Boolean> guardBlock;
   protected List<SimpleReference> simpleReferences = new ArrayList<SimpleReference>();
   protected List<Grid> grids = new ArrayList<Grid>();
+  protected List<Features> features = new ArrayList<Features>();
 
   @SuppressWarnings("unchecked")
   @Override
@@ -55,6 +56,9 @@ public class DatasetRule extends AnnotatableModuleElement {
     }
     for (AST gridAST : AstUtil.getChildren(cst, LvlParser.GRID)) {
       grids.add((Grid) module.createAst(gridAST, this));
+    }
+    for (AST featuresAST : AstUtil.getChildren(cst, LvlParser.FEATURES)) {
+      features.add((Features) module.createAst(featuresAST, this));
     }
   }
 
@@ -127,6 +131,9 @@ public class DatasetRule extends AnnotatableModuleElement {
     for (Grid grid : grids) {
       columnNames.addAll(grid.getNames(context));
     }
+    for (Features fs : features) {
+      columnNames.addAll(fs.getNames());
+    }
     df.newRecord(columnNames);
 
     for (Object o : oElements) {
@@ -147,6 +154,9 @@ public class DatasetRule extends AnnotatableModuleElement {
       }
       for (Grid mc : grids) {
         recordValues.addAll(mc.getValues(o, context, parameter.getName()));
+      }
+      for (Features fs : features) {
+        recordValues.addAll(fs.getValues(o, getter, context, parameter.getName()));
       }
       df.newRecord(recordValues);
     }

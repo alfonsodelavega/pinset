@@ -41,6 +41,7 @@ options {backtrack=true; output=AST;}
 
 tokens {
   DATASET;
+  NAMESLIST;
   SIMPLEFEATURES;
   COLUMNDEFINITION;
   GUARD;
@@ -49,6 +50,9 @@ tokens {
   GKEYS;
   GHEADER;
   GBODY;
+  FEATURES;
+  FEATURESFROM;
+  FEATURESPREFIX;
 }
 
 datasetRule
@@ -62,6 +66,7 @@ datasetRule
     simpleReference*
     columnDefinition*
     grid*
+    features*
   cb='}'!
   {$r.setType(DATASET);}
   ;
@@ -117,4 +122,31 @@ gheader
 gbody
   : gb='body'^ expressionOrStatementBlock
   {$gb.setType(GBODY);}
+  ;
+
+nameslist
+ : nl='['^ NAME (','! NAME)* ']'!
+   {$nl.setType(NAMESLIST);}
+ ;
+
+features
+  @after {
+    $tree.getExtraTokens().add($ob);
+    $tree.getExtraTokens().add($cb);
+  }
+  : f='features'^ nameslist? ob='{'
+    featuresfrom
+    featuresprefix?
+  cb='}'
+  {$f.setType(FEATURES);}
+  ;
+
+featuresfrom
+  : ff='from'^ expressionOrStatementBlock
+  {$ff.setType(FEATURESFROM);}
+  ;
+
+featuresprefix
+  : p='prefix'^ ':'! STRING
+  {$p.setType(FEATURESPREFIX);}
   ;

@@ -4,6 +4,8 @@ import org.eclipse.epsilon.common.module.IModule;
 import org.eclipse.epsilon.common.parse.AST;
 import org.eclipse.epsilon.eol.dom.AnnotatableModuleElement;
 import org.eclipse.epsilon.eol.dom.IExecutableModuleElement;
+import org.eclipse.epsilon.eol.exceptions.EolRuntimeException;
+import org.eclipse.epsilon.eol.execute.context.FrameType;
 import org.eclipse.epsilon.eol.execute.context.IEolContext;
 import org.eclipse.epsilon.eol.execute.context.Variable;
 import org.eclipse.epsilon.lvl.output.ReturnValueParser;
@@ -34,9 +36,15 @@ public class ColumnDefinition extends AnnotatableModuleElement {
   }
 
   public String getValue(Object obj, IEolContext context, String varName) {
+    context.getFrameStack().enterLocal(FrameType.PROTECTED, block);
     context.getFrameStack().put(
         Variable.createReadOnlyVariable(varName, obj));
-    return ReturnValueParser.obtainAndParseValue(context, block);
+    Object res = null;
+    try {
+      res = context.getExecutorFactory().execute(block, context);
+    } catch (EolRuntimeException e) {}
+    context.getFrameStack().leaveLocal(block);
+    return ReturnValueParser.obtainAndParseValue(res);
   }
 
 }

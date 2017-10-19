@@ -10,6 +10,7 @@ import org.eclipse.epsilon.common.util.AstUtil;
 import org.eclipse.epsilon.eol.dom.AnnotatableModuleElement;
 import org.eclipse.epsilon.eol.dom.IExecutableModuleElement;
 import org.eclipse.epsilon.eol.exceptions.EolRuntimeException;
+import org.eclipse.epsilon.eol.execute.context.FrameType;
 import org.eclipse.epsilon.eol.execute.context.IEolContext;
 import org.eclipse.epsilon.eol.execute.context.Variable;
 import org.eclipse.epsilon.eol.execute.introspection.IPropertyGetter;
@@ -40,12 +41,17 @@ public class Features extends AnnotatableModuleElement {
 
   public boolean validate(Object obj, IPropertyGetter getter,
       IEolContext context, String varName) throws EolRuntimeException {
+    boolean res = false;
     context.getFrameStack().put(
         Variable.createReadOnlyVariable(varName, obj));
-    Object fromObject = fromBlock.execute(context);
-    if (fromObject == null) {
-      return false; // validation did not happen due to null fromBlock execution
-    } else {
+    Object fromObject = null;
+    try {
+      fromObject = ReturnValueParser.obtainValue(
+          context.getExecutorFactory().execute(fromBlock, context));
+    } catch (EolRuntimeException e) {}
+    if (fromObject != null) {
+      res = true;
+      // validation can happen as fromblock returned not null
       for (String feature : features) {
         if (!getter.hasProperty(fromObject, feature)) {
           String className = fromObject.getClass().getSimpleName();
@@ -58,7 +64,7 @@ public class Features extends AnnotatableModuleElement {
         }
       }
     }
-    return true;
+    return res;
   }
 
   public List<String> getNames() {
@@ -72,9 +78,15 @@ public class Features extends AnnotatableModuleElement {
   public List<String> getValues(Object obj, IPropertyGetter getter,
       IEolContext context, String varName) throws EolRuntimeException {
     List<String> values = new ArrayList<String>();
+    context.getFrameStack().enterLocal(FrameType.PROTECTED, fromBlock);
     context.getFrameStack().put(
         Variable.createReadOnlyVariable(varName, obj));
-    Object fromObject = fromBlock.execute(context);
+    Object fromObject = null;
+    try {
+      fromObject = ReturnValueParser.obtainValue(
+          context.getExecutorFactory().execute(fromBlock, context));
+    } catch (EolRuntimeException e) {}
+    context.getFrameStack().leaveLocal(fromBlock);
     if (fromObject == null) {
       // No object obtained from the expression, blank for all columns
       for (int i = 0; i < features.size(); i++) {

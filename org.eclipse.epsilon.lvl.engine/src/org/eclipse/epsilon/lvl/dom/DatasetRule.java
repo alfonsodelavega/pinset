@@ -14,6 +14,7 @@ import org.eclipse.epsilon.eol.dom.AnnotatableModuleElement;
 import org.eclipse.epsilon.eol.dom.ExecutableBlock;
 import org.eclipse.epsilon.eol.dom.Parameter;
 import org.eclipse.epsilon.eol.exceptions.EolRuntimeException;
+import org.eclipse.epsilon.eol.execute.context.FrameType;
 import org.eclipse.epsilon.eol.execute.context.IEolContext;
 import org.eclipse.epsilon.eol.execute.context.Variable;
 import org.eclipse.epsilon.eol.execute.introspection.IPropertyGetter;
@@ -182,6 +183,7 @@ public class DatasetRule extends AnnotatableModuleElement {
       IPropertyGetter getter, IEolContext context, String varName)
       throws EolRuntimeException {
     for (Features fs : features) {
+      context.getFrameStack().enterLocal(FrameType.PROTECTED, this);
       // validation happens until an obj element generates a successful (not null)
       //   result in the fromBlock, which can be checked with the getter
       for (Object obj : oElements) {
@@ -189,6 +191,7 @@ public class DatasetRule extends AnnotatableModuleElement {
           break; // features object validated, no need to keep iterating
         }
       }
+      context.getFrameStack().leaveLocal(this);
     }
   }
 

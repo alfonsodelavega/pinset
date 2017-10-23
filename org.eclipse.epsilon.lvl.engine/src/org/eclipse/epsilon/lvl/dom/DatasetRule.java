@@ -119,7 +119,7 @@ public class DatasetRule extends AnnotatableModuleElement {
       columnNames.addAll(grid.getNames(context));
     }
     for (Features fs : features) {
-      columnNames.addAll(fs.getNames());
+      columnNames.addAll(fs.getNames(context));
     }
     df.newRecord(columnNames);
 

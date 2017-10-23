@@ -19,8 +19,10 @@ import org.eclipse.epsilon.lvl.parse.LvlParser;
 
 public class Features extends AnnotatableModuleElement {
 
+  private static final String FEATURE_VARNAME = "feature";
+
   protected IExecutableModuleElement fromBlock;
-  protected String prefix = "";
+  protected IExecutableModuleElement headerBlock;
   protected List<String> features = new ArrayList<String>();
 
   @Override
@@ -35,8 +37,9 @@ public class Features extends AnnotatableModuleElement {
     AST fromAST = AstUtil.getChild(cst, LvlParser.FEATURESFROM);
     fromBlock = (IExecutableModuleElement)
         module.createAst(fromAST.getFirstChild(), this);
-    AST prefixAST = AstUtil.getChild(cst, LvlParser.FEATURESPREFIX);
-    prefix = prefixAST.getFirstChild().getText();
+    AST headerAST = AstUtil.getChild(cst, LvlParser.HEADER);
+    headerBlock = (IExecutableModuleElement)
+        module.createAst(headerAST.getFirstChild(), this);
   }
 
   public boolean validate(Object obj, IPropertyGetter getter,
@@ -67,11 +70,16 @@ public class Features extends AnnotatableModuleElement {
     return res;
   }
 
-  public List<String> getNames() {
+  public List<String> getNames(IEolContext context) throws EolRuntimeException {
+    context.getFrameStack().enterLocal(FrameType.PROTECTED, headerBlock);
     ArrayList<String> result = new ArrayList<String>();
     for (String feature : features) {
-      result.add(prefix + feature);
+      context.getFrameStack().put(
+          Variable.createReadOnlyVariable(FEATURE_VARNAME, feature));
+      result.add(ReturnValueParser.obtainValue(
+          context.getExecutorFactory().execute(headerBlock, context)).toString());
     }
+    context.getFrameStack().leaveLocal(headerBlock);
     return result;
   }
 

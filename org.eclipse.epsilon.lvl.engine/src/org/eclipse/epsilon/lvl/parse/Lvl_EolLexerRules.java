@@ -1,6 +1,6 @@
 package org.eclipse.epsilon.lvl.parse;
 
-// $ANTLR 3.1b1 EolLexerRules.g 2017-10-18 13:53:38
+// $ANTLR 3.1b1 EolLexerRules.g 2017-10-20 14:53:34
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -71,7 +71,7 @@ public class Lvl_EolLexerRules extends Lexer {
     public static final int TYPE=64;
     public static final int T__139=139;
     public static final int T__138=138;
-    public static final int Tokens=180;
+    public static final int Tokens=178;
     public static final int T__133=133;
     public static final int T__132=132;
     public static final int T__135=135;
@@ -83,7 +83,6 @@ public class Lvl_EolLexerRules extends Lexer {
     public static final int CASE=35;
     public static final int Letter=16;
     public static final int LINE_COMMENT=22;
-    public static final int GHEADER=88;
     public static final int T__129=129;
     public static final int T__126=126;
     public static final int JavaIDDigit=18;
@@ -103,6 +102,7 @@ public class Lvl_EolLexerRules extends Lexer {
     public static final int EXPRESSIONINBRACKETS=59;
     public static final int T__160=160;
     public static final int TRANSACTION=41;
+    public static final int HEADER=88;
     public static final int FLOAT_TYPE_SUFFIX=7;
     public static final int SIMPLEREFERENCE=85;
     public static final int ITEMSELECTOR=73;
@@ -141,6 +141,7 @@ public class Lvl_EolLexerRules extends Lexer {
     public static final int COLLECTION=42;
     public static final int NEW=49;
     public static final int EXTENDS=79;
+    public static final int T__93=93;
     public static final int T__102=102;
     public static final int PRE=77;
     public static final int T__94=94;
@@ -161,8 +162,6 @@ public class Lvl_EolLexerRules extends Lexer {
     public static final int T__98=98;
     public static final int T__177=177;
     public static final int T__176=176;
-    public static final int T__179=179;
-    public static final int T__178=178;
     public static final int ABORT=43;
     public static final int T__173=173;
     public static final int StrangeNameLiteral=15;
@@ -182,7 +181,7 @@ public class Lvl_EolLexerRules extends Lexer {
     public static final int T__169=169;
     public static final int FeatureCall=60;
     public static final int T__122=122;
-    public static final int LVLMODULE=93;
+    public static final int LVLMODULE=92;
     public static final int T__121=121;
     public static final int T__124=124;
     public static final int FLOAT=4;
@@ -211,7 +210,6 @@ public class Lvl_EolLexerRules extends Lexer {
     public static final int COLUMNDEFINITION=84;
     public static final int EscapeSequence=13;
     public static final int EOLMODULE=61;
-    public static final int FEATURESPREFIX=92;
     public static final int DIGIT=5;
     public static final int EXECUTABLEANNOTATION=51;
     public static final int T__108=108;

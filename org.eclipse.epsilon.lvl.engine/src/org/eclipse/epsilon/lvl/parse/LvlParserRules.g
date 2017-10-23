@@ -48,11 +48,10 @@ tokens {
   SIMPLEREFERENCE;
   GRID;
   GKEYS;
-  GHEADER;
+  HEADER;
   GBODY;
   FEATURES;
   FEATURESFROM;
-  FEATURESPREFIX;
 }
 
 datasetRule
@@ -103,7 +102,7 @@ grid
   }
   : cd='grid'^ ob='{'
     gkeys
-    gheader
+    header
     gbody
   cb='}'
   {$cd.setType(GRID);}
@@ -114,9 +113,9 @@ gkeys
   {$gk.setType(GKEYS);}
   ;
 
-gheader
+header
   : gh='header'^ expressionOrStatementBlock
-  {$gh.setType(GHEADER);}
+  {$gh.setType(HEADER);}
   ;
 
 gbody
@@ -136,7 +135,7 @@ features
   }
   : f='features'^ nameslist? ob='{'
     featuresfrom
-    featuresprefix?
+    header
   cb='}'
   {$f.setType(FEATURES);}
   ;
@@ -146,7 +145,4 @@ featuresfrom
   {$ff.setType(FEATURESFROM);}
   ;
 
-featuresprefix
-  : p='prefix'^ ':'! STRING
-  {$p.setType(FEATURESPREFIX);}
-  ;
+

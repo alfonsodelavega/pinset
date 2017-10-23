@@ -37,6 +37,6 @@ dataset Dummy07_features over a : A {
   attributes [x]
   features [y, z] {
     from : a.b
-    prefix : "b_"
+    header : "b_" + feature
   }
 }

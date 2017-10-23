@@ -18,7 +18,7 @@ import org.eclipse.epsilon.lvl.parse.LvlParser;
 
 public class Grid extends AnnotatableModuleElement {
 
-  private static final String KEY_KEYWORD = "key";
+  private static final String KEY_VARNAME = "key";
 
   protected IExecutableModuleElement keysBlock;
   protected IExecutableModuleElement headerBlock;
@@ -33,7 +33,7 @@ public class Grid extends AnnotatableModuleElement {
     AST keysAST = AstUtil.getChild(cst, LvlParser.GKEYS);
     keysBlock = (IExecutableModuleElement)
         module.createAst(keysAST.getFirstChild(), this);
-    AST headerAST = AstUtil.getChild(cst, LvlParser.GHEADER);
+    AST headerAST = AstUtil.getChild(cst, LvlParser.HEADER);
     headerBlock = (IExecutableModuleElement)
         module.createAst(headerAST.getFirstChild(), this);
     AST bodyAST = AstUtil.getChild(cst, LvlParser.GBODY);
@@ -55,7 +55,7 @@ public class Grid extends AnnotatableModuleElement {
     context.getFrameStack().enterLocal(FrameType.PROTECTED, headerBlock);
     for (Object key : keys) {
       context.getFrameStack().put(
-          Variable.createReadOnlyVariable(KEY_KEYWORD, key));
+          Variable.createReadOnlyVariable(KEY_VARNAME, key));
       Object result = ReturnValueParser.obtainValue(
           context.getExecutorFactory().execute(headerBlock, context));
       if (result == null) {
@@ -85,7 +85,7 @@ public class Grid extends AnnotatableModuleElement {
         Variable.createReadOnlyVariable(varName, obj));
     for (Object key : keys) {
       context.getFrameStack().put(
-          Variable.createReadOnlyVariable(KEY_KEYWORD, key));
+          Variable.createReadOnlyVariable(KEY_VARNAME, key));
       try {
         values.add(ReturnValueParser.getStringOrBlank(
             context.getExecutorFactory().execute(bodyBlock, context)));

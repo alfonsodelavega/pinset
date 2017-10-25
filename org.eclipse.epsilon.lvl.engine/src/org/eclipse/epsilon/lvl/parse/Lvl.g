@@ -96,5 +96,5 @@ lvlModule
   ;
 
 lvlModuleContent
-  :	pre | datasetRule | operationDeclaration
+  :	pre | datasetRule | annotationBlock | operationDeclaration
   ;

@@ -62,12 +62,13 @@ datasetRule
   : r='dataset'^ NAME 'over'! formalParameter ob='{'!
     guard?
     simpleFeatures?
-    simpleReference*
-    columnDefinition*
-    grid*
-    features*
+    columnGenerator*
   cb='}'!
   {$r.setType(DATASET);}
+  ;
+
+columnGenerator
+  : simpleReference | columnDefinition | grid | features
   ;
 
 simpleFeatures

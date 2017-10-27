@@ -51,7 +51,7 @@ tokens {
   HEADER;
   GBODY;
   FEATURES;
-  FEATURESFROM;
+  FROM;
 }
 
 datasetRule
@@ -59,7 +59,7 @@ datasetRule
     $tree.getExtraTokens().add($ob);
     $tree.getExtraTokens().add($cb);
   }
-  : r='dataset'^ NAME 'over'! formalParameter ob='{'!
+  : r='dataset'^ NAME 'over'! formalParameter from? ob='{'!
     guard?
     simpleFeatures?
     columnGenerator*
@@ -135,15 +135,15 @@ features
     $tree.getExtraTokens().add($cb);
   }
   : f='features'^ nameslist? ob='{'
-    featuresfrom
+    from
     header
   cb='}'
   {$f.setType(FEATURES);}
   ;
 
-featuresfrom
+from
   : ff='from'^ expressionOrStatementBlock
-  {$ff.setType(FEATURESFROM);}
+  {$ff.setType(FROM);}
   ;
 
 

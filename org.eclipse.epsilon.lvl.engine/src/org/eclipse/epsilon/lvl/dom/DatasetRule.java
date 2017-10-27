@@ -12,6 +12,7 @@ import org.eclipse.epsilon.common.parse.AST;
 import org.eclipse.epsilon.common.util.AstUtil;
 import org.eclipse.epsilon.eol.dom.AnnotatableModuleElement;
 import org.eclipse.epsilon.eol.dom.ExecutableBlock;
+import org.eclipse.epsilon.eol.dom.IExecutableModuleElement;
 import org.eclipse.epsilon.eol.dom.Parameter;
 import org.eclipse.epsilon.eol.exceptions.EolRuntimeException;
 import org.eclipse.epsilon.eol.execute.context.FrameType;
@@ -21,6 +22,7 @@ import org.eclipse.epsilon.eol.execute.introspection.IPropertyGetter;
 import org.eclipse.epsilon.eol.models.IModel;
 import org.eclipse.epsilon.eol.parse.EolParser;
 import org.eclipse.epsilon.eol.types.EolModelElementType;
+import org.eclipse.epsilon.eol.types.EolType;
 import org.eclipse.epsilon.lvl.LvlModule;
 import org.eclipse.epsilon.lvl.output.DatasetFile;
 import org.eclipse.epsilon.lvl.output.ReturnValueParser;
@@ -30,12 +32,14 @@ public class DatasetRule extends AnnotatableModuleElement {
 
   protected String name;
   protected Parameter parameter;
+  protected IExecutableModuleElement fromBlock = null;
   protected List<ColumnDefinition> columns = new ArrayList<ColumnDefinition>();
   protected List<String> simpleFeatures = new ArrayList<String>();
   protected ExecutableBlock<Boolean> guardBlock;
   protected List<SimpleReference> simpleReferences = new ArrayList<SimpleReference>();
   protected List<Grid> grids = new ArrayList<Grid>();
   protected List<Features> features = new ArrayList<Features>();
+
 
   @SuppressWarnings("unchecked")
   @Override
@@ -45,6 +49,11 @@ public class DatasetRule extends AnnotatableModuleElement {
     parameter = (Parameter) module.createAst(cst.getSecondChild(), this);
     guardBlock = (ExecutableBlock<Boolean>) module.createAst(
         AstUtil.getChild(cst, LvlParser.GUARD), this);
+    AST fromAST = AstUtil.getChild(cst, LvlParser.FROM);
+    if (fromAST != null) {
+      fromBlock = (IExecutableModuleElement)
+          module.createAst(fromAST.getFirstChild(), this);
+    }
     AST simpleFeaturesCST = AstUtil.getChild(cst, LvlParser.SIMPLEFEATURES);
     for (AST feature : AstUtil.getChildren(simpleFeaturesCST, EolParser.NAME)) {
       simpleFeatures.add(feature.getText());
@@ -76,12 +85,41 @@ public class DatasetRule extends AnnotatableModuleElement {
 
   public void execute(IEolContext context) throws EolRuntimeException {
 
-    EolModelElementType parameterType = (EolModelElementType) parameter.getType(context);
-    IModel model = parameterType.getModel();
-    IPropertyGetter getter = model.getPropertyGetter();
-    getter.setContext(context);
+    Collection<?> oElements = null;
+    IModel model = null;
+    IPropertyGetter getter = null;
+    EolType parameterType = parameter.getType(context);
+    if (!(parameterType instanceof EolModelElementType)) {
+      if(fromBlock == null) {
+        throw new EolRuntimeException(
+            "Datasets generated over non-model types must specify a 'from' expression");
+      }
+      if (!simpleFeatures.isEmpty()
+          || !simpleReferences.isEmpty()
+          || !features.isEmpty()) {
+        throw new EolRuntimeException(
+            "Datasets generated over non-model types cannot employ feature access constructs");
+      }
+    } else {
+      model = ((EolModelElementType)parameterType).getModel();
+      getter = model.getPropertyGetter();
+      getter.setContext(context);
+    }
 
-    Collection<?> oElements = parameterType.getAllOfKind();
+    if (fromBlock == null) {
+      oElements = ((EolModelElementType)parameterType).getAllOfKind();
+    } else {
+      context.getFrameStack().enterLocal(FrameType.PROTECTED, fromBlock);
+      Object result = ReturnValueParser.obtainValue(
+          context.getExecutorFactory().execute(fromBlock, context));
+      context.getFrameStack().leaveLocal(fromBlock);
+      if (!(result instanceof Collection<?>)) {
+        throw new EolRuntimeException(
+            "The dataset 'from' expression must return a collection of elements");
+      }
+      oElements = (Collection<?>) result;
+    }
+
     if (oElements.isEmpty()) {
       return; // if no elements are to appear in the table, it is not generated
     }

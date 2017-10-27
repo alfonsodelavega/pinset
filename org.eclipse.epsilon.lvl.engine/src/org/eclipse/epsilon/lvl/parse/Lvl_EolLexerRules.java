@@ -1,6 +1,6 @@
 package org.eclipse.epsilon.lvl.parse;
 
-// $ANTLR 3.1b1 EolLexerRules.g 2017-10-25 15:12:20
+// $ANTLR 3.1b1 EolLexerRules.g 2017-10-27 14:33:02
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -75,7 +75,6 @@ public class Lvl_EolLexerRules extends Lexer {
     public static final int T__133=133;
     public static final int T__132=132;
     public static final int T__135=135;
-    public static final int FEATURESFROM=91;
     public static final int T__134=134;
     public static final int T__131=131;
     public static final int NewExpression=47;
@@ -150,6 +149,7 @@ public class Lvl_EolLexerRules extends Lexer {
     public static final int ALIAS=69;
     public static final int DRIVER=70;
     public static final int DATASET=81;
+    public static final int FROM=91;
     public static final int KEYVAL=75;
     public static final int POINT_POINT=10;
     public static final int GUARD=80;

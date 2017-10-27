@@ -40,3 +40,22 @@ dataset Dummy07_features over a : A {
     header : "b_" + feature
   }
 }
+
+dataset Dummy08_from over a : A
+                     from : A.all.select(a | a.x > 5) {
+  attributes [x]
+  features [y, z] {
+    from : a.b
+    header : "b_" + feature
+  }
+}
+
+dataset Dummy09_from over number
+                     from : 1.to(5) {
+  column number : number
+  grid {
+    keys : 2.to(5)
+    header : "times_" + key
+    body : number * key
+  }
+}

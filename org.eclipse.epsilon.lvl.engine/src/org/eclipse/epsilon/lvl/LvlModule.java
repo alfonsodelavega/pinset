@@ -37,7 +37,7 @@ import org.eclipse.epsilon.lvl.parse.LvlParser;
 
 public class LvlModule extends ErlModule {
 
-  protected List<DatasetRule> declaredProcessRules = new ArrayList<DatasetRule>();
+  protected List<DatasetRule> declaredDatasetRules = new ArrayList<DatasetRule>();
   private String outputFolder = "";
   private String separator = ",";
   private String extension = ".csv";
@@ -66,7 +66,7 @@ public class LvlModule extends ErlModule {
     super.build(cst, module);
 
     for (AST processRuleAst : AstUtil.getChildren(cst, LvlParser.DATASET)) {
-      declaredProcessRules.add((DatasetRule) module.createAst(processRuleAst, this));
+      declaredDatasetRules.add((DatasetRule) module.createAst(processRuleAst, this));
     }
   }
 
@@ -94,8 +94,8 @@ public class LvlModule extends ErlModule {
 
   public Object executeImpl() throws EolRuntimeException {
     execute(getPre(), context);
-    for (DatasetRule processRule : declaredProcessRules) {
-        processRule.execute(context);
+    for (DatasetRule datasetRule : declaredDatasetRules) {
+        datasetRule.execute(context);
     }
     return null;
   }
@@ -110,8 +110,8 @@ public class LvlModule extends ErlModule {
     this.context = context;
   }
 
-  public List<DatasetRule> getDeclaredProcessRules() {
-    return declaredProcessRules;
+  public List<DatasetRule> getDeclaredDatasetRules() {
+    return declaredDatasetRules;
   }
 
   public void setOutputFolder(String attribute) {

@@ -27,7 +27,7 @@ public class LvlModuleContentProvider extends EolModuleContentProvider {
       LvlModule module = (LvlModule) moduleElement;
       visible.addAll(module.getImports());
       visible.addAll(module.getDeclaredModelDeclarations());
-      visible.addAll(module.getDeclaredProcessRules());
+      visible.addAll(module.getDeclaredDatasetRules());
       visible.addAll(module.getDeclaredOperations());
     }
 

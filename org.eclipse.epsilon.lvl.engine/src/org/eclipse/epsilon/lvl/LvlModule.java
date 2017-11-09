@@ -97,6 +97,7 @@ public class LvlModule extends ErlModule {
     for (DatasetRule datasetRule : declaredDatasetRules) {
         datasetRule.execute(context);
     }
+    execute(getPost(), context);
     return null;
   }
 

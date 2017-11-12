@@ -23,7 +23,6 @@ public class LvlLaunchConfigurationDelegate extends EpsilonLaunchConfigurationDe
   @Override
   public IEolModule createModule() {
     LvlModule module = new LvlModule();
-    // set output folder here
     if (configuration != null) {
       try {
         String workspacePath = ResourcesPlugin.getWorkspace()
@@ -31,14 +30,15 @@ public class LvlLaunchConfigurationDelegate extends EpsilonLaunchConfigurationDe
                                               .getLocation()
                                               .toString();
         String outputFolder = workspacePath + configuration.getAttribute(
-                LvlOutputConfigurationTab.getOutputFolder(),
-                "");
+                LvlOutputConfigurationTab.OUTPUT_FOLDER,
+                LvlOutputConfigurationTab.DEFAULT_OUTPUT_FOLDER);
         module.setOutputFolder(outputFolder);
+        module.setSilent(configuration.getAttribute(
+            LvlOutputConfigurationTab.SILENT_EXECUTION,
+            LvlOutputConfigurationTab.DEFAULT_SILENT_EXECUTION));
       } catch (CoreException e) {
-        // TODO Auto-generated catch block
         e.printStackTrace();
       }
-
     }
     return module;
   }

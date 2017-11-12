@@ -10,26 +10,31 @@ import org.eclipse.debug.ui.AbstractLaunchConfigurationTab;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.IWorkbench;
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.IWorkbenchWindow;
-import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.part.FileEditorInput;
 
 public class LvlOutputConfigurationTab
     extends AbstractLaunchConfigurationTab implements ModifyListener {
 
+  // Configuration keys
+  public static final String OUTPUT_FOLDER = "outputFolder";
+  public static final String SILENT_EXECUTION = "silentExecution";
+
+  // Configuration default values
+  public static final String DEFAULT_OUTPUT_FOLDER = "";
+  public static final boolean DEFAULT_SILENT_EXECUTION = false;
+
   protected Label folderLabel;
   protected Text folderPath;
-  protected Composite extras;
+  protected Button silentExecutionButton;
 
   public void createControl(Composite parent) {
 
@@ -50,10 +55,23 @@ public class LvlOutputConfigurationTab
     folderPath.setLayoutData(filePathData);
     folderPath.addModifyListener(this);
 
-    extras = new Composite(control, SWT.NONE);
-    GridData extrasData = new GridData(GridData.FILL_BOTH);
-    extrasData.horizontalSpan = 1;
-    extras.setLayoutData(extrasData);
+    final Group executionGroup = createGroup(control,
+        "Execution options", 1);
+
+    silentExecutionButton = new Button(executionGroup, SWT.CHECK);
+    silentExecutionButton.setText(
+        "Silent Execution (Omit non-fatal errors in column generation)");
+    silentExecutionButton.setLayoutData(filePathData);
+    silentExecutionButton.addSelectionListener(new SelectionListener() {
+      @Override
+      public void widgetSelected(SelectionEvent e) {
+        updateLaunchConfigurationDialog();
+      }
+      @Override
+      public void widgetDefaultSelected(SelectionEvent e) {
+        updateLaunchConfigurationDialog();
+      }
+    });
 
     control.setBounds(0, 0, 300, 300);
     control.layout();
@@ -72,14 +90,17 @@ public class LvlOutputConfigurationTab
 
   @Override
   public void setDefaults(ILaunchConfigurationWorkingCopy configuration) {
-    folderPath.setText(getDefaultFolderText());
+    folderPath.setText(DEFAULT_OUTPUT_FOLDER);
+    silentExecutionButton.setSelection(DEFAULT_SILENT_EXECUTION);
   }
 
   @Override
   public void initializeFrom(ILaunchConfiguration configuration) {
     try {
-      folderPath.setText(configuration.getAttribute(getOutputAttributeName(),
-          getDefaultFolderText()));
+      folderPath.setText(configuration.getAttribute(OUTPUT_FOLDER,
+          DEFAULT_OUTPUT_FOLDER));
+      silentExecutionButton.setSelection(configuration.getAttribute(
+          SILENT_EXECUTION, DEFAULT_SILENT_EXECUTION));
       canSave();
       updateLaunchConfigurationDialog();
     } catch (CoreException e) {
@@ -87,22 +108,10 @@ public class LvlOutputConfigurationTab
     }
   }
 
-  public String getActiveEditorPath() {
-    IWorkbench wb = PlatformUI.getWorkbench();
-    IWorkbenchWindow win = wb.getActiveWorkbenchWindow();
-    IWorkbenchPage page = win.getActivePage();
-    IEditorPart part = page.getActiveEditor();
-    if (part.getEditorInput() instanceof FileEditorInput) {
-      FileEditorInput fileEditorInput = (FileEditorInput) part.getEditorInput();
-      String path = fileEditorInput.getFile().getParent().getFullPath().toString();
-      return path;
-    }
-    return "";
-  }
-
   @Override
   public void performApply(ILaunchConfigurationWorkingCopy configuration) {
-    configuration.setAttribute(getOutputAttributeName(), folderPath.getText());
+    configuration.setAttribute(OUTPUT_FOLDER, folderPath.getText());
+    configuration.setAttribute(SILENT_EXECUTION, silentExecutionButton.getSelection());
   }
 
   @Override
@@ -138,17 +147,5 @@ public class LvlOutputConfigurationTab
 
   public String getTitle() {
     return "Output";
-  }
-
-  public String getOutputAttributeName() {
-    return getOutputFolder();
-  }
-
-  public static String getOutputFolder() {
-    return "outputFolder";
-  }
-
-  private String getDefaultFolderText() {
-    return "";
   }
 }

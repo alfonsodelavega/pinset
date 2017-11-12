@@ -68,7 +68,10 @@ datasetRule
   ;
 
 columnGenerator
-  : simpleReference | columnDefinition | grid | features
+  : simpleReference |
+    annotationBlock? columnDefinition |
+    annotationBlock? grid |
+    annotationBlock? features
   ;
 
 simpleFeatures

@@ -1,5 +1,6 @@
 dataset Dummy01_As over a : A {
   attributes [x, en]
+  @silent
   column twiceX : a.x * 2
 }
 
@@ -57,5 +58,55 @@ dataset Dummy09_from over number
     keys : 2.to(5)
     header : "times_" + key
     body : number * key
+  }
+}
+
+dataset Dummy10a_silentColumn over a : A {
+  attributes [x]
+  @silent
+  column b_y : a.b.y // there is an A element that does not have a B
+}
+
+@silent
+dataset Dummy10b_silentColumn over a : A {
+  attributes [x]
+  column b_y : a.b.y // there is an A element that does not have a B
+}
+
+@silent
+dataset Dummy11a_silentGrid over a : A {
+  grid {
+    keys : 2.to(5)
+    header : "times_" + key
+    body : a.getNonExistentValue(key) // fails if annotation removed
+  }
+}
+
+dataset Dummy11b_silentGrid over a : A {
+  @silent
+  grid {
+    keys : 2.to(5)
+    header : "times_" + key
+    body : a.getNonExistentValue(key) // fails if annotation removed
+  }
+}
+
+dataset Dummy12a_from over a : A
+                     from : A.all.select(a | a.x > 5) {
+  attributes [x]
+  @silent
+  features [y, z] {
+    from : a.getNonExistentValue() // fails if annotation removed
+    header : "b_" + feature
+  }
+}
+
+@silent
+dataset Dummy12b_from over a : A
+                     from : A.all.select(a | a.x > 5) {
+  attributes [x]
+  features [y, z] {
+    from : a.getNonExistentValue() // fails if annotation removed
+    header : "b_" + feature
   }
 }

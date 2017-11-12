@@ -37,10 +37,13 @@ import org.eclipse.epsilon.lvl.parse.LvlParser;
 
 public class LvlModule extends ErlModule {
 
+  public static final String SILENT_ANNOTATION = "silent";
+
   protected List<DatasetRule> declaredDatasetRules = new ArrayList<DatasetRule>();
-  private String outputFolder = "";
-  private String separator = ",";
-  private String extension = ".csv";
+  protected String outputFolder = "";
+  protected String separator = ",";
+  protected String extension = ".csv";
+  protected boolean silent = false;
 
   @Override
   public ModuleElement adapt(AST cst, ModuleElement parentAst) {
@@ -147,5 +150,13 @@ public class LvlModule extends ErlModule {
   @Override
   protected int getPostBlockTokenType() {
     return LvlParser.POST;
+  }
+
+  public boolean isSilent() {
+    return silent;
+  }
+
+  public void setSilent(boolean silent) {
+    this.silent = silent;
   }
 }

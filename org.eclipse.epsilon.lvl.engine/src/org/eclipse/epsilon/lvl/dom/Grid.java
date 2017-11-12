@@ -13,6 +13,7 @@ import org.eclipse.epsilon.eol.exceptions.EolRuntimeException;
 import org.eclipse.epsilon.eol.execute.context.FrameType;
 import org.eclipse.epsilon.eol.execute.context.IEolContext;
 import org.eclipse.epsilon.eol.execute.context.Variable;
+import org.eclipse.epsilon.lvl.LvlModule;
 import org.eclipse.epsilon.lvl.output.ReturnValueParser;
 import org.eclipse.epsilon.lvl.parse.LvlParser;
 
@@ -86,12 +87,18 @@ public class Grid extends AnnotatableModuleElement {
     for (Object key : keys) {
       context.getFrameStack().put(
           Variable.createReadOnlyVariable(KEY_VARNAME, key));
+      String value = "";
       try {
-        values.add(ReturnValueParser.getStringOrBlank(
-            context.getExecutorFactory().execute(bodyBlock, context)));
+        value = ReturnValueParser.getStringOrBlank(
+            context.getExecutorFactory().execute(bodyBlock, context));
       } catch (EolRuntimeException e) {
-        values.add("");
+        if (!(this.hasAnnotation(LvlModule.SILENT_ANNOTATION)
+            || ((DatasetRule)parent).hasAnnotation(LvlModule.SILENT_ANNOTATION)
+            || ((LvlModule)module).isSilent())) {
+          throw e;
+        }
       }
+      values.add(value);
     }
     context.getFrameStack().leaveLocal(bodyBlock);
     return values;

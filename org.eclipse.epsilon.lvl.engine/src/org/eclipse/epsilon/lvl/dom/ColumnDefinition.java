@@ -8,6 +8,7 @@ import org.eclipse.epsilon.eol.exceptions.EolRuntimeException;
 import org.eclipse.epsilon.eol.execute.context.FrameType;
 import org.eclipse.epsilon.eol.execute.context.IEolContext;
 import org.eclipse.epsilon.eol.execute.context.Variable;
+import org.eclipse.epsilon.lvl.LvlModule;
 import org.eclipse.epsilon.lvl.output.ReturnValueParser;
 
 public class ColumnDefinition extends AnnotatableModuleElement {
@@ -35,14 +36,21 @@ public class ColumnDefinition extends AnnotatableModuleElement {
     block = (IExecutableModuleElement) module.createAst(cst.getSecondChild(), this);
   }
 
-  public String getValue(Object obj, IEolContext context, String varName) {
+  public String getValue(Object obj, IEolContext context, String varName)
+      throws EolRuntimeException {
     context.getFrameStack().enterLocal(FrameType.PROTECTED, block);
     context.getFrameStack().put(
         Variable.createReadOnlyVariable(varName, obj));
     Object res = null;
     try {
       res = context.getExecutorFactory().execute(block, context);
-    } catch (EolRuntimeException e) {}
+    } catch (EolRuntimeException e) {
+      if (!(this.hasAnnotation(LvlModule.SILENT_ANNOTATION)
+          || ((DatasetRule)parent).hasAnnotation(LvlModule.SILENT_ANNOTATION)
+          || ((LvlModule)module).isSilent())) {
+        throw e;
+      }
+    }
     context.getFrameStack().leaveLocal(block);
     return ReturnValueParser.obtainAndParseValue(res);
   }

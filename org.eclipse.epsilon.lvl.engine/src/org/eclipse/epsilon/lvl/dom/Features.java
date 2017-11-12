@@ -14,6 +14,7 @@ import org.eclipse.epsilon.eol.execute.context.FrameType;
 import org.eclipse.epsilon.eol.execute.context.IEolContext;
 import org.eclipse.epsilon.eol.execute.context.Variable;
 import org.eclipse.epsilon.eol.execute.introspection.IPropertyGetter;
+import org.eclipse.epsilon.lvl.LvlModule;
 import org.eclipse.epsilon.lvl.output.ReturnValueParser;
 import org.eclipse.epsilon.lvl.parse.LvlParser;
 
@@ -51,7 +52,13 @@ public class Features extends AnnotatableModuleElement {
     try {
       fromObject = ReturnValueParser.obtainValue(
           context.getExecutorFactory().execute(fromBlock, context));
-    } catch (EolRuntimeException e) {}
+    } catch (EolRuntimeException e) {
+      if (!(this.hasAnnotation(LvlModule.SILENT_ANNOTATION)
+          || ((DatasetRule)parent).hasAnnotation(LvlModule.SILENT_ANNOTATION)
+          || ((LvlModule)module).isSilent())) {
+        throw e;
+      }
+    }
     if (fromObject != null) {
       res = true;
       // validation can happen as fromblock returned not null
@@ -93,7 +100,13 @@ public class Features extends AnnotatableModuleElement {
     try {
       fromObject = ReturnValueParser.obtainValue(
           context.getExecutorFactory().execute(fromBlock, context));
-    } catch (EolRuntimeException e) {}
+    } catch (EolRuntimeException e) {
+      if (!(this.hasAnnotation(LvlModule.SILENT_ANNOTATION)
+          || ((DatasetRule)parent).hasAnnotation(LvlModule.SILENT_ANNOTATION)
+          || ((LvlModule)module).isSilent())) {
+        throw e;
+      }
+    }
     context.getFrameStack().leaveLocal(fromBlock);
     if (fromObject == null) {
       // No object obtained from the expression, blank for all columns

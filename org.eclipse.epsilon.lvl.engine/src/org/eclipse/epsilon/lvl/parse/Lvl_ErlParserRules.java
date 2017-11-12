@@ -1,6 +1,6 @@
 package org.eclipse.epsilon.lvl.parse;
 
-// $ANTLR 3.1b1 ErlParserRules.g 2017-11-09 16:41:14
+// $ANTLR 3.1b1 ErlParserRules.g 2017-11-12 17:16:49
 
 import org.antlr.runtime.*;
 import java.util.Stack;

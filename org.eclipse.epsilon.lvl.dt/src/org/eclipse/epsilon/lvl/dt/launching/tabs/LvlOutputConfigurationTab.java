@@ -23,7 +23,6 @@ import org.eclipse.swt.widgets.Text;
 
 public class LvlOutputConfigurationTab
     extends AbstractLaunchConfigurationTab implements ModifyListener {
-
   // Configuration keys
   public static final String OUTPUT_FOLDER = "outputFolder";
   public static final String SILENT_EXECUTION = "silentExecution";
@@ -89,10 +88,7 @@ public class LvlOutputConfigurationTab
   }
 
   @Override
-  public void setDefaults(ILaunchConfigurationWorkingCopy configuration) {
-    folderPath.setText(DEFAULT_OUTPUT_FOLDER);
-    silentExecutionButton.setSelection(DEFAULT_SILENT_EXECUTION);
-  }
+  public void setDefaults(ILaunchConfigurationWorkingCopy configuration) {}
 
   @Override
   public void initializeFrom(ILaunchConfiguration configuration) {

@@ -110,3 +110,17 @@ dataset Dummy12b_from over a : A
     header : "b_" + feature
   }
 }
+
+dataset Dummy13_gridReturnBlocks over a : A {
+  grid {
+    keys {
+      return 1.to(5);
+    }
+    header {
+      return key;
+    }
+    body {
+      return key * 10;
+    }
+  }
+}

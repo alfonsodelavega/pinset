@@ -73,7 +73,8 @@ public class Grid extends AnnotatableModuleElement {
   @SuppressWarnings("unchecked")
   private void initKeys(IEolContext context) throws EolRuntimeException {
     if (keys == null) {
-      keys = (Collection<Object>)context.getExecutorFactory().execute(keysBlock, context);
+      keys = (Collection<Object>)ReturnValueParser.obtainValue(
+          context.getExecutorFactory().execute(keysBlock, context));
     }
   }
 
@@ -89,7 +90,7 @@ public class Grid extends AnnotatableModuleElement {
           Variable.createReadOnlyVariable(KEY_VARNAME, key));
       String value = "";
       try {
-        value = ReturnValueParser.getStringOrBlank(
+        value = ReturnValueParser.obtainAndParseValue(
             context.getExecutorFactory().execute(bodyBlock, context));
       } catch (EolRuntimeException e) {
         if (!(this.hasAnnotation(LvlModule.SILENT_ANNOTATION)

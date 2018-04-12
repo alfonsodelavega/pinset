@@ -1,4 +1,4 @@
-package org.eclipse.epsilon.lvl.dom;
+package org.eclipse.epsilon.lvl.columnGenerators;
 
 import org.eclipse.epsilon.common.module.IModule;
 import org.eclipse.epsilon.common.parse.AST;
@@ -9,9 +9,10 @@ import org.eclipse.epsilon.eol.execute.context.FrameType;
 import org.eclipse.epsilon.eol.execute.context.IEolContext;
 import org.eclipse.epsilon.eol.execute.context.Variable;
 import org.eclipse.epsilon.lvl.LvlModule;
+import org.eclipse.epsilon.lvl.dom.DatasetRule;
 import org.eclipse.epsilon.lvl.output.ReturnValueParser;
 
-public class ColumnDefinition extends AnnotatableModuleElement {
+public class Column extends AnnotatableModuleElement {
 
   protected String name;
   protected IExecutableModuleElement block;

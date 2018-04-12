@@ -26,10 +26,11 @@ import org.eclipse.epsilon.eol.dom.ExecutableBlock;
 import org.eclipse.epsilon.eol.exceptions.EolRuntimeException;
 import org.eclipse.epsilon.eol.execute.context.IEolContext;
 import org.eclipse.epsilon.erl.ErlModule;
-import org.eclipse.epsilon.lvl.dom.ColumnDefinition;
+import org.eclipse.epsilon.lvl.columnGenerators.Column;
+import org.eclipse.epsilon.lvl.columnGenerators.Grid;
+import org.eclipse.epsilon.lvl.columnGenerators.Properties;
+import org.eclipse.epsilon.lvl.columnGenerators.Reference;
 import org.eclipse.epsilon.lvl.dom.DatasetRule;
-import org.eclipse.epsilon.lvl.dom.Grid;
-import org.eclipse.epsilon.lvl.dom.SimpleReference;
 import org.eclipse.epsilon.lvl.parse.LvlLexer;
 import org.eclipse.epsilon.lvl.parse.LvlParser;
 
@@ -52,9 +53,11 @@ public class LvlModule extends ErlModule {
     case LvlParser.GUARD:
       return new ExecutableBlock<Boolean>(Boolean.class);
     case LvlParser.COLUMN:
-      return new ColumnDefinition();
+      return new Column();
+    case LvlParser.PROPERTIES:
+      return new Properties();
     case LvlParser.REFERENCE:
-      return new SimpleReference();
+      return new Reference();
     case LvlParser.GRID:
       return new Grid();
     }

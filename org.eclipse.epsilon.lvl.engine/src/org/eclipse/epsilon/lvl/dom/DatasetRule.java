@@ -20,10 +20,13 @@ import org.eclipse.epsilon.eol.execute.context.IEolContext;
 import org.eclipse.epsilon.eol.execute.context.Variable;
 import org.eclipse.epsilon.eol.execute.introspection.IPropertyGetter;
 import org.eclipse.epsilon.eol.models.IModel;
-import org.eclipse.epsilon.eol.parse.EolParser;
 import org.eclipse.epsilon.eol.types.EolModelElementType;
 import org.eclipse.epsilon.eol.types.EolType;
 import org.eclipse.epsilon.lvl.LvlModule;
+import org.eclipse.epsilon.lvl.columnGenerators.Column;
+import org.eclipse.epsilon.lvl.columnGenerators.Grid;
+import org.eclipse.epsilon.lvl.columnGenerators.Properties;
+import org.eclipse.epsilon.lvl.columnGenerators.Reference;
 import org.eclipse.epsilon.lvl.output.DatasetFile;
 import org.eclipse.epsilon.lvl.output.ReturnValueParser;
 import org.eclipse.epsilon.lvl.parse.LvlParser;
@@ -33,10 +36,10 @@ public class DatasetRule extends AnnotatableModuleElement {
   protected String name;
   protected Parameter parameter;
   protected IExecutableModuleElement fromBlock = null;
-  protected List<ColumnDefinition> columns = new ArrayList<ColumnDefinition>();
-  protected List<String> simpleFeatures = new ArrayList<String>();
+  protected List<Column> columns = new ArrayList<Column>();
+  protected Properties properties;
   protected ExecutableBlock<Boolean> guardBlock;
-  protected List<SimpleReference> simpleReferences = new ArrayList<SimpleReference>();
+  protected List<Reference> simpleReferences = new ArrayList<Reference>();
   protected List<Grid> grids = new ArrayList<Grid>();
 
 
@@ -53,15 +56,13 @@ public class DatasetRule extends AnnotatableModuleElement {
       fromBlock = (IExecutableModuleElement)
           module.createAst(fromAST.getFirstChild(), this);
     }
-    AST simpleFeaturesCST = AstUtil.getChild(cst, LvlParser.PROPERTIES);
-    for (AST feature : AstUtil.getChildren(simpleFeaturesCST, EolParser.NAME)) {
-      simpleFeatures.add(feature.getText());
-    }
+    AST propertiesCST = AstUtil.getChild(cst, LvlParser.PROPERTIES);
+    properties = (Properties) module.createAst(propertiesCST, this);
     for (AST simpleRefAST : AstUtil.getChildren(cst, LvlParser.REFERENCE)) {
-      simpleReferences.add((SimpleReference) module.createAst(simpleRefAST, this));
+      simpleReferences.add((Reference) module.createAst(simpleRefAST, this));
     }
     for (AST columnAST : AstUtil.getChildren(cst, LvlParser.COLUMN)) {
-      columns.add((ColumnDefinition) module.createAst(columnAST, this));
+      columns.add((Column) module.createAst(columnAST, this));
     }
     for (AST gridAST : AstUtil.getChildren(cst, LvlParser.GRID)) {
       grids.add((Grid) module.createAst(gridAST, this));
@@ -80,7 +81,6 @@ public class DatasetRule extends AnnotatableModuleElement {
 
 
   public void execute(IEolContext context) throws EolRuntimeException {
-
     Collection<?> oElements = null;
     IModel model = null;
     IPropertyGetter getter = null;
@@ -90,7 +90,7 @@ public class DatasetRule extends AnnotatableModuleElement {
         throw new EolRuntimeException(
             "Datasets generated over non-model types must specify a 'from' expression");
       }
-      if (!simpleFeatures.isEmpty()
+      if (!(properties == null)
           || !simpleReferences.isEmpty()) {
         throw new EolRuntimeException(
             "Datasets generated over non-model types cannot employ feature access constructs");
@@ -119,10 +119,6 @@ public class DatasetRule extends AnnotatableModuleElement {
       return; // if no elements are to appear in the table, it is not generated
     }
 
-    // use the first element to check features existence
-    Object ou = oElements.iterator().next();
-    validateSimpleFeatures(ou, parameterType.getName(), getter);
-
     validateSimpleReferences(oElements, parameterType.getName(), getter);
 
     String filePath = ((LvlModule)module).getOutputFolder()
@@ -137,13 +133,13 @@ public class DatasetRule extends AnnotatableModuleElement {
     }
 
     List<String> columnNames = new ArrayList<String>();
-    for (String feature : simpleFeatures) {
-      columnNames.add(feature);
+    if (properties != null) {
+      columnNames.addAll(properties.getNames());
     }
-    for (SimpleReference reference : simpleReferences) {
+    for (Reference reference : simpleReferences) {
       columnNames.addAll(reference.getNames());
     }
-    for (ColumnDefinition c : columns) {
+    for (Column c : columns) {
       columnNames.add(c.getName());
     }
     for (Grid grid : grids) {
@@ -157,14 +153,13 @@ public class DatasetRule extends AnnotatableModuleElement {
         continue;
       }
       List<String> recordValues = new ArrayList<String>();
-      for (String feature : simpleFeatures) {
-        recordValues.add(ReturnValueParser.getStringOrBlank(
-            getter.invoke(o, feature)));
+      if (properties != null) {
+        recordValues.addAll(properties.getValues(o, getter));
       }
-      for (SimpleReference reference : simpleReferences) {
+      for (Reference reference : simpleReferences) {
         recordValues.addAll(reference.getValues(o, getter));
       }
-      for (ColumnDefinition c : columns) {
+      for (Column c : columns) {
         recordValues.add(c.getValue(o, context, parameter.getName()));
       }
       for (Grid mc : grids) {
@@ -175,22 +170,12 @@ public class DatasetRule extends AnnotatableModuleElement {
     df.close();
   }
 
-  private void validateSimpleFeatures(Object ou, String oType,
-      IPropertyGetter getter) throws EolRuntimeException {
-    for (String feature : simpleFeatures)  {
-      if (!getter.hasProperty(ou, feature)) {
-        throw new EolRuntimeException(String.format(
-            "Feature %s not found in type %s", feature, oType));
-      }
-    }
-  }
-
   private void validateSimpleReferences(Collection<?> oElements, String oType,
       IPropertyGetter getter)
       throws EolRuntimeException {
     Iterator<?> iterator = oElements.iterator();
     Object obj = iterator.next();
-    for (SimpleReference ref : simpleReferences) {
+    for (Reference ref : simpleReferences) {
       ref.validate(obj, getter, iterator, oType);
       // references without declared attributes include all (if model is emf)
       if (ref.includesAllAttributes()) {

@@ -1,4 +1,4 @@
-package org.eclipse.epsilon.lvl.dom;
+package org.eclipse.epsilon.lvl.columnGenerators;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -16,7 +16,7 @@ import org.eclipse.epsilon.eol.execute.introspection.IPropertyGetter;
 import org.eclipse.epsilon.eol.parse.EolParser;
 import org.eclipse.epsilon.lvl.output.ReturnValueParser;
 
-public class SimpleReference extends AnnotatableModuleElement {
+public class Reference extends AnnotatableModuleElement {
   protected String name;
   protected List<String> features = new ArrayList<String>();
   protected boolean includesAllAttributes = false;

@@ -60,7 +60,7 @@ datasetRule
   }
   : r='dataset'^ NAME 'over'! formalParameter from? ob='{'!
     guard?
-    simpleFeatures?
+    properties?
     columnGenerator*
   cb='}'!
   {$r.setType(DATASET);}
@@ -72,7 +72,7 @@ columnGenerator
     annotationBlock? grid
   ;
 
-simpleFeatures
+properties
   @after {
     $tree.getExtraTokens().add($ob);
     $tree.getExtraTokens().add($cb);

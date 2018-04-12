@@ -1,6 +1,6 @@
 package org.eclipse.epsilon.lvl.parse;
 
-// $ANTLR 3.1b1 LvlParserRules.g 2018-04-12 15:41:39
+// $ANTLR 3.1b1 LvlParserRules.g 2018-04-12 18:25:43
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -255,7 +255,7 @@ public class Lvl_LvlParserRules extends org.eclipse.epsilon.common.parse.Epsilon
     };
 
     // $ANTLR start datasetRule
-    // LvlParserRules.g:56:1: datasetRule : r= 'dataset' NAME 'over' formalParameter ( from )? ob= '{' ( guard )? ( simpleFeatures )? ( columnGenerator )* cb= '}' ;
+    // LvlParserRules.g:56:1: datasetRule : r= 'dataset' NAME 'over' formalParameter ( from )? ob= '{' ( guard )? ( properties )? ( columnGenerator )* cb= '}' ;
     public final Lvl_LvlParserRules.datasetRule_return datasetRule() throws RecognitionException {
         Lvl_LvlParserRules.datasetRule_return retval = new Lvl_LvlParserRules.datasetRule_return();
         retval.start = input.LT(1);
@@ -273,7 +273,7 @@ public class Lvl_LvlParserRules extends org.eclipse.epsilon.common.parse.Epsilon
 
         Lvl_ErlParserRules.guard_return guard5 = null;
 
-        Lvl_LvlParserRules.simpleFeatures_return simpleFeatures6 = null;
+        Lvl_LvlParserRules.properties_return properties6 = null;
 
         Lvl_LvlParserRules.columnGenerator_return columnGenerator7 = null;
 
@@ -285,8 +285,8 @@ public class Lvl_LvlParserRules extends org.eclipse.epsilon.common.parse.Epsilon
         org.eclipse.epsilon.common.parse.AST string_literal2_tree=null;
 
         try {
-            // LvlParserRules.g:61:3: (r= 'dataset' NAME 'over' formalParameter ( from )? ob= '{' ( guard )? ( simpleFeatures )? ( columnGenerator )* cb= '}' )
-            // LvlParserRules.g:61:5: r= 'dataset' NAME 'over' formalParameter ( from )? ob= '{' ( guard )? ( simpleFeatures )? ( columnGenerator )* cb= '}'
+            // LvlParserRules.g:61:3: (r= 'dataset' NAME 'over' formalParameter ( from )? ob= '{' ( guard )? ( properties )? ( columnGenerator )* cb= '}' )
+            // LvlParserRules.g:61:5: r= 'dataset' NAME 'over' formalParameter ( from )? ob= '{' ( guard )? ( properties )? ( columnGenerator )* cb= '}'
             {
             root_0 = (org.eclipse.epsilon.common.parse.AST)adaptor.nil();
 
@@ -354,7 +354,7 @@ public class Lvl_LvlParserRules extends org.eclipse.epsilon.common.parse.Epsilon
 
             }
 
-            // LvlParserRules.g:63:5: ( simpleFeatures )?
+            // LvlParserRules.g:63:5: ( properties )?
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -363,14 +363,14 @@ public class Lvl_LvlParserRules extends org.eclipse.epsilon.common.parse.Epsilon
             }
             switch (alt3) {
                 case 1 :
-                    // LvlParserRules.g:0:0: simpleFeatures
+                    // LvlParserRules.g:0:0: properties
                     {
-                    pushFollow(FOLLOW_simpleFeatures_in_datasetRule127);
-                    simpleFeatures6=simpleFeatures();
+                    pushFollow(FOLLOW_properties_in_datasetRule127);
+                    properties6=properties();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, simpleFeatures6.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, properties6.getTree());
 
                     }
                     break;
@@ -641,15 +641,15 @@ public class Lvl_LvlParserRules extends org.eclipse.epsilon.common.parse.Epsilon
     }
     // $ANTLR end columnGenerator
 
-    public static class simpleFeatures_return extends ParserRuleReturnScope {
+    public static class properties_return extends ParserRuleReturnScope {
         org.eclipse.epsilon.common.parse.AST tree;
         public Object getTree() { return tree; }
     };
 
-    // $ANTLR start simpleFeatures
-    // LvlParserRules.g:75:1: simpleFeatures : sf= 'properties' ob= '[' NAME ( ',' NAME )* cb= ']' ;
-    public final Lvl_LvlParserRules.simpleFeatures_return simpleFeatures() throws RecognitionException {
-        Lvl_LvlParserRules.simpleFeatures_return retval = new Lvl_LvlParserRules.simpleFeatures_return();
+    // $ANTLR start properties
+    // LvlParserRules.g:75:1: properties : sf= 'properties' ob= '[' NAME ( ',' NAME )* cb= ']' ;
+    public final Lvl_LvlParserRules.properties_return properties() throws RecognitionException {
+        Lvl_LvlParserRules.properties_return retval = new Lvl_LvlParserRules.properties_return();
         retval.start = input.LT(1);
 
         org.eclipse.epsilon.common.parse.AST root_0 = null;
@@ -674,13 +674,13 @@ public class Lvl_LvlParserRules extends org.eclipse.epsilon.common.parse.Epsilon
             {
             root_0 = (org.eclipse.epsilon.common.parse.AST)adaptor.nil();
 
-            sf=(Token)match(input,168,FOLLOW_168_in_simpleFeatures205); if (state.failed) return retval;
+            sf=(Token)match(input,168,FOLLOW_168_in_properties205); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             sf_tree = (org.eclipse.epsilon.common.parse.AST)adaptor.create(sf);
             root_0 = (org.eclipse.epsilon.common.parse.AST)adaptor.becomeRoot(sf_tree, root_0);
             }
-            ob=(Token)match(input,156,FOLLOW_156_in_simpleFeatures210); if (state.failed) return retval;
-            NAME13=(Token)match(input,NAME,FOLLOW_NAME_in_simpleFeatures213); if (state.failed) return retval;
+            ob=(Token)match(input,156,FOLLOW_156_in_properties210); if (state.failed) return retval;
+            NAME13=(Token)match(input,NAME,FOLLOW_NAME_in_properties213); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             NAME13_tree = (org.eclipse.epsilon.common.parse.AST)adaptor.create(NAME13);
             adaptor.addChild(root_0, NAME13_tree);
@@ -700,8 +700,8 @@ public class Lvl_LvlParserRules extends org.eclipse.epsilon.common.parse.Epsilon
             	case 1 :
             	    // LvlParserRules.g:81:34: ',' NAME
             	    {
-            	    char_literal14=(Token)match(input,95,FOLLOW_95_in_simpleFeatures216); if (state.failed) return retval;
-            	    NAME15=(Token)match(input,NAME,FOLLOW_NAME_in_simpleFeatures219); if (state.failed) return retval;
+            	    char_literal14=(Token)match(input,95,FOLLOW_95_in_properties216); if (state.failed) return retval;
+            	    NAME15=(Token)match(input,NAME,FOLLOW_NAME_in_properties219); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
             	    NAME15_tree = (org.eclipse.epsilon.common.parse.AST)adaptor.create(NAME15);
             	    adaptor.addChild(root_0, NAME15_tree);
@@ -715,7 +715,7 @@ public class Lvl_LvlParserRules extends org.eclipse.epsilon.common.parse.Epsilon
                 }
             } while (true);
 
-            cb=(Token)match(input,157,FOLLOW_157_in_simpleFeatures225); if (state.failed) return retval;
+            cb=(Token)match(input,157,FOLLOW_157_in_properties225); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
               sf.setType(PROPERTIES);
             }
@@ -746,7 +746,7 @@ public class Lvl_LvlParserRules extends org.eclipse.epsilon.common.parse.Epsilon
         }
         return retval;
     }
-    // $ANTLR end simpleFeatures
+    // $ANTLR end properties
 
     public static class simpleReference_return extends ParserRuleReturnScope {
         org.eclipse.epsilon.common.parse.AST tree;
@@ -1456,7 +1456,7 @@ public class Lvl_LvlParserRules extends org.eclipse.epsilon.common.parse.Epsilon
     public static final BitSet FOLLOW_from_in_datasetRule108 = new BitSet(new long[]{0x0000000000000000L,0x0000000200000000L});
     public static final BitSet FOLLOW_97_in_datasetRule113 = new BitSet(new long[]{0x0000000000800000L,0x0000040400000000L,0x00000F1000000000L});
     public static final BitSet FOLLOW_guard_in_datasetRule120 = new BitSet(new long[]{0x0000000000800000L,0x0000040400000000L,0x00000F0000000000L});
-    public static final BitSet FOLLOW_simpleFeatures_in_datasetRule127 = new BitSet(new long[]{0x0000000000800000L,0x0000040400000000L,0x00000E0000000000L});
+    public static final BitSet FOLLOW_properties_in_datasetRule127 = new BitSet(new long[]{0x0000000000800000L,0x0000040400000000L,0x00000E0000000000L});
     public static final BitSet FOLLOW_columnGenerator_in_datasetRule134 = new BitSet(new long[]{0x0000000000800000L,0x0000040400000000L,0x00000E0000000000L});
     public static final BitSet FOLLOW_98_in_datasetRule141 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_simpleReference_in_columnGenerator159 = new BitSet(new long[]{0x0000000000000002L});
@@ -1464,12 +1464,12 @@ public class Lvl_LvlParserRules extends org.eclipse.epsilon.common.parse.Epsilon
     public static final BitSet FOLLOW_columnDefinition_in_columnGenerator170 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_annotationBlock_in_columnGenerator178 = new BitSet(new long[]{0x0000000000800000L,0x0000040400000000L,0x00000E0000000000L});
     public static final BitSet FOLLOW_grid_in_columnGenerator181 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_168_in_simpleFeatures205 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000000L,0x0000000010000000L});
-    public static final BitSet FOLLOW_156_in_simpleFeatures210 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_NAME_in_simpleFeatures213 = new BitSet(new long[]{0x0000000000000000L,0x0000000080000000L,0x0000000020000000L});
-    public static final BitSet FOLLOW_95_in_simpleFeatures216 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_NAME_in_simpleFeatures219 = new BitSet(new long[]{0x0000000000000000L,0x0000000080000000L,0x0000000020000000L});
-    public static final BitSet FOLLOW_157_in_simpleFeatures225 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_168_in_properties205 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000000L,0x0000000010000000L});
+    public static final BitSet FOLLOW_156_in_properties210 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_NAME_in_properties213 = new BitSet(new long[]{0x0000000000000000L,0x0000000080000000L,0x0000000020000000L});
+    public static final BitSet FOLLOW_95_in_properties216 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_NAME_in_properties219 = new BitSet(new long[]{0x0000000000000000L,0x0000000080000000L,0x0000000020000000L});
+    public static final BitSet FOLLOW_157_in_properties225 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_169_in_simpleReference254 = new BitSet(new long[]{0x0000000000080000L});
     public static final BitSet FOLLOW_NAME_in_simpleReference257 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000000L,0x0000000010000000L});
     public static final BitSet FOLLOW_156_in_simpleReference262 = new BitSet(new long[]{0x0000000000080000L});

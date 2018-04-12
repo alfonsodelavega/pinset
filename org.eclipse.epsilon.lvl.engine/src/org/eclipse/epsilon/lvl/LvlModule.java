@@ -52,9 +52,9 @@ public class LvlModule extends ErlModule {
       return new DatasetRule();
     case LvlParser.GUARD:
       return new ExecutableBlock<Boolean>(Boolean.class);
-    case LvlParser.COLUMNDEFINITION:
+    case LvlParser.COLUMN:
       return new ColumnDefinition();
-    case LvlParser.SIMPLEREFERENCE:
+    case LvlParser.REFERENCE:
       return new SimpleReference();
     case LvlParser.GRID:
       return new Grid();

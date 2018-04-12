@@ -54,14 +54,14 @@ public class DatasetRule extends AnnotatableModuleElement {
       fromBlock = (IExecutableModuleElement)
           module.createAst(fromAST.getFirstChild(), this);
     }
-    AST simpleFeaturesCST = AstUtil.getChild(cst, LvlParser.SIMPLEFEATURES);
+    AST simpleFeaturesCST = AstUtil.getChild(cst, LvlParser.PROPERTIES);
     for (AST feature : AstUtil.getChildren(simpleFeaturesCST, EolParser.NAME)) {
       simpleFeatures.add(feature.getText());
     }
-    for (AST simpleRefAST : AstUtil.getChildren(cst, LvlParser.SIMPLEREFERENCE)) {
+    for (AST simpleRefAST : AstUtil.getChildren(cst, LvlParser.REFERENCE)) {
       simpleReferences.add((SimpleReference) module.createAst(simpleRefAST, this));
     }
-    for (AST columnAST : AstUtil.getChildren(cst, LvlParser.COLUMNDEFINITION)) {
+    for (AST columnAST : AstUtil.getChildren(cst, LvlParser.COLUMN)) {
       columns.add((ColumnDefinition) module.createAst(columnAST, this));
     }
     for (AST gridAST : AstUtil.getChildren(cst, LvlParser.GRID)) {

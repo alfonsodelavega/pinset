@@ -31,13 +31,13 @@ public class Grid extends AnnotatableModuleElement {
   @Override
   public void build(AST cst, IModule module) {
     super.build(cst, module);
-    AST keysAST = AstUtil.getChild(cst, LvlParser.GKEYS);
+    AST keysAST = AstUtil.getChild(cst, LvlParser.GRIDKEYS);
     keysBlock = (IExecutableModuleElement)
         module.createAst(keysAST.getFirstChild(), this);
-    AST headerAST = AstUtil.getChild(cst, LvlParser.HEADER);
+    AST headerAST = AstUtil.getChild(cst, LvlParser.GRIDHEADER);
     headerBlock = (IExecutableModuleElement)
         module.createAst(headerAST.getFirstChild(), this);
-    AST bodyAST = AstUtil.getChild(cst, LvlParser.GBODY);
+    AST bodyAST = AstUtil.getChild(cst, LvlParser.GRIDBODY);
     bodyBlock = (IExecutableModuleElement)
         module.createAst(bodyAST.getFirstChild(), this);
   }

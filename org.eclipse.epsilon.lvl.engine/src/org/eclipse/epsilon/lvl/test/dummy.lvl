@@ -1,32 +1,32 @@
 dataset Dummy01_As over a : A {
-  attributes [x, en]
+  properties [x, en]
   @silent
   column twiceX : a.x * 2
 }
 
 dataset Dummy02_AsAndPartialBs over a : A {
-  attributes [x, en]
+  properties [x, en]
   reference b[y]
 }
 
 dataset Dummy03_AsAndFullBs over a : A {
-  attributes [x, en]
+  properties [x, en]
   reference b
 }
 
 dataset Dummy04_AsAndNumberOfDs over a : A {
-  attributes [x]
+  properties [x]
   column numberOfDs : a.ds.size()
 }
 
 dataset Dummy05_filteredAs over a : A {
   guard : a.x > 5
-  attributes [x]
+  properties [x]
   column numberOfDs : a.ds.size()
 }
 
 dataset Dummy06_grid over a : A {
-  attributes [x]
+  properties [x]
   grid {
     keys   : 1.to(5)
     header : "x_plus_" + key
@@ -35,7 +35,7 @@ dataset Dummy06_grid over a : A {
 }
 
 dataset Dummy07_features over a : A {
-  attributes [x]
+  properties [x]
   features [y, z] {
     from : a.b
     header : "b_" + feature
@@ -44,7 +44,7 @@ dataset Dummy07_features over a : A {
 
 dataset Dummy08_from over a : A
                      from : A.all.select(a | a.x > 5) {
-  attributes [x]
+  properties [x]
   features [y, z] {
     from : a.b
     header : "b_" + feature
@@ -62,14 +62,14 @@ dataset Dummy09_from over number
 }
 
 dataset Dummy10a_silentColumn over a : A {
-  attributes [x]
+  properties [x]
   @silent
   column b_y : a.b.y // there is an A element that does not have a B
 }
 
 @silent
 dataset Dummy10b_silentColumn over a : A {
-  attributes [x]
+  properties [x]
   column b_y : a.b.y // there is an A element that does not have a B
 }
 
@@ -93,7 +93,7 @@ dataset Dummy11b_silentGrid over a : A {
 
 dataset Dummy12a_from over a : A
                      from : A.all.select(a | a.x > 5) {
-  attributes [x]
+  properties [x]
   @silent
   features [y, z] {
     from : a.getNonExistentValue() // fails if annotation removed
@@ -104,7 +104,7 @@ dataset Dummy12a_from over a : A
 @silent
 dataset Dummy12b_from over a : A
                      from : A.all.select(a | a.x > 5) {
-  attributes [x]
+  properties [x]
   features [y, z] {
     from : a.getNonExistentValue() // fails if annotation removed
     header : "b_" + feature

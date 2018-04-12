@@ -38,7 +38,7 @@ public class Features extends AnnotatableModuleElement {
     AST fromAST = AstUtil.getChild(cst, LvlParser.FROM);
     fromBlock = (IExecutableModuleElement)
         module.createAst(fromAST.getFirstChild(), this);
-    AST headerAST = AstUtil.getChild(cst, LvlParser.HEADER);
+    AST headerAST = AstUtil.getChild(cst, LvlParser.GRIDHEADER);
     headerBlock = (IExecutableModuleElement)
         module.createAst(headerAST.getFirstChild(), this);
   }

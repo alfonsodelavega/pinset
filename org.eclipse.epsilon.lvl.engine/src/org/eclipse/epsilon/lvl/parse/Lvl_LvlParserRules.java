@@ -1,6 +1,6 @@
 package org.eclipse.epsilon.lvl.parse;
 
-// $ANTLR 3.1b1 LvlParserRules.g 2017-11-12 17:16:49
+// $ANTLR 3.1b1 LvlParserRules.g 2018-04-11 18:25:40
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -87,6 +87,7 @@ public class Lvl_LvlParserRules extends org.eclipse.epsilon.common.parse.Epsilon
     public static final int T__129=129;
     public static final int T__126=126;
     public static final int JavaIDDigit=18;
+    public static final int GRIDHEADER=88;
     public static final int T__125=125;
     public static final int MAP=74;
     public static final int T__128=128;
@@ -101,16 +102,14 @@ public class Lvl_LvlParserRules extends org.eclipse.epsilon.common.parse.Epsilon
     public static final int MODELDECLARATION=67;
     public static final int T__163=163;
     public static final int EXPRESSIONINBRACKETS=59;
+    public static final int GRIDBODY=89;
     public static final int T__160=160;
     public static final int TRANSACTION=41;
-    public static final int HEADER=88;
     public static final int FLOAT_TYPE_SUFFIX=7;
-    public static final int SIMPLEREFERENCE=85;
     public static final int ITEMSELECTOR=73;
     public static final int COMMENT=21;
     public static final int ModelElementType=45;
     public static final int IMPORT=66;
-    public static final int SIMPLEFEATURES=83;
     public static final int DELETE=52;
     public static final int ARROW=11;
     public static final int T__159=159;
@@ -126,7 +125,6 @@ public class Lvl_LvlParserRules extends org.eclipse.epsilon.common.parse.Epsilon
     public static final int T__152=152;
     public static final int GRID=86;
     public static final int Annotation=23;
-    public static final int GBODY=89;
     public static final int FEATURES=90;
     public static final int CONTINUE=40;
     public static final int ENUMERATION_VALUE=65;
@@ -147,9 +145,11 @@ public class Lvl_LvlParserRules extends org.eclipse.epsilon.common.parse.Epsilon
     public static final int PRE=77;
     public static final int T__94=94;
     public static final int T__101=101;
+    public static final int PROPERTIES=83;
     public static final int POST=78;
     public static final int ALIAS=69;
     public static final int DRIVER=70;
+    public static final int COLUMN=84;
     public static final int DATASET=81;
     public static final int FROM=91;
     public static final int KEYVAL=75;
@@ -162,6 +162,7 @@ public class Lvl_LvlParserRules extends org.eclipse.epsilon.common.parse.Epsilon
     public static final int T__97=97;
     public static final int StatementBlock=29;
     public static final int T__98=98;
+    public static final int GRIDKEYS=87;
     public static final int T__177=177;
     public static final int T__176=176;
     public static final int ABORT=43;
@@ -178,7 +179,6 @@ public class Lvl_LvlParserRules extends org.eclipse.epsilon.common.parse.Epsilon
     public static final int SpecialNameChar=17;
     public static final int BOOLEAN=12;
     public static final int NAME=19;
-    public static final int GKEYS=87;
     public static final int SWITCH=34;
     public static final int T__169=169;
     public static final int FeatureCall=60;
@@ -198,6 +198,7 @@ public class Lvl_LvlParserRules extends org.eclipse.epsilon.common.parse.Epsilon
     public static final int CollectionType=44;
     public static final int T__119=119;
     public static final int ASSIGNMENT=26;
+    public static final int REFERENCE=85;
     public static final int T__118=118;
     public static final int T__115=115;
     public static final int WS=20;
@@ -209,7 +210,6 @@ public class Lvl_LvlParserRules extends org.eclipse.epsilon.common.parse.Epsilon
     public static final int T__110=110;
     public static final int T__113=113;
     public static final int T__112=112;
-    public static final int COLUMNDEFINITION=84;
     public static final int EscapeSequence=13;
     public static final int EOLMODULE=61;
     public static final int DIGIT=5;
@@ -701,7 +701,7 @@ public class Lvl_LvlParserRules extends org.eclipse.epsilon.common.parse.Epsilon
     };
 
     // $ANTLR start simpleFeatures
-    // LvlParserRules.g:77:1: simpleFeatures : sf= 'attributes' ob= '[' NAME ( ',' NAME )* cb= ']' ;
+    // LvlParserRules.g:77:1: simpleFeatures : sf= 'properties' ob= '[' NAME ( ',' NAME )* cb= ']' ;
     public final Lvl_LvlParserRules.simpleFeatures_return simpleFeatures() throws RecognitionException {
         Lvl_LvlParserRules.simpleFeatures_return retval = new Lvl_LvlParserRules.simpleFeatures_return();
         retval.start = input.LT(1);
@@ -723,8 +723,8 @@ public class Lvl_LvlParserRules extends org.eclipse.epsilon.common.parse.Epsilon
         org.eclipse.epsilon.common.parse.AST NAME17_tree=null;
 
         try {
-            // LvlParserRules.g:82:3: (sf= 'attributes' ob= '[' NAME ( ',' NAME )* cb= ']' )
-            // LvlParserRules.g:83:3: sf= 'attributes' ob= '[' NAME ( ',' NAME )* cb= ']'
+            // LvlParserRules.g:82:3: (sf= 'properties' ob= '[' NAME ( ',' NAME )* cb= ']' )
+            // LvlParserRules.g:83:3: sf= 'properties' ob= '[' NAME ( ',' NAME )* cb= ']'
             {
             root_0 = (org.eclipse.epsilon.common.parse.AST)adaptor.nil();
 
@@ -771,7 +771,7 @@ public class Lvl_LvlParserRules extends org.eclipse.epsilon.common.parse.Epsilon
 
             cb=(Token)match(input,158,FOLLOW_158_in_simpleFeatures241); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-              sf.setType(SIMPLEFEATURES);
+              sf.setType(PROPERTIES);
             }
 
             }
@@ -902,7 +902,7 @@ public class Lvl_LvlParserRules extends org.eclipse.epsilon.common.parse.Epsilon
             }
 
             if ( state.backtracking==0 ) {
-              sr.setType(SIMPLEREFERENCE);
+              sr.setType(REFERENCE);
             }
 
             }
@@ -977,7 +977,7 @@ public class Lvl_LvlParserRules extends org.eclipse.epsilon.common.parse.Epsilon
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, expressionOrStatementBlock23.getTree());
             if ( state.backtracking==0 ) {
-              cd.setType(COLUMNDEFINITION);
+              cd.setType(COLUMN);
             }
 
             }
@@ -1137,7 +1137,7 @@ public class Lvl_LvlParserRules extends org.eclipse.epsilon.common.parse.Epsilon
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, expressionOrStatementBlock27.getTree());
             if ( state.backtracking==0 ) {
-              gk.setType(GKEYS);
+              gk.setType(GRIDKEYS);
             }
 
             }
@@ -1199,7 +1199,7 @@ public class Lvl_LvlParserRules extends org.eclipse.epsilon.common.parse.Epsilon
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, expressionOrStatementBlock28.getTree());
             if ( state.backtracking==0 ) {
-              gh.setType(HEADER);
+              gh.setType(GRIDHEADER);
             }
 
             }
@@ -1261,7 +1261,7 @@ public class Lvl_LvlParserRules extends org.eclipse.epsilon.common.parse.Epsilon
             if (state.failed) return retval;
             if ( state.backtracking==0 ) adaptor.addChild(root_0, expressionOrStatementBlock29.getTree());
             if ( state.backtracking==0 ) {
-              gb.setType(GBODY);
+              gb.setType(GRIDBODY);
             }
 
             }

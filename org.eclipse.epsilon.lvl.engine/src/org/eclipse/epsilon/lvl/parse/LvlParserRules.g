@@ -42,14 +42,14 @@ options {backtrack=true; output=AST;}
 tokens {
   DATASET;
   NAMESLIST;
-  SIMPLEFEATURES;
-  COLUMNDEFINITION;
+  PROPERTIES;
+  COLUMN;
   GUARD;
-  SIMPLEREFERENCE;
+  REFERENCE;
   GRID;
-  GKEYS;
-  HEADER;
-  GBODY;
+  GRIDKEYS;
+  GRIDHEADER;
+  GRIDBODY;
   FEATURES;
   FROM;
 }
@@ -80,8 +80,8 @@ simpleFeatures
     $tree.getExtraTokens().add($cb);
   }
   :
-  sf='attributes'^ ob='['! NAME (','! NAME)* cb=']'!
-  {$sf.setType(SIMPLEFEATURES);}
+  sf='properties'^ ob='['! NAME (','! NAME)* cb=']'!
+  {$sf.setType(PROPERTIES);}
   ;
 
 simpleReference
@@ -91,12 +91,12 @@ simpleReference
   }
   :
   sr='reference'^ NAME (ob='['! NAME (','! NAME)* cb=']'!)?
-  {$sr.setType(SIMPLEREFERENCE);}
+  {$sr.setType(REFERENCE);}
   ;
 
 columnDefinition
   : cd='column'^ NAME expressionOrStatementBlock
-  {$cd.setType(COLUMNDEFINITION);}
+  {$cd.setType(COLUMN);}
   ;
 
 grid
@@ -114,17 +114,17 @@ grid
 
 gkeys
   : gk='keys'^ expressionOrStatementBlock
-  {$gk.setType(GKEYS);}
+  {$gk.setType(GRIDKEYS);}
   ;
 
 header
   : gh='header'^ expressionOrStatementBlock
-  {$gh.setType(HEADER);}
+  {$gh.setType(GRIDHEADER);}
   ;
 
 gbody
   : gb='body'^ expressionOrStatementBlock
-  {$gb.setType(GBODY);}
+  {$gb.setType(GRIDBODY);}
   ;
 
 nameslist

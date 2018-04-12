@@ -34,9 +34,8 @@ public class LvlEditor extends EolEditor{
     lvlKeywords.add("dataset");
     lvlKeywords.add("column");
     lvlKeywords.add("over");
-    lvlKeywords.add("include");
     lvlKeywords.add("guard");
-    lvlKeywords.add("attributes");
+    lvlKeywords.add("properties");
     lvlKeywords.add("reference");
     lvlKeywords.add("grid");
     lvlKeywords.add("keys");

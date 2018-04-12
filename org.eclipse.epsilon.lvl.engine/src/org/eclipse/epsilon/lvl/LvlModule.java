@@ -28,7 +28,6 @@ import org.eclipse.epsilon.eol.execute.context.IEolContext;
 import org.eclipse.epsilon.erl.ErlModule;
 import org.eclipse.epsilon.lvl.dom.ColumnDefinition;
 import org.eclipse.epsilon.lvl.dom.DatasetRule;
-import org.eclipse.epsilon.lvl.dom.Features;
 import org.eclipse.epsilon.lvl.dom.Grid;
 import org.eclipse.epsilon.lvl.dom.SimpleReference;
 import org.eclipse.epsilon.lvl.parse.LvlLexer;
@@ -58,8 +57,6 @@ public class LvlModule extends ErlModule {
       return new SimpleReference();
     case LvlParser.GRID:
       return new Grid();
-    case LvlParser.FEATURES:
-      return new Features();
     }
     return super.adapt(cst, parentAst);
   }

@@ -34,23 +34,6 @@ dataset Dummy06_grid over a : A {
   }
 }
 
-dataset Dummy07_features over a : A {
-  properties [x]
-  features [y, z] {
-    from : a.b
-    header : "b_" + feature
-  }
-}
-
-dataset Dummy08_from over a : A
-                     from : A.all.select(a | a.x > 5) {
-  properties [x]
-  features [y, z] {
-    from : a.b
-    header : "b_" + feature
-  }
-}
-
 dataset Dummy09_from over number
                      from : 1.to(5) {
   column number : number
@@ -88,26 +71,6 @@ dataset Dummy11b_silentGrid over a : A {
     keys : 2.to(5)
     header : "times_" + key
     body : a.getNonExistentValue(key) // fails if annotation removed
-  }
-}
-
-dataset Dummy12a_from over a : A
-                     from : A.all.select(a | a.x > 5) {
-  properties [x]
-  @silent
-  features [y, z] {
-    from : a.getNonExistentValue() // fails if annotation removed
-    header : "b_" + feature
-  }
-}
-
-@silent
-dataset Dummy12b_from over a : A
-                     from : A.all.select(a | a.x > 5) {
-  properties [x]
-  features [y, z] {
-    from : a.getNonExistentValue() // fails if annotation removed
-    header : "b_" + feature
   }
 }
 

@@ -43,7 +43,6 @@ public class LvlEditor extends EolEditor{
     lvlKeywords.add("body");
     lvlKeywords.add("pre");
     lvlKeywords.add("post");
-    lvlKeywords.add("features");
     lvlKeywords.add("from");
     lvlKeywords.addAll(super.getKeywords());
 

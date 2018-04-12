@@ -38,7 +38,6 @@ public class DatasetRule extends AnnotatableModuleElement {
   protected ExecutableBlock<Boolean> guardBlock;
   protected List<SimpleReference> simpleReferences = new ArrayList<SimpleReference>();
   protected List<Grid> grids = new ArrayList<Grid>();
-  protected List<Features> features = new ArrayList<Features>();
 
 
   @SuppressWarnings("unchecked")
@@ -67,9 +66,6 @@ public class DatasetRule extends AnnotatableModuleElement {
     for (AST gridAST : AstUtil.getChildren(cst, LvlParser.GRID)) {
       grids.add((Grid) module.createAst(gridAST, this));
     }
-    for (AST featuresAST : AstUtil.getChildren(cst, LvlParser.FEATURES)) {
-      features.add((Features) module.createAst(featuresAST, this));
-    }
   }
 
   public boolean isIncluded(Object object, IEolContext context,
@@ -95,8 +91,7 @@ public class DatasetRule extends AnnotatableModuleElement {
             "Datasets generated over non-model types must specify a 'from' expression");
       }
       if (!simpleFeatures.isEmpty()
-          || !simpleReferences.isEmpty()
-          || !features.isEmpty()) {
+          || !simpleReferences.isEmpty()) {
         throw new EolRuntimeException(
             "Datasets generated over non-model types cannot employ feature access constructs");
       }
@@ -130,8 +125,6 @@ public class DatasetRule extends AnnotatableModuleElement {
 
     validateSimpleReferences(oElements, parameterType.getName(), getter);
 
-    validateFeatures(oElements, getter, context, parameter.getName());
-
     String filePath = ((LvlModule)module).getOutputFolder()
         + "/" + name + ((LvlModule)module).getExtension();
     DatasetFile df = null;
@@ -156,9 +149,6 @@ public class DatasetRule extends AnnotatableModuleElement {
     for (Grid grid : grids) {
       columnNames.addAll(grid.getNames(context));
     }
-    for (Features fs : features) {
-      columnNames.addAll(fs.getNames(context));
-    }
     df.newRecord(columnNames);
 
     for (Object o : oElements) {
@@ -179,9 +169,6 @@ public class DatasetRule extends AnnotatableModuleElement {
       }
       for (Grid mc : grids) {
         recordValues.addAll(mc.getValues(o, context, parameter.getName()));
-      }
-      for (Features fs : features) {
-        recordValues.addAll(fs.getValues(o, getter, context, parameter.getName()));
       }
       df.newRecord(recordValues);
     }
@@ -214,22 +201,6 @@ public class DatasetRule extends AnnotatableModuleElement {
           ref.populateFeatures(((EObject)obj).eClass());
         }
       }
-    }
-  }
-
-  private void validateFeatures(Collection<?> oElements,
-      IPropertyGetter getter, IEolContext context, String varName)
-      throws EolRuntimeException {
-    for (Features fs : features) {
-      context.getFrameStack().enterLocal(FrameType.PROTECTED, this);
-      // validation happens until an obj element generates a successful (not null)
-      //   result in the fromBlock, which can be checked with the getter
-      for (Object obj : oElements) {
-        if (fs.validate(obj, getter, context, varName)) {
-          break; // features object validated, no need to keep iterating
-        }
-      }
-      context.getFrameStack().leaveLocal(this);
     }
   }
 

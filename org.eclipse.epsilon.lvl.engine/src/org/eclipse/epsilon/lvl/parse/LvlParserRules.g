@@ -50,7 +50,6 @@ tokens {
   GRIDKEYS;
   GRIDHEADER;
   GRIDBODY;
-  FEATURES;
   FROM;
 }
 
@@ -70,8 +69,7 @@ datasetRule
 columnGenerator
   : simpleReference |
     annotationBlock? columnDefinition |
-    annotationBlock? grid |
-    annotationBlock? features
+    annotationBlock? grid
   ;
 
 simpleFeatures
@@ -132,21 +130,7 @@ nameslist
    {$nl.setType(NAMESLIST);}
  ;
 
-features
-  @after {
-    $tree.getExtraTokens().add($ob);
-    $tree.getExtraTokens().add($cb);
-  }
-  : f='features'^ nameslist? ob='{'
-    from
-    header
-  cb='}'
-  {$f.setType(FEATURES);}
-  ;
-
 from
   : ff='from'^ expressionOrStatementBlock
   {$ff.setType(FROM);}
   ;
-
-

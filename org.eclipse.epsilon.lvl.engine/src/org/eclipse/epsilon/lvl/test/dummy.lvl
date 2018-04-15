@@ -1,17 +1,11 @@
 dataset Dummy01_As over a : A {
   properties [x, en]
-  @silent
   column twiceX : a.x * 2
 }
 
 dataset Dummy02_AsAndPartialBs over a : A {
   properties [x, en]
   reference b[y]
-}
-
-dataset Dummy03_AsAndFullBs over a : A {
-  properties [x, en]
-  reference b
 }
 
 dataset Dummy04_AsAndNumberOfDs over a : A {

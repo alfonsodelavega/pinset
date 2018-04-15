@@ -67,32 +67,31 @@ datasetRule
   ;
 
 columnGenerator
-  : simpleReference |
-    annotationBlock? columnDefinition |
+  : reference |
+    annotationBlock? column |
     annotationBlock? grid
   ;
 
-properties
-  @after {
-    $tree.getExtraTokens().add($ob);
+nameslist
+   @after {
     $tree.getExtraTokens().add($cb);
   }
+ : nl='['^ NAME (','! NAME)* cb=']'!
+   {$nl.setType(NAMESLIST);}
+ ;
+
+properties
   :
-  sf='properties'^ ob='['! NAME (','! NAME)* cb=']'!
+  sf='properties'^ nameslist
   {$sf.setType(PROPERTIES);}
   ;
 
-simpleReference
-  @after {
-    $tree.getExtraTokens().add($ob);
-    $tree.getExtraTokens().add($cb);
-  }
-  :
-  sr='reference'^ NAME (ob='['! NAME (','! NAME)* cb=']'!)?
-  {$sr.setType(REFERENCE);}
+reference
+  : r='reference'^ NAME nameslist
+  {$r.setType(REFERENCE);}
   ;
 
-columnDefinition
+column
   : cd='column'^ NAME expressionOrStatementBlock
   {$cd.setType(COLUMN);}
   ;
@@ -124,11 +123,6 @@ gbody
   : gb='body'^ expressionOrStatementBlock
   {$gb.setType(GRIDBODY);}
   ;
-
-nameslist
- : nl='['^ NAME (','! NAME)* ']'!
-   {$nl.setType(NAMESLIST);}
- ;
 
 from
   : ff='from'^ expressionOrStatementBlock

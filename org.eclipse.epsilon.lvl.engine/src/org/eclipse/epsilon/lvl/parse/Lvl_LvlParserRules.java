@@ -1,6 +1,6 @@
 package org.eclipse.epsilon.lvl.parse;
 
-// $ANTLR 3.1b1 LvlParserRules.g 2018-04-12 18:25:43
+// $ANTLR 3.1b1 LvlParserRules.g 2018-04-15 18:20:18
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -446,18 +446,18 @@ public class Lvl_LvlParserRules extends org.eclipse.epsilon.common.parse.Epsilon
     };
 
     // $ANTLR start columnGenerator
-    // LvlParserRules.g:69:1: columnGenerator : ( simpleReference | ( annotationBlock )? columnDefinition | ( annotationBlock )? grid );
+    // LvlParserRules.g:69:1: columnGenerator : ( reference | ( annotationBlock )? column | ( annotationBlock )? grid );
     public final Lvl_LvlParserRules.columnGenerator_return columnGenerator() throws RecognitionException {
         Lvl_LvlParserRules.columnGenerator_return retval = new Lvl_LvlParserRules.columnGenerator_return();
         retval.start = input.LT(1);
 
         org.eclipse.epsilon.common.parse.AST root_0 = null;
 
-        Lvl_LvlParserRules.simpleReference_return simpleReference8 = null;
+        Lvl_LvlParserRules.reference_return reference8 = null;
 
         Lvl_EolParserRules.annotationBlock_return annotationBlock9 = null;
 
-        Lvl_LvlParserRules.columnDefinition_return columnDefinition10 = null;
+        Lvl_LvlParserRules.column_return column10 = null;
 
         Lvl_EolParserRules.annotationBlock_return annotationBlock11 = null;
 
@@ -466,7 +466,7 @@ public class Lvl_LvlParserRules extends org.eclipse.epsilon.common.parse.Epsilon
 
 
         try {
-            // LvlParserRules.g:70:3: ( simpleReference | ( annotationBlock )? columnDefinition | ( annotationBlock )? grid )
+            // LvlParserRules.g:70:3: ( reference | ( annotationBlock )? column | ( annotationBlock )? grid )
             int alt7=3;
             switch ( input.LA(1) ) {
             case 169:
@@ -532,21 +532,21 @@ public class Lvl_LvlParserRules extends org.eclipse.epsilon.common.parse.Epsilon
 
             switch (alt7) {
                 case 1 :
-                    // LvlParserRules.g:70:5: simpleReference
+                    // LvlParserRules.g:70:5: reference
                     {
                     root_0 = (org.eclipse.epsilon.common.parse.AST)adaptor.nil();
 
-                    pushFollow(FOLLOW_simpleReference_in_columnGenerator159);
-                    simpleReference8=simpleReference();
+                    pushFollow(FOLLOW_reference_in_columnGenerator159);
+                    reference8=reference();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, simpleReference8.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, reference8.getTree());
 
                     }
                     break;
                 case 2 :
-                    // LvlParserRules.g:71:5: ( annotationBlock )? columnDefinition
+                    // LvlParserRules.g:71:5: ( annotationBlock )? column
                     {
                     root_0 = (org.eclipse.epsilon.common.parse.AST)adaptor.nil();
 
@@ -573,12 +573,12 @@ public class Lvl_LvlParserRules extends org.eclipse.epsilon.common.parse.Epsilon
 
                     }
 
-                    pushFollow(FOLLOW_columnDefinition_in_columnGenerator170);
-                    columnDefinition10=columnDefinition();
+                    pushFollow(FOLLOW_column_in_columnGenerator170);
+                    column10=column();
 
                     state._fsp--;
                     if (state.failed) return retval;
-                    if ( state.backtracking==0 ) adaptor.addChild(root_0, columnDefinition10.getTree());
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, column10.getTree());
 
                     }
                     break;
@@ -641,51 +641,48 @@ public class Lvl_LvlParserRules extends org.eclipse.epsilon.common.parse.Epsilon
     }
     // $ANTLR end columnGenerator
 
-    public static class properties_return extends ParserRuleReturnScope {
+    public static class nameslist_return extends ParserRuleReturnScope {
         org.eclipse.epsilon.common.parse.AST tree;
         public Object getTree() { return tree; }
     };
 
-    // $ANTLR start properties
-    // LvlParserRules.g:75:1: properties : sf= 'properties' ob= '[' NAME ( ',' NAME )* cb= ']' ;
-    public final Lvl_LvlParserRules.properties_return properties() throws RecognitionException {
-        Lvl_LvlParserRules.properties_return retval = new Lvl_LvlParserRules.properties_return();
+    // $ANTLR start nameslist
+    // LvlParserRules.g:75:1: nameslist : nl= '[' NAME ( ',' NAME )* cb= ']' ;
+    public final Lvl_LvlParserRules.nameslist_return nameslist() throws RecognitionException {
+        Lvl_LvlParserRules.nameslist_return retval = new Lvl_LvlParserRules.nameslist_return();
         retval.start = input.LT(1);
 
         org.eclipse.epsilon.common.parse.AST root_0 = null;
 
-        Token sf=null;
-        Token ob=null;
+        Token nl=null;
         Token cb=null;
         Token NAME13=null;
         Token char_literal14=null;
         Token NAME15=null;
 
-        org.eclipse.epsilon.common.parse.AST sf_tree=null;
-        org.eclipse.epsilon.common.parse.AST ob_tree=null;
+        org.eclipse.epsilon.common.parse.AST nl_tree=null;
         org.eclipse.epsilon.common.parse.AST cb_tree=null;
         org.eclipse.epsilon.common.parse.AST NAME13_tree=null;
         org.eclipse.epsilon.common.parse.AST char_literal14_tree=null;
         org.eclipse.epsilon.common.parse.AST NAME15_tree=null;
 
         try {
-            // LvlParserRules.g:80:3: (sf= 'properties' ob= '[' NAME ( ',' NAME )* cb= ']' )
-            // LvlParserRules.g:81:3: sf= 'properties' ob= '[' NAME ( ',' NAME )* cb= ']'
+            // LvlParserRules.g:79:2: (nl= '[' NAME ( ',' NAME )* cb= ']' )
+            // LvlParserRules.g:79:4: nl= '[' NAME ( ',' NAME )* cb= ']'
             {
             root_0 = (org.eclipse.epsilon.common.parse.AST)adaptor.nil();
 
-            sf=(Token)match(input,168,FOLLOW_168_in_properties205); if (state.failed) return retval;
+            nl=(Token)match(input,156,FOLLOW_156_in_nameslist203); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            sf_tree = (org.eclipse.epsilon.common.parse.AST)adaptor.create(sf);
-            root_0 = (org.eclipse.epsilon.common.parse.AST)adaptor.becomeRoot(sf_tree, root_0);
+            nl_tree = (org.eclipse.epsilon.common.parse.AST)adaptor.create(nl);
+            root_0 = (org.eclipse.epsilon.common.parse.AST)adaptor.becomeRoot(nl_tree, root_0);
             }
-            ob=(Token)match(input,156,FOLLOW_156_in_properties210); if (state.failed) return retval;
-            NAME13=(Token)match(input,NAME,FOLLOW_NAME_in_properties213); if (state.failed) return retval;
+            NAME13=(Token)match(input,NAME,FOLLOW_NAME_in_nameslist206); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             NAME13_tree = (org.eclipse.epsilon.common.parse.AST)adaptor.create(NAME13);
             adaptor.addChild(root_0, NAME13_tree);
             }
-            // LvlParserRules.g:81:33: ( ',' NAME )*
+            // LvlParserRules.g:79:17: ( ',' NAME )*
             loop8:
             do {
                 int alt8=2;
@@ -698,10 +695,10 @@ public class Lvl_LvlParserRules extends org.eclipse.epsilon.common.parse.Epsilon
 
                 switch (alt8) {
             	case 1 :
-            	    // LvlParserRules.g:81:34: ',' NAME
+            	    // LvlParserRules.g:79:18: ',' NAME
             	    {
-            	    char_literal14=(Token)match(input,95,FOLLOW_95_in_properties216); if (state.failed) return retval;
-            	    NAME15=(Token)match(input,NAME,FOLLOW_NAME_in_properties219); if (state.failed) return retval;
+            	    char_literal14=(Token)match(input,95,FOLLOW_95_in_nameslist209); if (state.failed) return retval;
+            	    NAME15=(Token)match(input,NAME,FOLLOW_NAME_in_nameslist212); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
             	    NAME15_tree = (org.eclipse.epsilon.common.parse.AST)adaptor.create(NAME15);
             	    adaptor.addChild(root_0, NAME15_tree);
@@ -715,9 +712,9 @@ public class Lvl_LvlParserRules extends org.eclipse.epsilon.common.parse.Epsilon
                 }
             } while (true);
 
-            cb=(Token)match(input,157,FOLLOW_157_in_properties225); if (state.failed) return retval;
+            cb=(Token)match(input,157,FOLLOW_157_in_nameslist218); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-              sf.setType(PROPERTIES);
+              nl.setType(NAMESLIST);
             }
 
             }
@@ -731,9 +728,70 @@ public class Lvl_LvlParserRules extends org.eclipse.epsilon.common.parse.Epsilon
             }
             if ( state.backtracking==0 ) {
 
-                  ((org.eclipse.epsilon.common.parse.AST)retval.tree).getExtraTokens().add(ob);
                   ((org.eclipse.epsilon.common.parse.AST)retval.tree).getExtraTokens().add(cb);
                 
+            }
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+    	retval.tree = (org.eclipse.epsilon.common.parse.AST)adaptor.errorNode(input, retval.start, input.LT(-1), re);
+
+        }
+        finally {
+        }
+        return retval;
+    }
+    // $ANTLR end nameslist
+
+    public static class properties_return extends ParserRuleReturnScope {
+        org.eclipse.epsilon.common.parse.AST tree;
+        public Object getTree() { return tree; }
+    };
+
+    // $ANTLR start properties
+    // LvlParserRules.g:83:1: properties : sf= 'properties' nameslist ;
+    public final Lvl_LvlParserRules.properties_return properties() throws RecognitionException {
+        Lvl_LvlParserRules.properties_return retval = new Lvl_LvlParserRules.properties_return();
+        retval.start = input.LT(1);
+
+        org.eclipse.epsilon.common.parse.AST root_0 = null;
+
+        Token sf=null;
+        Lvl_LvlParserRules.nameslist_return nameslist16 = null;
+
+
+        org.eclipse.epsilon.common.parse.AST sf_tree=null;
+
+        try {
+            // LvlParserRules.g:84:3: (sf= 'properties' nameslist )
+            // LvlParserRules.g:85:3: sf= 'properties' nameslist
+            {
+            root_0 = (org.eclipse.epsilon.common.parse.AST)adaptor.nil();
+
+            sf=(Token)match(input,168,FOLLOW_168_in_properties240); if (state.failed) return retval;
+            if ( state.backtracking==0 ) {
+            sf_tree = (org.eclipse.epsilon.common.parse.AST)adaptor.create(sf);
+            root_0 = (org.eclipse.epsilon.common.parse.AST)adaptor.becomeRoot(sf_tree, root_0);
+            }
+            pushFollow(FOLLOW_nameslist_in_properties243);
+            nameslist16=nameslist();
+
+            state._fsp--;
+            if (state.failed) return retval;
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, nameslist16.getTree());
+            if ( state.backtracking==0 ) {
+              sf.setType(PROPERTIES);
+            }
+
+            }
+
+            retval.stop = input.LT(-1);
+
+            if ( state.backtracking==0 ) {
+
+            retval.tree = (org.eclipse.epsilon.common.parse.AST)adaptor.rulePostProcessing(root_0);
+            adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
             }
         }
         catch (RecognitionException re) {
@@ -748,107 +806,51 @@ public class Lvl_LvlParserRules extends org.eclipse.epsilon.common.parse.Epsilon
     }
     // $ANTLR end properties
 
-    public static class simpleReference_return extends ParserRuleReturnScope {
+    public static class reference_return extends ParserRuleReturnScope {
         org.eclipse.epsilon.common.parse.AST tree;
         public Object getTree() { return tree; }
     };
 
-    // $ANTLR start simpleReference
-    // LvlParserRules.g:85:1: simpleReference : sr= 'reference' NAME (ob= '[' NAME ( ',' NAME )* cb= ']' )? ;
-    public final Lvl_LvlParserRules.simpleReference_return simpleReference() throws RecognitionException {
-        Lvl_LvlParserRules.simpleReference_return retval = new Lvl_LvlParserRules.simpleReference_return();
+    // $ANTLR start reference
+    // LvlParserRules.g:89:1: reference : r= 'reference' NAME nameslist ;
+    public final Lvl_LvlParserRules.reference_return reference() throws RecognitionException {
+        Lvl_LvlParserRules.reference_return retval = new Lvl_LvlParserRules.reference_return();
         retval.start = input.LT(1);
 
         org.eclipse.epsilon.common.parse.AST root_0 = null;
 
-        Token sr=null;
-        Token ob=null;
-        Token cb=null;
-        Token NAME16=null;
+        Token r=null;
         Token NAME17=null;
-        Token char_literal18=null;
-        Token NAME19=null;
+        Lvl_LvlParserRules.nameslist_return nameslist18 = null;
 
-        org.eclipse.epsilon.common.parse.AST sr_tree=null;
-        org.eclipse.epsilon.common.parse.AST ob_tree=null;
-        org.eclipse.epsilon.common.parse.AST cb_tree=null;
-        org.eclipse.epsilon.common.parse.AST NAME16_tree=null;
+
+        org.eclipse.epsilon.common.parse.AST r_tree=null;
         org.eclipse.epsilon.common.parse.AST NAME17_tree=null;
-        org.eclipse.epsilon.common.parse.AST char_literal18_tree=null;
-        org.eclipse.epsilon.common.parse.AST NAME19_tree=null;
 
         try {
-            // LvlParserRules.g:90:3: (sr= 'reference' NAME (ob= '[' NAME ( ',' NAME )* cb= ']' )? )
-            // LvlParserRules.g:91:3: sr= 'reference' NAME (ob= '[' NAME ( ',' NAME )* cb= ']' )?
+            // LvlParserRules.g:90:3: (r= 'reference' NAME nameslist )
+            // LvlParserRules.g:90:5: r= 'reference' NAME nameslist
             {
             root_0 = (org.eclipse.epsilon.common.parse.AST)adaptor.nil();
 
-            sr=(Token)match(input,169,FOLLOW_169_in_simpleReference254); if (state.failed) return retval;
+            r=(Token)match(input,169,FOLLOW_169_in_reference262); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            sr_tree = (org.eclipse.epsilon.common.parse.AST)adaptor.create(sr);
-            root_0 = (org.eclipse.epsilon.common.parse.AST)adaptor.becomeRoot(sr_tree, root_0);
+            r_tree = (org.eclipse.epsilon.common.parse.AST)adaptor.create(r);
+            root_0 = (org.eclipse.epsilon.common.parse.AST)adaptor.becomeRoot(r_tree, root_0);
             }
-            NAME16=(Token)match(input,NAME,FOLLOW_NAME_in_simpleReference257); if (state.failed) return retval;
+            NAME17=(Token)match(input,NAME,FOLLOW_NAME_in_reference265); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            NAME16_tree = (org.eclipse.epsilon.common.parse.AST)adaptor.create(NAME16);
-            adaptor.addChild(root_0, NAME16_tree);
+            NAME17_tree = (org.eclipse.epsilon.common.parse.AST)adaptor.create(NAME17);
+            adaptor.addChild(root_0, NAME17_tree);
             }
-            // LvlParserRules.g:91:24: (ob= '[' NAME ( ',' NAME )* cb= ']' )?
-            int alt10=2;
-            int LA10_0 = input.LA(1);
+            pushFollow(FOLLOW_nameslist_in_reference267);
+            nameslist18=nameslist();
 
-            if ( (LA10_0==156) ) {
-                alt10=1;
-            }
-            switch (alt10) {
-                case 1 :
-                    // LvlParserRules.g:91:25: ob= '[' NAME ( ',' NAME )* cb= ']'
-                    {
-                    ob=(Token)match(input,156,FOLLOW_156_in_simpleReference262); if (state.failed) return retval;
-                    NAME17=(Token)match(input,NAME,FOLLOW_NAME_in_simpleReference265); if (state.failed) return retval;
-                    if ( state.backtracking==0 ) {
-                    NAME17_tree = (org.eclipse.epsilon.common.parse.AST)adaptor.create(NAME17);
-                    adaptor.addChild(root_0, NAME17_tree);
-                    }
-                    // LvlParserRules.g:91:38: ( ',' NAME )*
-                    loop9:
-                    do {
-                        int alt9=2;
-                        int LA9_0 = input.LA(1);
-
-                        if ( (LA9_0==95) ) {
-                            alt9=1;
-                        }
-
-
-                        switch (alt9) {
-                    	case 1 :
-                    	    // LvlParserRules.g:91:39: ',' NAME
-                    	    {
-                    	    char_literal18=(Token)match(input,95,FOLLOW_95_in_simpleReference268); if (state.failed) return retval;
-                    	    NAME19=(Token)match(input,NAME,FOLLOW_NAME_in_simpleReference271); if (state.failed) return retval;
-                    	    if ( state.backtracking==0 ) {
-                    	    NAME19_tree = (org.eclipse.epsilon.common.parse.AST)adaptor.create(NAME19);
-                    	    adaptor.addChild(root_0, NAME19_tree);
-                    	    }
-
-                    	    }
-                    	    break;
-
-                    	default :
-                    	    break loop9;
-                        }
-                    } while (true);
-
-                    cb=(Token)match(input,157,FOLLOW_157_in_simpleReference277); if (state.failed) return retval;
-
-                    }
-                    break;
-
-            }
-
+            state._fsp--;
+            if (state.failed) return retval;
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, nameslist18.getTree());
             if ( state.backtracking==0 ) {
-              sr.setType(REFERENCE);
+              r.setType(REFERENCE);
             }
 
             }
@@ -859,12 +861,6 @@ public class Lvl_LvlParserRules extends org.eclipse.epsilon.common.parse.Epsilon
 
             retval.tree = (org.eclipse.epsilon.common.parse.AST)adaptor.rulePostProcessing(root_0);
             adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
-            }
-            if ( state.backtracking==0 ) {
-
-                  ((org.eclipse.epsilon.common.parse.AST)retval.tree).getExtraTokens().add(ob);
-                  ((org.eclipse.epsilon.common.parse.AST)retval.tree).getExtraTokens().add(cb);
-                
             }
         }
         catch (RecognitionException re) {
@@ -877,51 +873,51 @@ public class Lvl_LvlParserRules extends org.eclipse.epsilon.common.parse.Epsilon
         }
         return retval;
     }
-    // $ANTLR end simpleReference
+    // $ANTLR end reference
 
-    public static class columnDefinition_return extends ParserRuleReturnScope {
+    public static class column_return extends ParserRuleReturnScope {
         org.eclipse.epsilon.common.parse.AST tree;
         public Object getTree() { return tree; }
     };
 
-    // $ANTLR start columnDefinition
-    // LvlParserRules.g:95:1: columnDefinition : cd= 'column' NAME expressionOrStatementBlock ;
-    public final Lvl_LvlParserRules.columnDefinition_return columnDefinition() throws RecognitionException {
-        Lvl_LvlParserRules.columnDefinition_return retval = new Lvl_LvlParserRules.columnDefinition_return();
+    // $ANTLR start column
+    // LvlParserRules.g:94:1: column : cd= 'column' NAME expressionOrStatementBlock ;
+    public final Lvl_LvlParserRules.column_return column() throws RecognitionException {
+        Lvl_LvlParserRules.column_return retval = new Lvl_LvlParserRules.column_return();
         retval.start = input.LT(1);
 
         org.eclipse.epsilon.common.parse.AST root_0 = null;
 
         Token cd=null;
-        Token NAME20=null;
-        Lvl_EolParserRules.expressionOrStatementBlock_return expressionOrStatementBlock21 = null;
+        Token NAME19=null;
+        Lvl_EolParserRules.expressionOrStatementBlock_return expressionOrStatementBlock20 = null;
 
 
         org.eclipse.epsilon.common.parse.AST cd_tree=null;
-        org.eclipse.epsilon.common.parse.AST NAME20_tree=null;
+        org.eclipse.epsilon.common.parse.AST NAME19_tree=null;
 
         try {
-            // LvlParserRules.g:96:3: (cd= 'column' NAME expressionOrStatementBlock )
-            // LvlParserRules.g:96:5: cd= 'column' NAME expressionOrStatementBlock
+            // LvlParserRules.g:95:3: (cd= 'column' NAME expressionOrStatementBlock )
+            // LvlParserRules.g:95:5: cd= 'column' NAME expressionOrStatementBlock
             {
             root_0 = (org.eclipse.epsilon.common.parse.AST)adaptor.nil();
 
-            cd=(Token)match(input,170,FOLLOW_170_in_columnDefinition299); if (state.failed) return retval;
+            cd=(Token)match(input,170,FOLLOW_170_in_column286); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             cd_tree = (org.eclipse.epsilon.common.parse.AST)adaptor.create(cd);
             root_0 = (org.eclipse.epsilon.common.parse.AST)adaptor.becomeRoot(cd_tree, root_0);
             }
-            NAME20=(Token)match(input,NAME,FOLLOW_NAME_in_columnDefinition302); if (state.failed) return retval;
+            NAME19=(Token)match(input,NAME,FOLLOW_NAME_in_column289); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            NAME20_tree = (org.eclipse.epsilon.common.parse.AST)adaptor.create(NAME20);
-            adaptor.addChild(root_0, NAME20_tree);
+            NAME19_tree = (org.eclipse.epsilon.common.parse.AST)adaptor.create(NAME19);
+            adaptor.addChild(root_0, NAME19_tree);
             }
-            pushFollow(FOLLOW_expressionOrStatementBlock_in_columnDefinition304);
-            expressionOrStatementBlock21=gLvl.expressionOrStatementBlock();
+            pushFollow(FOLLOW_expressionOrStatementBlock_in_column291);
+            expressionOrStatementBlock20=gLvl.expressionOrStatementBlock();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, expressionOrStatementBlock21.getTree());
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, expressionOrStatementBlock20.getTree());
             if ( state.backtracking==0 ) {
               cd.setType(COLUMN);
             }
@@ -946,7 +942,7 @@ public class Lvl_LvlParserRules extends org.eclipse.epsilon.common.parse.Epsilon
         }
         return retval;
     }
-    // $ANTLR end columnDefinition
+    // $ANTLR end column
 
     public static class grid_return extends ParserRuleReturnScope {
         org.eclipse.epsilon.common.parse.AST tree;
@@ -954,7 +950,7 @@ public class Lvl_LvlParserRules extends org.eclipse.epsilon.common.parse.Epsilon
     };
 
     // $ANTLR start grid
-    // LvlParserRules.g:100:1: grid : cd= 'grid' ob= '{' gkeys header gbody cb= '}' ;
+    // LvlParserRules.g:99:1: grid : cd= 'grid' ob= '{' gkeys header gbody cb= '}' ;
     public final Lvl_LvlParserRules.grid_return grid() throws RecognitionException {
         Lvl_LvlParserRules.grid_return retval = new Lvl_LvlParserRules.grid_return();
         retval.start = input.LT(1);
@@ -964,11 +960,11 @@ public class Lvl_LvlParserRules extends org.eclipse.epsilon.common.parse.Epsilon
         Token cd=null;
         Token ob=null;
         Token cb=null;
-        Lvl_LvlParserRules.gkeys_return gkeys22 = null;
+        Lvl_LvlParserRules.gkeys_return gkeys21 = null;
 
-        Lvl_LvlParserRules.header_return header23 = null;
+        Lvl_LvlParserRules.header_return header22 = null;
 
-        Lvl_LvlParserRules.gbody_return gbody24 = null;
+        Lvl_LvlParserRules.gbody_return gbody23 = null;
 
 
         org.eclipse.epsilon.common.parse.AST cd_tree=null;
@@ -976,40 +972,40 @@ public class Lvl_LvlParserRules extends org.eclipse.epsilon.common.parse.Epsilon
         org.eclipse.epsilon.common.parse.AST cb_tree=null;
 
         try {
-            // LvlParserRules.g:105:3: (cd= 'grid' ob= '{' gkeys header gbody cb= '}' )
-            // LvlParserRules.g:105:5: cd= 'grid' ob= '{' gkeys header gbody cb= '}'
+            // LvlParserRules.g:104:3: (cd= 'grid' ob= '{' gkeys header gbody cb= '}' )
+            // LvlParserRules.g:104:5: cd= 'grid' ob= '{' gkeys header gbody cb= '}'
             {
             root_0 = (org.eclipse.epsilon.common.parse.AST)adaptor.nil();
 
-            cd=(Token)match(input,171,FOLLOW_171_in_grid330); if (state.failed) return retval;
+            cd=(Token)match(input,171,FOLLOW_171_in_grid317); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             cd_tree = (org.eclipse.epsilon.common.parse.AST)adaptor.create(cd);
             root_0 = (org.eclipse.epsilon.common.parse.AST)adaptor.becomeRoot(cd_tree, root_0);
             }
-            ob=(Token)match(input,97,FOLLOW_97_in_grid335); if (state.failed) return retval;
+            ob=(Token)match(input,97,FOLLOW_97_in_grid322); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             ob_tree = (org.eclipse.epsilon.common.parse.AST)adaptor.create(ob);
             adaptor.addChild(root_0, ob_tree);
             }
-            pushFollow(FOLLOW_gkeys_in_grid341);
-            gkeys22=gkeys();
+            pushFollow(FOLLOW_gkeys_in_grid328);
+            gkeys21=gkeys();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, gkeys22.getTree());
-            pushFollow(FOLLOW_header_in_grid347);
-            header23=header();
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, gkeys21.getTree());
+            pushFollow(FOLLOW_header_in_grid334);
+            header22=header();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, header23.getTree());
-            pushFollow(FOLLOW_gbody_in_grid353);
-            gbody24=gbody();
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, header22.getTree());
+            pushFollow(FOLLOW_gbody_in_grid340);
+            gbody23=gbody();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, gbody24.getTree());
-            cb=(Token)match(input,98,FOLLOW_98_in_grid359); if (state.failed) return retval;
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, gbody23.getTree());
+            cb=(Token)match(input,98,FOLLOW_98_in_grid346); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             cb_tree = (org.eclipse.epsilon.common.parse.AST)adaptor.create(cb);
             adaptor.addChild(root_0, cb_tree);
@@ -1052,7 +1048,7 @@ public class Lvl_LvlParserRules extends org.eclipse.epsilon.common.parse.Epsilon
     };
 
     // $ANTLR start gkeys
-    // LvlParserRules.g:113:1: gkeys : gk= 'keys' expressionOrStatementBlock ;
+    // LvlParserRules.g:112:1: gkeys : gk= 'keys' expressionOrStatementBlock ;
     public final Lvl_LvlParserRules.gkeys_return gkeys() throws RecognitionException {
         Lvl_LvlParserRules.gkeys_return retval = new Lvl_LvlParserRules.gkeys_return();
         retval.start = input.LT(1);
@@ -1060,28 +1056,28 @@ public class Lvl_LvlParserRules extends org.eclipse.epsilon.common.parse.Epsilon
         org.eclipse.epsilon.common.parse.AST root_0 = null;
 
         Token gk=null;
-        Lvl_EolParserRules.expressionOrStatementBlock_return expressionOrStatementBlock25 = null;
+        Lvl_EolParserRules.expressionOrStatementBlock_return expressionOrStatementBlock24 = null;
 
 
         org.eclipse.epsilon.common.parse.AST gk_tree=null;
 
         try {
-            // LvlParserRules.g:114:3: (gk= 'keys' expressionOrStatementBlock )
-            // LvlParserRules.g:114:5: gk= 'keys' expressionOrStatementBlock
+            // LvlParserRules.g:113:3: (gk= 'keys' expressionOrStatementBlock )
+            // LvlParserRules.g:113:5: gk= 'keys' expressionOrStatementBlock
             {
             root_0 = (org.eclipse.epsilon.common.parse.AST)adaptor.nil();
 
-            gk=(Token)match(input,172,FOLLOW_172_in_gkeys378); if (state.failed) return retval;
+            gk=(Token)match(input,172,FOLLOW_172_in_gkeys365); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             gk_tree = (org.eclipse.epsilon.common.parse.AST)adaptor.create(gk);
             root_0 = (org.eclipse.epsilon.common.parse.AST)adaptor.becomeRoot(gk_tree, root_0);
             }
-            pushFollow(FOLLOW_expressionOrStatementBlock_in_gkeys381);
-            expressionOrStatementBlock25=gLvl.expressionOrStatementBlock();
+            pushFollow(FOLLOW_expressionOrStatementBlock_in_gkeys368);
+            expressionOrStatementBlock24=gLvl.expressionOrStatementBlock();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, expressionOrStatementBlock25.getTree());
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, expressionOrStatementBlock24.getTree());
             if ( state.backtracking==0 ) {
               gk.setType(GRIDKEYS);
             }
@@ -1114,7 +1110,7 @@ public class Lvl_LvlParserRules extends org.eclipse.epsilon.common.parse.Epsilon
     };
 
     // $ANTLR start header
-    // LvlParserRules.g:118:1: header : gh= 'header' expressionOrStatementBlock ;
+    // LvlParserRules.g:117:1: header : gh= 'header' expressionOrStatementBlock ;
     public final Lvl_LvlParserRules.header_return header() throws RecognitionException {
         Lvl_LvlParserRules.header_return retval = new Lvl_LvlParserRules.header_return();
         retval.start = input.LT(1);
@@ -1122,28 +1118,28 @@ public class Lvl_LvlParserRules extends org.eclipse.epsilon.common.parse.Epsilon
         org.eclipse.epsilon.common.parse.AST root_0 = null;
 
         Token gh=null;
-        Lvl_EolParserRules.expressionOrStatementBlock_return expressionOrStatementBlock26 = null;
+        Lvl_EolParserRules.expressionOrStatementBlock_return expressionOrStatementBlock25 = null;
 
 
         org.eclipse.epsilon.common.parse.AST gh_tree=null;
 
         try {
-            // LvlParserRules.g:119:3: (gh= 'header' expressionOrStatementBlock )
-            // LvlParserRules.g:119:5: gh= 'header' expressionOrStatementBlock
+            // LvlParserRules.g:118:3: (gh= 'header' expressionOrStatementBlock )
+            // LvlParserRules.g:118:5: gh= 'header' expressionOrStatementBlock
             {
             root_0 = (org.eclipse.epsilon.common.parse.AST)adaptor.nil();
 
-            gh=(Token)match(input,173,FOLLOW_173_in_header400); if (state.failed) return retval;
+            gh=(Token)match(input,173,FOLLOW_173_in_header387); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             gh_tree = (org.eclipse.epsilon.common.parse.AST)adaptor.create(gh);
             root_0 = (org.eclipse.epsilon.common.parse.AST)adaptor.becomeRoot(gh_tree, root_0);
             }
-            pushFollow(FOLLOW_expressionOrStatementBlock_in_header403);
-            expressionOrStatementBlock26=gLvl.expressionOrStatementBlock();
+            pushFollow(FOLLOW_expressionOrStatementBlock_in_header390);
+            expressionOrStatementBlock25=gLvl.expressionOrStatementBlock();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, expressionOrStatementBlock26.getTree());
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, expressionOrStatementBlock25.getTree());
             if ( state.backtracking==0 ) {
               gh.setType(GRIDHEADER);
             }
@@ -1176,7 +1172,7 @@ public class Lvl_LvlParserRules extends org.eclipse.epsilon.common.parse.Epsilon
     };
 
     // $ANTLR start gbody
-    // LvlParserRules.g:123:1: gbody : gb= 'body' expressionOrStatementBlock ;
+    // LvlParserRules.g:122:1: gbody : gb= 'body' expressionOrStatementBlock ;
     public final Lvl_LvlParserRules.gbody_return gbody() throws RecognitionException {
         Lvl_LvlParserRules.gbody_return retval = new Lvl_LvlParserRules.gbody_return();
         retval.start = input.LT(1);
@@ -1184,28 +1180,28 @@ public class Lvl_LvlParserRules extends org.eclipse.epsilon.common.parse.Epsilon
         org.eclipse.epsilon.common.parse.AST root_0 = null;
 
         Token gb=null;
-        Lvl_EolParserRules.expressionOrStatementBlock_return expressionOrStatementBlock27 = null;
+        Lvl_EolParserRules.expressionOrStatementBlock_return expressionOrStatementBlock26 = null;
 
 
         org.eclipse.epsilon.common.parse.AST gb_tree=null;
 
         try {
-            // LvlParserRules.g:124:3: (gb= 'body' expressionOrStatementBlock )
-            // LvlParserRules.g:124:5: gb= 'body' expressionOrStatementBlock
+            // LvlParserRules.g:123:3: (gb= 'body' expressionOrStatementBlock )
+            // LvlParserRules.g:123:5: gb= 'body' expressionOrStatementBlock
             {
             root_0 = (org.eclipse.epsilon.common.parse.AST)adaptor.nil();
 
-            gb=(Token)match(input,174,FOLLOW_174_in_gbody422); if (state.failed) return retval;
+            gb=(Token)match(input,174,FOLLOW_174_in_gbody409); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             gb_tree = (org.eclipse.epsilon.common.parse.AST)adaptor.create(gb);
             root_0 = (org.eclipse.epsilon.common.parse.AST)adaptor.becomeRoot(gb_tree, root_0);
             }
-            pushFollow(FOLLOW_expressionOrStatementBlock_in_gbody425);
-            expressionOrStatementBlock27=gLvl.expressionOrStatementBlock();
+            pushFollow(FOLLOW_expressionOrStatementBlock_in_gbody412);
+            expressionOrStatementBlock26=gLvl.expressionOrStatementBlock();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, expressionOrStatementBlock27.getTree());
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, expressionOrStatementBlock26.getTree());
             if ( state.backtracking==0 ) {
               gb.setType(GRIDBODY);
             }
@@ -1232,111 +1228,13 @@ public class Lvl_LvlParserRules extends org.eclipse.epsilon.common.parse.Epsilon
     }
     // $ANTLR end gbody
 
-    public static class nameslist_return extends ParserRuleReturnScope {
-        org.eclipse.epsilon.common.parse.AST tree;
-        public Object getTree() { return tree; }
-    };
-
-    // $ANTLR start nameslist
-    // LvlParserRules.g:128:1: nameslist : nl= '[' NAME ( ',' NAME )* ']' ;
-    public final Lvl_LvlParserRules.nameslist_return nameslist() throws RecognitionException {
-        Lvl_LvlParserRules.nameslist_return retval = new Lvl_LvlParserRules.nameslist_return();
-        retval.start = input.LT(1);
-
-        org.eclipse.epsilon.common.parse.AST root_0 = null;
-
-        Token nl=null;
-        Token NAME28=null;
-        Token char_literal29=null;
-        Token NAME30=null;
-        Token char_literal31=null;
-
-        org.eclipse.epsilon.common.parse.AST nl_tree=null;
-        org.eclipse.epsilon.common.parse.AST NAME28_tree=null;
-        org.eclipse.epsilon.common.parse.AST char_literal29_tree=null;
-        org.eclipse.epsilon.common.parse.AST NAME30_tree=null;
-        org.eclipse.epsilon.common.parse.AST char_literal31_tree=null;
-
-        try {
-            // LvlParserRules.g:129:2: (nl= '[' NAME ( ',' NAME )* ']' )
-            // LvlParserRules.g:129:4: nl= '[' NAME ( ',' NAME )* ']'
-            {
-            root_0 = (org.eclipse.epsilon.common.parse.AST)adaptor.nil();
-
-            nl=(Token)match(input,156,FOLLOW_156_in_nameslist443); if (state.failed) return retval;
-            if ( state.backtracking==0 ) {
-            nl_tree = (org.eclipse.epsilon.common.parse.AST)adaptor.create(nl);
-            root_0 = (org.eclipse.epsilon.common.parse.AST)adaptor.becomeRoot(nl_tree, root_0);
-            }
-            NAME28=(Token)match(input,NAME,FOLLOW_NAME_in_nameslist446); if (state.failed) return retval;
-            if ( state.backtracking==0 ) {
-            NAME28_tree = (org.eclipse.epsilon.common.parse.AST)adaptor.create(NAME28);
-            adaptor.addChild(root_0, NAME28_tree);
-            }
-            // LvlParserRules.g:129:17: ( ',' NAME )*
-            loop11:
-            do {
-                int alt11=2;
-                int LA11_0 = input.LA(1);
-
-                if ( (LA11_0==95) ) {
-                    alt11=1;
-                }
-
-
-                switch (alt11) {
-            	case 1 :
-            	    // LvlParserRules.g:129:18: ',' NAME
-            	    {
-            	    char_literal29=(Token)match(input,95,FOLLOW_95_in_nameslist449); if (state.failed) return retval;
-            	    NAME30=(Token)match(input,NAME,FOLLOW_NAME_in_nameslist452); if (state.failed) return retval;
-            	    if ( state.backtracking==0 ) {
-            	    NAME30_tree = (org.eclipse.epsilon.common.parse.AST)adaptor.create(NAME30);
-            	    adaptor.addChild(root_0, NAME30_tree);
-            	    }
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop11;
-                }
-            } while (true);
-
-            char_literal31=(Token)match(input,157,FOLLOW_157_in_nameslist456); if (state.failed) return retval;
-            if ( state.backtracking==0 ) {
-              nl.setType(NAMESLIST);
-            }
-
-            }
-
-            retval.stop = input.LT(-1);
-
-            if ( state.backtracking==0 ) {
-
-            retval.tree = (org.eclipse.epsilon.common.parse.AST)adaptor.rulePostProcessing(root_0);
-            adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
-            }
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-    	retval.tree = (org.eclipse.epsilon.common.parse.AST)adaptor.errorNode(input, retval.start, input.LT(-1), re);
-
-        }
-        finally {
-        }
-        return retval;
-    }
-    // $ANTLR end nameslist
-
     public static class from_return extends ParserRuleReturnScope {
         org.eclipse.epsilon.common.parse.AST tree;
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start from
-    // LvlParserRules.g:133:1: from : ff= 'from' expressionOrStatementBlock ;
+    // LvlParserRules.g:127:1: from : ff= 'from' expressionOrStatementBlock ;
     public final Lvl_LvlParserRules.from_return from() throws RecognitionException {
         Lvl_LvlParserRules.from_return retval = new Lvl_LvlParserRules.from_return();
         retval.start = input.LT(1);
@@ -1344,28 +1242,28 @@ public class Lvl_LvlParserRules extends org.eclipse.epsilon.common.parse.Epsilon
         org.eclipse.epsilon.common.parse.AST root_0 = null;
 
         Token ff=null;
-        Lvl_EolParserRules.expressionOrStatementBlock_return expressionOrStatementBlock32 = null;
+        Lvl_EolParserRules.expressionOrStatementBlock_return expressionOrStatementBlock27 = null;
 
 
         org.eclipse.epsilon.common.parse.AST ff_tree=null;
 
         try {
-            // LvlParserRules.g:134:3: (ff= 'from' expressionOrStatementBlock )
-            // LvlParserRules.g:134:5: ff= 'from' expressionOrStatementBlock
+            // LvlParserRules.g:128:3: (ff= 'from' expressionOrStatementBlock )
+            // LvlParserRules.g:128:5: ff= 'from' expressionOrStatementBlock
             {
             root_0 = (org.eclipse.epsilon.common.parse.AST)adaptor.nil();
 
-            ff=(Token)match(input,175,FOLLOW_175_in_from476); if (state.failed) return retval;
+            ff=(Token)match(input,175,FOLLOW_175_in_from431); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             ff_tree = (org.eclipse.epsilon.common.parse.AST)adaptor.create(ff);
             root_0 = (org.eclipse.epsilon.common.parse.AST)adaptor.becomeRoot(ff_tree, root_0);
             }
-            pushFollow(FOLLOW_expressionOrStatementBlock_in_from479);
-            expressionOrStatementBlock32=gLvl.expressionOrStatementBlock();
+            pushFollow(FOLLOW_expressionOrStatementBlock_in_from434);
+            expressionOrStatementBlock27=gLvl.expressionOrStatementBlock();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, expressionOrStatementBlock32.getTree());
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, expressionOrStatementBlock27.getTree());
             if ( state.backtracking==0 ) {
               ff.setType(FROM);
             }
@@ -1394,17 +1292,17 @@ public class Lvl_LvlParserRules extends org.eclipse.epsilon.common.parse.Epsilon
 
     // $ANTLR start synpred7_LvlParserRules
     public final void synpred7_LvlParserRules_fragment() throws RecognitionException {   
-        // LvlParserRules.g:71:5: ( ( annotationBlock )? columnDefinition )
-        // LvlParserRules.g:71:5: ( annotationBlock )? columnDefinition
+        // LvlParserRules.g:71:5: ( ( annotationBlock )? column )
+        // LvlParserRules.g:71:5: ( annotationBlock )? column
         {
         // LvlParserRules.g:71:5: ( annotationBlock )?
-        int alt12=2;
-        int LA12_0 = input.LA(1);
+        int alt9=2;
+        int LA9_0 = input.LA(1);
 
-        if ( (LA12_0==Annotation||LA12_0==106) ) {
-            alt12=1;
+        if ( (LA9_0==Annotation||LA9_0==106) ) {
+            alt9=1;
         }
-        switch (alt12) {
+        switch (alt9) {
             case 1 :
                 // LvlParserRules.g:0:0: annotationBlock
                 {
@@ -1419,8 +1317,8 @@ public class Lvl_LvlParserRules extends org.eclipse.epsilon.common.parse.Epsilon
 
         }
 
-        pushFollow(FOLLOW_columnDefinition_in_synpred7_LvlParserRules170);
-        columnDefinition();
+        pushFollow(FOLLOW_column_in_synpred7_LvlParserRules170);
+        column();
 
         state._fsp--;
         if (state.failed) return ;
@@ -1459,47 +1357,39 @@ public class Lvl_LvlParserRules extends org.eclipse.epsilon.common.parse.Epsilon
     public static final BitSet FOLLOW_properties_in_datasetRule127 = new BitSet(new long[]{0x0000000000800000L,0x0000040400000000L,0x00000E0000000000L});
     public static final BitSet FOLLOW_columnGenerator_in_datasetRule134 = new BitSet(new long[]{0x0000000000800000L,0x0000040400000000L,0x00000E0000000000L});
     public static final BitSet FOLLOW_98_in_datasetRule141 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_simpleReference_in_columnGenerator159 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_reference_in_columnGenerator159 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_annotationBlock_in_columnGenerator167 = new BitSet(new long[]{0x0000000000800000L,0x0000040000000000L,0x0000040000000000L});
-    public static final BitSet FOLLOW_columnDefinition_in_columnGenerator170 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_column_in_columnGenerator170 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_annotationBlock_in_columnGenerator178 = new BitSet(new long[]{0x0000000000800000L,0x0000040400000000L,0x00000E0000000000L});
     public static final BitSet FOLLOW_grid_in_columnGenerator181 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_168_in_properties205 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000000L,0x0000000010000000L});
-    public static final BitSet FOLLOW_156_in_properties210 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_NAME_in_properties213 = new BitSet(new long[]{0x0000000000000000L,0x0000000080000000L,0x0000000020000000L});
-    public static final BitSet FOLLOW_95_in_properties216 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_NAME_in_properties219 = new BitSet(new long[]{0x0000000000000000L,0x0000000080000000L,0x0000000020000000L});
-    public static final BitSet FOLLOW_157_in_properties225 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_169_in_simpleReference254 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_NAME_in_simpleReference257 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000000L,0x0000000010000000L});
-    public static final BitSet FOLLOW_156_in_simpleReference262 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_NAME_in_simpleReference265 = new BitSet(new long[]{0x0000000000000000L,0x0000000080000000L,0x0000000020000000L});
-    public static final BitSet FOLLOW_95_in_simpleReference268 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_NAME_in_simpleReference271 = new BitSet(new long[]{0x0000000000000000L,0x0000000080000000L,0x0000000020000000L});
-    public static final BitSet FOLLOW_157_in_simpleReference277 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_170_in_columnDefinition299 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_NAME_in_columnDefinition302 = new BitSet(new long[]{0x0000000000000000L,0x0000010200000000L});
-    public static final BitSet FOLLOW_expressionOrStatementBlock_in_columnDefinition304 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_171_in_grid330 = new BitSet(new long[]{0x0000000000000000L,0x0000000200000000L});
-    public static final BitSet FOLLOW_97_in_grid335 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000000L,0x0000100000000000L});
-    public static final BitSet FOLLOW_gkeys_in_grid341 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000000L,0x0000200000000000L});
-    public static final BitSet FOLLOW_header_in_grid347 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000000L,0x0000400000000000L});
-    public static final BitSet FOLLOW_gbody_in_grid353 = new BitSet(new long[]{0x0000000000000000L,0x0000000400000000L});
-    public static final BitSet FOLLOW_98_in_grid359 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_172_in_gkeys378 = new BitSet(new long[]{0x0000000000000000L,0x0000010200000000L});
-    public static final BitSet FOLLOW_expressionOrStatementBlock_in_gkeys381 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_173_in_header400 = new BitSet(new long[]{0x0000000000000000L,0x0000010200000000L});
-    public static final BitSet FOLLOW_expressionOrStatementBlock_in_header403 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_174_in_gbody422 = new BitSet(new long[]{0x0000000000000000L,0x0000010200000000L});
-    public static final BitSet FOLLOW_expressionOrStatementBlock_in_gbody425 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_156_in_nameslist443 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_NAME_in_nameslist446 = new BitSet(new long[]{0x0000000000000000L,0x0000000080000000L,0x0000000020000000L});
-    public static final BitSet FOLLOW_95_in_nameslist449 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_NAME_in_nameslist452 = new BitSet(new long[]{0x0000000000000000L,0x0000000080000000L,0x0000000020000000L});
-    public static final BitSet FOLLOW_157_in_nameslist456 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_175_in_from476 = new BitSet(new long[]{0x0000000000000000L,0x0000010200000000L});
-    public static final BitSet FOLLOW_expressionOrStatementBlock_in_from479 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_156_in_nameslist203 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_NAME_in_nameslist206 = new BitSet(new long[]{0x0000000000000000L,0x0000000080000000L,0x0000000020000000L});
+    public static final BitSet FOLLOW_95_in_nameslist209 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_NAME_in_nameslist212 = new BitSet(new long[]{0x0000000000000000L,0x0000000080000000L,0x0000000020000000L});
+    public static final BitSet FOLLOW_157_in_nameslist218 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_168_in_properties240 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000000L,0x0000000010000000L});
+    public static final BitSet FOLLOW_nameslist_in_properties243 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_169_in_reference262 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_NAME_in_reference265 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000000L,0x0000000010000000L});
+    public static final BitSet FOLLOW_nameslist_in_reference267 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_170_in_column286 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_NAME_in_column289 = new BitSet(new long[]{0x0000000000000000L,0x0000010200000000L});
+    public static final BitSet FOLLOW_expressionOrStatementBlock_in_column291 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_171_in_grid317 = new BitSet(new long[]{0x0000000000000000L,0x0000000200000000L});
+    public static final BitSet FOLLOW_97_in_grid322 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000000L,0x0000100000000000L});
+    public static final BitSet FOLLOW_gkeys_in_grid328 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000000L,0x0000200000000000L});
+    public static final BitSet FOLLOW_header_in_grid334 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000000L,0x0000400000000000L});
+    public static final BitSet FOLLOW_gbody_in_grid340 = new BitSet(new long[]{0x0000000000000000L,0x0000000400000000L});
+    public static final BitSet FOLLOW_98_in_grid346 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_172_in_gkeys365 = new BitSet(new long[]{0x0000000000000000L,0x0000010200000000L});
+    public static final BitSet FOLLOW_expressionOrStatementBlock_in_gkeys368 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_173_in_header387 = new BitSet(new long[]{0x0000000000000000L,0x0000010200000000L});
+    public static final BitSet FOLLOW_expressionOrStatementBlock_in_header390 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_174_in_gbody409 = new BitSet(new long[]{0x0000000000000000L,0x0000010200000000L});
+    public static final BitSet FOLLOW_expressionOrStatementBlock_in_gbody412 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_175_in_from431 = new BitSet(new long[]{0x0000000000000000L,0x0000010200000000L});
+    public static final BitSet FOLLOW_expressionOrStatementBlock_in_from434 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_annotationBlock_in_synpred7_LvlParserRules167 = new BitSet(new long[]{0x0000000000800000L,0x0000040000000000L,0x0000040000000000L});
-    public static final BitSet FOLLOW_columnDefinition_in_synpred7_LvlParserRules170 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_column_in_synpred7_LvlParserRules170 = new BitSet(new long[]{0x0000000000000002L});
 
 }

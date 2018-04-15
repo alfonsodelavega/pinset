@@ -1,7 +1,6 @@
 package org.eclipse.epsilon.lvl.columnGenerators;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.epsilon.common.module.IModule;
@@ -18,7 +17,8 @@ import org.eclipse.epsilon.lvl.dom.DatasetRule;
 import org.eclipse.epsilon.lvl.output.ReturnValueParser;
 import org.eclipse.epsilon.lvl.parse.LvlParser;
 
-public class Grid extends AnnotatableModuleElement {
+public class Grid extends AnnotatableModuleElement
+    implements ColumnGenerator {
 
   private static final String KEY_VARNAME = "key";
 
@@ -26,8 +26,11 @@ public class Grid extends AnnotatableModuleElement {
   protected IExecutableModuleElement headerBlock;
   protected IExecutableModuleElement bodyBlock;
 
-  protected Collection<Object> keys = null;
-  protected Collection<String> headers = null;
+  protected List<Object> keys = null;
+  protected List<String> headers = null;
+
+  protected IEolContext context;
+  protected String paramName;
 
   @Override
   public void build(AST cst, IModule module) {
@@ -43,15 +46,15 @@ public class Grid extends AnnotatableModuleElement {
         module.createAst(bodyAST.getFirstChild(), this);
   }
 
-  public Collection<String> getNames(IEolContext context)
+  public List<String> getNames()
       throws EolRuntimeException {
     if (headers == null) {
-      initHeaders(context);
+      initHeaders();
     }
     return headers;
   }
 
-  private void initHeaders(IEolContext context) throws EolRuntimeException {
+  private void initHeaders() throws EolRuntimeException {
     initKeys(context);
     headers = new ArrayList<String>();
     context.getFrameStack().enterLocal(FrameType.PROTECTED, headerBlock);
@@ -74,18 +77,18 @@ public class Grid extends AnnotatableModuleElement {
   @SuppressWarnings("unchecked")
   private void initKeys(IEolContext context) throws EolRuntimeException {
     if (keys == null) {
-      keys = (Collection<Object>)ReturnValueParser.obtainValue(
+      keys = (List<Object>)ReturnValueParser.obtainValue(
           context.getExecutorFactory().execute(keysBlock, context));
     }
   }
 
-  public List<String> getValues(Object obj, IEolContext context, String varName)
+  public List<String> getValues(Object obj)
       throws EolRuntimeException {
     initKeys(context);
     List<String> values = new ArrayList<String>();
     context.getFrameStack().enterLocal(FrameType.PROTECTED, bodyBlock);
     context.getFrameStack().put(
-        Variable.createReadOnlyVariable(varName, obj));
+        Variable.createReadOnlyVariable(paramName, obj));
     for (Object key : keys) {
       context.getFrameStack().put(
           Variable.createReadOnlyVariable(KEY_VARNAME, key));
@@ -104,5 +107,13 @@ public class Grid extends AnnotatableModuleElement {
     }
     context.getFrameStack().leaveLocal(bodyBlock);
     return values;
+  }
+
+  public void setContext(IEolContext context) {
+    this.context = context;
+  }
+
+  public void setParamName(String paramName) {
+    this.paramName = paramName;
   }
 }

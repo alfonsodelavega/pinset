@@ -81,3 +81,13 @@ dataset Dummy13_gridReturnBlocks over a : A {
     }
   }
 }
+
+dataset Dummy14_DerivedColumn over a : A {
+  column x : a.x
+  column twiceX : x * 2
+   grid {
+    keys :  1.to(3)
+    header : "twiceXtimes" + key
+    body : twiceX * key
+  }
+}

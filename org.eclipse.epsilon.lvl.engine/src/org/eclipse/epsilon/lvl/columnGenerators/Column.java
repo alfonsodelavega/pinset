@@ -45,7 +45,7 @@ public class Column extends AnnotatableModuleElement
     return Arrays.asList(getName());
   }
 
-  private String getName() {
+  public String getName() {
     return name;
   }
 
@@ -55,7 +55,7 @@ public class Column extends AnnotatableModuleElement
 
   private Object getValue(Object obj)
       throws EolRuntimeException {
-    context.getFrameStack().enterLocal(FrameType.PROTECTED, block);
+    context.getFrameStack().enterLocal(FrameType.UNPROTECTED, block);
     context.getFrameStack().put(
         Variable.createReadOnlyVariable(paramName, obj));
     Object res = null;

@@ -133,9 +133,19 @@ public class DatasetRule extends AnnotatableModuleElement {
         continue;
       }
       List<Object> rowValues = new ArrayList<Object>();
+      context.getFrameStack().enterLocal(FrameType.PROTECTED, this);
       for (ColumnGenerator generator : generators) {
-        rowValues.addAll(generator.getValues(oElem));
+        List<Object> values = generator.getValues(oElem);
+        rowValues.addAll(values);
+        // if we calculate a column, we add it to the stack so it can be used
+        //    in later column calculations. We know that values only has 1 elem
+        if (generator instanceof Column) {
+          context.getFrameStack().put(
+              Variable.createReadOnlyVariable(((Column)generator).getName(),
+                                              values.get(0)));
+        }
       }
+      context.getFrameStack().leaveLocal(this);
       df.newRecord(ReturnValueParser.getStringValues(rowValues));
     }
     df.close();

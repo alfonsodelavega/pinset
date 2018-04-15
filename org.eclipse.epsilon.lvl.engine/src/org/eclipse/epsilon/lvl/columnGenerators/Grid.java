@@ -57,7 +57,7 @@ public class Grid extends AnnotatableModuleElement
   private void initHeaders() throws EolRuntimeException {
     initKeys(context);
     headers = new ArrayList<String>();
-    context.getFrameStack().enterLocal(FrameType.PROTECTED, headerBlock);
+    context.getFrameStack().enterLocal(FrameType.UNPROTECTED, headerBlock);
     for (Object key : keys) {
       context.getFrameStack().put(
           Variable.createReadOnlyVariable(KEY_VARNAME, key));
@@ -86,7 +86,7 @@ public class Grid extends AnnotatableModuleElement
       throws EolRuntimeException {
     initKeys(context);
     List<Object> values = new ArrayList<Object>();
-    context.getFrameStack().enterLocal(FrameType.PROTECTED, bodyBlock);
+    context.getFrameStack().enterLocal(FrameType.UNPROTECTED, bodyBlock);
     context.getFrameStack().put(
         Variable.createReadOnlyVariable(paramName, obj));
     for (Object key : keys) {

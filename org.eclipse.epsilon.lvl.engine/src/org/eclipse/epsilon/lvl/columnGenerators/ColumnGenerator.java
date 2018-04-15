@@ -6,5 +6,5 @@ import org.eclipse.epsilon.eol.exceptions.EolRuntimeException;
 
 public interface ColumnGenerator {
   public List<String> getNames() throws EolRuntimeException;
-  public List<String> getValues(Object elem) throws EolRuntimeException;
+  public List<Object> getValues(Object elem) throws EolRuntimeException;
 }

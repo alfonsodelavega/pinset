@@ -82,19 +82,19 @@ public class Grid extends AnnotatableModuleElement
     }
   }
 
-  public List<String> getValues(Object obj)
+  public List<Object> getValues(Object obj)
       throws EolRuntimeException {
     initKeys(context);
-    List<String> values = new ArrayList<String>();
+    List<Object> values = new ArrayList<Object>();
     context.getFrameStack().enterLocal(FrameType.PROTECTED, bodyBlock);
     context.getFrameStack().put(
         Variable.createReadOnlyVariable(paramName, obj));
     for (Object key : keys) {
       context.getFrameStack().put(
           Variable.createReadOnlyVariable(KEY_VARNAME, key));
-      String value = "";
+      Object value = null;
       try {
-        value = ReturnValueParser.obtainAndParseValue(
+        value = ReturnValueParser.obtainValue(
             context.getExecutorFactory().execute(bodyBlock, context));
       } catch (EolRuntimeException e) {
         if (!(this.hasAnnotation(LvlModule.SILENT_ANNOTATION)

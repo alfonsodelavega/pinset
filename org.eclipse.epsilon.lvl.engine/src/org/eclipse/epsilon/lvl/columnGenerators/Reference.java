@@ -37,9 +37,9 @@ public class Reference extends AnnotatableModuleElement
     return res;
   }
 
-  public List<String> getValues(Object o)
+  public List<Object> getValues(Object o)
       throws EolRuntimeException {
-    List<String> res = new ArrayList<String>();
+    List<Object> res = new ArrayList<Object>();
     Object refObject = getter.invoke(o, name);
     if (refObject == null) {
       // No object present in reference, blank for all columns
@@ -48,7 +48,7 @@ public class Reference extends AnnotatableModuleElement
       }
     } else {
       for (String prop : properties) {
-        res.add(ReturnValueParser.obtainAndParseValue(
+        res.add(ReturnValueParser.obtainValue(
             getter.invoke(refObject, prop)));
       }
     }

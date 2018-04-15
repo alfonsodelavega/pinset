@@ -31,11 +31,11 @@ public class Properties extends AnnotatableModuleElement
     return properties;
   }
 
-  public List<String> getValues(Object elem)
+  public List<Object> getValues(Object elem)
       throws EolRuntimeException {
-    List<String> res = new ArrayList<String>();
+    List<Object> res = new ArrayList<Object>();
     for (String prop : properties) {
-      res.add(ReturnValueParser.getStringOrBlank(getter.invoke(elem, prop)));
+      res.add(ReturnValueParser.obtainValue(getter.invoke(elem, prop)));
     }
     return res;
   }

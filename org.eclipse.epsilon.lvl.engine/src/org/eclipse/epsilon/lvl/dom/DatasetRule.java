@@ -132,11 +132,11 @@ public class DatasetRule extends AnnotatableModuleElement {
       if (!isIncluded(oElem, context, parameter.getName())) {
         continue;
       }
-      List<String> rowValues = new ArrayList<String>();
+      List<Object> rowValues = new ArrayList<Object>();
       for (ColumnGenerator generator : generators) {
         rowValues.addAll(generator.getValues(oElem));
       }
-      df.newRecord(rowValues);
+      df.newRecord(ReturnValueParser.getStringValues(rowValues));
     }
     df.close();
   }

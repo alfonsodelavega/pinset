@@ -49,11 +49,11 @@ public class Column extends AnnotatableModuleElement
     return name;
   }
 
-  public List<String> getValues(Object elem) throws EolRuntimeException {
+  public List<Object> getValues(Object elem) throws EolRuntimeException {
     return Arrays.asList(getValue(elem));
   }
 
-  private String getValue(Object obj)
+  private Object getValue(Object obj)
       throws EolRuntimeException {
     context.getFrameStack().enterLocal(FrameType.PROTECTED, block);
     context.getFrameStack().put(
@@ -69,7 +69,7 @@ public class Column extends AnnotatableModuleElement
       }
     }
     context.getFrameStack().leaveLocal(block);
-    return ReturnValueParser.obtainAndParseValue(res);
+    return ReturnValueParser.obtainValue(res);
   }
 
   public void setContext(IEolContext context) {

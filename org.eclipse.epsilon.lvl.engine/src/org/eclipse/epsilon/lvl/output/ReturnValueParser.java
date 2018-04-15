@@ -1,5 +1,8 @@
 package org.eclipse.epsilon.lvl.output;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.epsilon.eol.execute.Return;
 
 public class ReturnValueParser {
@@ -17,5 +20,13 @@ public class ReturnValueParser {
 
   public static String getStringOrBlank(Object obj) {
     return (obj == null) ? "" : obj.toString();
+  }
+
+  public static List<String> getStringValues(List<Object> elements) {
+    List<String> res = new ArrayList<String>();
+    for (Object elem : elements) {
+      res.add(getStringOrBlank(elem));
+    }
+    return res;
   }
 }

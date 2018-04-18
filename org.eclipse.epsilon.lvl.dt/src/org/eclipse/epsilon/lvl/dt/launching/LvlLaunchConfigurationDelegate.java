@@ -10,8 +10,10 @@
  ******************************************************************************/
 package org.eclipse.epsilon.lvl.dt.launching;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.epsilon.eol.IEolModule;
 import org.eclipse.epsilon.eol.dt.debug.EolDebugger;
 import org.eclipse.epsilon.eol.dt.launching.EpsilonLaunchConfigurationDelegate;
@@ -25,13 +27,13 @@ public class LvlLaunchConfigurationDelegate extends EpsilonLaunchConfigurationDe
     LvlModule module = new LvlModule();
     if (configuration != null) {
       try {
-        String workspacePath = ResourcesPlugin.getWorkspace()
-                                              .getRoot()
-                                              .getLocation()
-                                              .toString();
-        String outputFolder = workspacePath + configuration.getAttribute(
-                LvlOutputConfigurationTab.OUTPUT_FOLDER,
-                LvlOutputConfigurationTab.DEFAULT_OUTPUT_FOLDER);
+        IFile file =
+            ResourcesPlugin.getWorkspace()
+                           .getRoot()
+                           .getFile(new Path(configuration.getAttribute(
+                               LvlOutputConfigurationTab.OUTPUT_FOLDER,
+                               LvlOutputConfigurationTab.DEFAULT_OUTPUT_FOLDER)));
+        String outputFolder = file.getRawLocation().toOSString();
         module.setOutputFolder(outputFolder);
         module.setSilent(configuration.getAttribute(
             LvlOutputConfigurationTab.SILENT_EXECUTION,

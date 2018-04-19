@@ -94,8 +94,7 @@ public class Grid extends AnnotatableModuleElement
           Variable.createReadOnlyVariable(KEY_VARNAME, key));
       Object value = null;
       try {
-        value = ReturnValueParser.obtainValue(
-            context.getExecutorFactory().execute(bodyBlock, context));
+        value = context.getExecutorFactory().execute(bodyBlock, context);
       } catch (EolRuntimeException e) {
         if (!(this.hasAnnotation(LvlModule.SILENT_ANNOTATION)
             || ((DatasetRule)parent).hasAnnotation(LvlModule.SILENT_ANNOTATION)
@@ -103,7 +102,7 @@ public class Grid extends AnnotatableModuleElement
           throw e;
         }
       }
-      values.add(value);
+      values.add(ReturnValueParser.obtainValue(value));
     }
     context.getFrameStack().leaveLocal(bodyBlock);
     return values;

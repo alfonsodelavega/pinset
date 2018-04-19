@@ -1,6 +1,5 @@
 package org.eclipse.epsilon.lvl.dom;
 
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -26,7 +25,7 @@ import org.eclipse.epsilon.lvl.columnGenerators.ColumnGenerator;
 import org.eclipse.epsilon.lvl.columnGenerators.Grid;
 import org.eclipse.epsilon.lvl.columnGenerators.Properties;
 import org.eclipse.epsilon.lvl.columnGenerators.Reference;
-import org.eclipse.epsilon.lvl.output.DatasetFile;
+import org.eclipse.epsilon.lvl.output.Persistence;
 import org.eclipse.epsilon.lvl.output.ReturnValueParser;
 import org.eclipse.epsilon.lvl.parse.LvlParser;
 
@@ -82,12 +81,12 @@ public class DatasetRule extends AnnotatableModuleElement {
     }
   }
 
-
   public void execute(IEolContext context) throws EolRuntimeException {
     Collection<?> oElements = null;
     IModel model = null;
     IPropertyGetter getter = null;
     EolType parameterType = parameter.getType(context);
+
     if (!(parameterType instanceof EolModelElementType)) {
       if(fromBlock == null) {
         throw new EolRuntimeException(
@@ -98,7 +97,6 @@ public class DatasetRule extends AnnotatableModuleElement {
       getter = model.getPropertyGetter();
       getter.setContext(context);
     }
-
     if (fromBlock == null) {
       oElements = ((EolModelElementType)parameterType).getAllOfKind();
     } else {
@@ -112,54 +110,60 @@ public class DatasetRule extends AnnotatableModuleElement {
       }
       oElements = (Collection<?>) result;
     }
-
-    DatasetFile df = null;
-    try {
-        df = getDatasetFile();
-    } catch (FileNotFoundException e) {
-        e.printStackTrace();
-        return;
-    }
-
+    initializeGenerators(context, getter);
+    Dataset dataset = new Dataset();
     List<String> columnNames = new ArrayList<String>();
     for (ColumnGenerator generator : generators) {
       initialize(generator, context, getter);
       columnNames.addAll(generator.getNames());
     }
-    df.newRecord(columnNames);
-
+    dataset.setColumnNames(getColumnNames());
     for (Object oElem : oElements) {
       if (!isIncluded(oElem, context, parameter.getName())) {
         continue;
       }
-      List<Object> rowValues = new ArrayList<Object>();
-      context.getFrameStack().enterLocal(FrameType.PROTECTED, this);
-      for (ColumnGenerator generator : generators) {
-        List<Object> values = generator.getValues(oElem);
-        rowValues.addAll(values);
-        // if we calculate a column, we add it to the stack so it can be used
-        //    in later column calculations. We know that values only has 1 elem
-        if (generator instanceof Column) {
-          context.getFrameStack().put(
-              Variable.createReadOnlyVariable(((Column)generator).getName(),
-                                              values.get(0)));
-        }
-      }
-      context.getFrameStack().leaveLocal(this);
-      df.newRecord(ReturnValueParser.getStringValues(rowValues));
+      dataset.addColumnValues(getRowValues(context, oElem));
     }
-    df.close();
+    Persistence.persist(dataset, getFilePath(), ((LvlModule)module).getSeparator());
   }
 
-  private DatasetFile getDatasetFile() throws FileNotFoundException {
-    DatasetFile df = new DatasetFile(getFilePath());
-    df.setSeparator(((LvlModule)module).getSeparator());
-    return df;
+  private List<Object> getRowValues(IEolContext context, Object oElem)
+      throws EolRuntimeException {
+    List<Object> rowValues = new ArrayList<Object>();
+    context.getFrameStack().enterLocal(FrameType.PROTECTED, this);
+    for (ColumnGenerator generator : generators) {
+      List<Object> values = generator.getValues(oElem);
+      rowValues.addAll(values);
+      // if we calculate a column, we add it to the stack so it can be used
+      //    in later column calculations. We know that values only has 1 elem
+      if (generator instanceof Column) {
+        context.getFrameStack().put(
+            Variable.createReadOnlyVariable(((Column)generator).getName(),
+                                            values.get(0)));
+      }
+    }
+    context.getFrameStack().leaveLocal(this);
+    return rowValues;
+  }
+
+  private List<String> getColumnNames() throws EolRuntimeException {
+    List<String> columnNames = new ArrayList<String>();
+    for (ColumnGenerator generator : generators) {
+      columnNames.addAll(generator.getNames());
+    }
+    return columnNames;
   }
 
   private String getFilePath() {
     return ((LvlModule)module).getOutputFolder()
         + "/" + name + ((LvlModule)module).getExtension();
+  }
+
+  private void initializeGenerators(IEolContext context,
+      IPropertyGetter getter) {
+    for (ColumnGenerator generator : generators) {
+      initialize(generator, context, getter);
+    }
   }
 
   private void initialize(ColumnGenerator generator, IEolContext context,

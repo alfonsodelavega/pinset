@@ -73,7 +73,7 @@ public class DatasetRule extends AnnotatableModuleElement {
     }
   }
 
-  private boolean isColumnGenerator(AST child) {
+  public static boolean isColumnGenerator(AST child) {
     switch(child.getType()) {
     case LvlParser.PROPERTIES:
     case LvlParser.REFERENCE:
@@ -183,7 +183,7 @@ public class DatasetRule extends AnnotatableModuleElement {
     }
   }
 
-  private void initialise(ColumnGenerator generator, IEolContext context,
+  public static void initialise(ColumnGenerator generator, IEolContext context,
       IPropertyGetter getter) {
     if (generator instanceof Properties) {
       ((Properties)generator).setGetter(getter);

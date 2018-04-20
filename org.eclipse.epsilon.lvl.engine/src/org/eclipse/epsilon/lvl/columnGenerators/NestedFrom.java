@@ -13,7 +13,6 @@ import org.eclipse.epsilon.eol.execute.context.IEolContext;
 import org.eclipse.epsilon.eol.execute.context.Variable;
 import org.eclipse.epsilon.eol.execute.introspection.IPropertyGetter;
 import org.eclipse.epsilon.lvl.dom.DatasetRule;
-import org.eclipse.epsilon.lvl.parse.LvlParser;
 
 public class NestedFrom extends AnnotatableModuleElement
     implements ColumnGenerator {
@@ -32,22 +31,9 @@ public class NestedFrom extends AnnotatableModuleElement
         module.createAst(cst.getSecondChild(), this);
     // loop over children looking for column generators
     for (AST child : cst.getChildren()) {
-      if (isColumnGenerator(child)) {
+      if (DatasetRule.isColumnGenerator(child)) {
         generators.add((ColumnGenerator) module.createAst(child, this));
       }
-    }
-  }
-
-  private boolean isColumnGenerator(AST child) {
-    switch(child.getType()) {
-    case LvlParser.PROPERTIES:
-    case LvlParser.REFERENCE:
-    case LvlParser.COLUMN:
-    case LvlParser.GRID:
-    case LvlParser.NESTEDFROM:
-      return true;
-    default:
-      return false;
     }
   }
 
@@ -100,17 +86,7 @@ public class NestedFrom extends AnnotatableModuleElement
   public void initialise(IEolContext context, IPropertyGetter getter) {
     this.context = context;
     for (ColumnGenerator generator : generators) {
-      if (generator instanceof Properties) {
-        ((Properties)generator).setGetter(getter);
-      } else if (generator instanceof Reference) {
-        ((Reference)generator).setGetter(getter);
-      } else if (generator instanceof Column) {
-        ((Column)generator).setContext(context);
-      } else if(generator instanceof Grid) {
-        ((Grid)generator).setContext(context);
-      } else if (generator instanceof NestedFrom) {
-        ((NestedFrom)generator).initialise(context, getter);
-      }
+      DatasetRule.initialise(generator, context, getter);
     }
   }
 
@@ -119,5 +95,4 @@ public class NestedFrom extends AnnotatableModuleElement
       DatasetRule.setSilent(colGen, isSilent);
     }
   }
-
 }

@@ -23,6 +23,7 @@ import org.eclipse.epsilon.lvl.LvlModule;
 import org.eclipse.epsilon.lvl.columnGenerators.Column;
 import org.eclipse.epsilon.lvl.columnGenerators.ColumnGenerator;
 import org.eclipse.epsilon.lvl.columnGenerators.Grid;
+import org.eclipse.epsilon.lvl.columnGenerators.NestedFrom;
 import org.eclipse.epsilon.lvl.columnGenerators.Properties;
 import org.eclipse.epsilon.lvl.columnGenerators.Reference;
 import org.eclipse.epsilon.lvl.output.Persistence;
@@ -65,6 +66,7 @@ public class DatasetRule extends AnnotatableModuleElement {
     case LvlParser.REFERENCE:
     case LvlParser.COLUMN:
     case LvlParser.GRID:
+    case LvlParser.NESTEDFROM:
       return true;
     default:
       return false;
@@ -110,11 +112,11 @@ public class DatasetRule extends AnnotatableModuleElement {
       }
       oElements = (Collection<?>) result;
     }
-    initializeGenerators(context, getter);
+    initialiseGenerators(context, getter);
     Dataset dataset = new Dataset();
     List<String> columnNames = new ArrayList<String>();
     for (ColumnGenerator generator : generators) {
-      initialize(generator, context, getter);
+      initialise(generator, context, getter);
       columnNames.addAll(generator.getNames());
     }
     dataset.setColumnNames(getColumnNames());
@@ -131,6 +133,8 @@ public class DatasetRule extends AnnotatableModuleElement {
       throws EolRuntimeException {
     List<Object> rowValues = new ArrayList<Object>();
     context.getFrameStack().enterLocal(FrameType.PROTECTED, this);
+    context.getFrameStack().put(
+        Variable.createReadOnlyVariable(parameter.getName(), oElem));
     for (ColumnGenerator generator : generators) {
       List<Object> values = generator.getValues(oElem);
       rowValues.addAll(values);
@@ -159,14 +163,14 @@ public class DatasetRule extends AnnotatableModuleElement {
         + "/" + name + ((LvlModule)module).getExtension();
   }
 
-  private void initializeGenerators(IEolContext context,
+  private void initialiseGenerators(IEolContext context,
       IPropertyGetter getter) {
     for (ColumnGenerator generator : generators) {
-      initialize(generator, context, getter);
+      initialise(generator, context, getter);
     }
   }
 
-  private void initialize(ColumnGenerator generator, IEolContext context,
+  private void initialise(ColumnGenerator generator, IEolContext context,
       IPropertyGetter getter) {
     if (generator instanceof Properties) {
       ((Properties)generator).setGetter(getter);
@@ -174,10 +178,10 @@ public class DatasetRule extends AnnotatableModuleElement {
       ((Reference)generator).setGetter(getter);
     } else if (generator instanceof Column) {
       ((Column)generator).setContext(context);
-      ((Column)generator).setParamName(parameter.getName());
     } else if(generator instanceof Grid) {
       ((Grid)generator).setContext(context);
-      ((Grid)generator).setParamName(parameter.getName());
+    } else if (generator instanceof NestedFrom) {
+      ((NestedFrom)generator).initialise(context, getter);
     }
   }
 

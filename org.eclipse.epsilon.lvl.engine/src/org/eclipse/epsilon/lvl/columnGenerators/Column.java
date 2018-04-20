@@ -10,7 +10,6 @@ import org.eclipse.epsilon.eol.dom.IExecutableModuleElement;
 import org.eclipse.epsilon.eol.exceptions.EolRuntimeException;
 import org.eclipse.epsilon.eol.execute.context.FrameType;
 import org.eclipse.epsilon.eol.execute.context.IEolContext;
-import org.eclipse.epsilon.eol.execute.context.Variable;
 import org.eclipse.epsilon.lvl.LvlModule;
 import org.eclipse.epsilon.lvl.dom.DatasetRule;
 import org.eclipse.epsilon.lvl.output.ReturnValueParser;
@@ -22,7 +21,6 @@ public class Column extends AnnotatableModuleElement
   protected IExecutableModuleElement block;
 
   protected IEolContext context;
-  protected String paramName;
 
   public void setName(String name) {
     this.name = name;
@@ -56,8 +54,6 @@ public class Column extends AnnotatableModuleElement
   private Object getValue(Object obj)
       throws EolRuntimeException {
     context.getFrameStack().enterLocal(FrameType.UNPROTECTED, block);
-    context.getFrameStack().put(
-        Variable.createReadOnlyVariable(paramName, obj));
     Object res = null;
     try {
       res = context.getExecutorFactory().execute(block, context);
@@ -74,9 +70,5 @@ public class Column extends AnnotatableModuleElement
 
   public void setContext(IEolContext context) {
     this.context = context;
-  }
-
-  public void setParamName(String paramName) {
-    this.paramName = paramName;
   }
 }

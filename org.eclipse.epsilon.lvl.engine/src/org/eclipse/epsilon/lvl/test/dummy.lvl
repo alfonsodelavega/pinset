@@ -91,3 +91,20 @@ dataset Dummy14_DerivedColumn over a : A {
     body : twiceX * key
   }
 }
+
+dataset Dummy15_nestedFrom over a : A {
+  properties [x]
+  from b : a.b {
+    properties[y]
+    reference c[k] // uses accessors
+    column z : b.z // and columns
+    grid {         // and grids
+      keys : 2.to(5)
+      header : "y_times_" + key
+      body : b.y * key
+    }
+    from c : b.c { // and even more nested froms
+      column nested_c_k : c.k
+    }
+  }
+}

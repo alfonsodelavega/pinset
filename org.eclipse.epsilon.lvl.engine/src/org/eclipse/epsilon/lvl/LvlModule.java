@@ -28,6 +28,7 @@ import org.eclipse.epsilon.eol.execute.context.IEolContext;
 import org.eclipse.epsilon.erl.ErlModule;
 import org.eclipse.epsilon.lvl.columnGenerators.Column;
 import org.eclipse.epsilon.lvl.columnGenerators.Grid;
+import org.eclipse.epsilon.lvl.columnGenerators.NestedFrom;
 import org.eclipse.epsilon.lvl.columnGenerators.Properties;
 import org.eclipse.epsilon.lvl.columnGenerators.Reference;
 import org.eclipse.epsilon.lvl.dom.DatasetRule;
@@ -60,6 +61,8 @@ public class LvlModule extends ErlModule {
       return new Reference();
     case LvlParser.GRID:
       return new Grid();
+    case LvlParser.NESTEDFROM:
+      return new NestedFrom();
     }
     return super.adapt(cst, parentAst);
   }

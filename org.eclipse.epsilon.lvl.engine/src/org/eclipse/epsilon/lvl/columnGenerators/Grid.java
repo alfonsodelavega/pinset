@@ -30,7 +30,6 @@ public class Grid extends AnnotatableModuleElement
   protected List<String> headers = null;
 
   protected IEolContext context;
-  protected String paramName;
 
   @Override
   public void build(AST cst, IModule module) {
@@ -77,8 +76,10 @@ public class Grid extends AnnotatableModuleElement
   @SuppressWarnings("unchecked")
   private void initKeys(IEolContext context) throws EolRuntimeException {
     if (keys == null) {
+      context.getFrameStack().enterLocal(FrameType.PROTECTED, keysBlock);
       keys = (List<Object>)ReturnValueParser.obtainValue(
           context.getExecutorFactory().execute(keysBlock, context));
+      context.getFrameStack().leaveLocal(keysBlock);
     }
   }
 
@@ -87,8 +88,6 @@ public class Grid extends AnnotatableModuleElement
     initKeys(context);
     List<Object> values = new ArrayList<Object>();
     context.getFrameStack().enterLocal(FrameType.UNPROTECTED, bodyBlock);
-    context.getFrameStack().put(
-        Variable.createReadOnlyVariable(paramName, obj));
     for (Object key : keys) {
       context.getFrameStack().put(
           Variable.createReadOnlyVariable(KEY_VARNAME, key));
@@ -110,9 +109,5 @@ public class Grid extends AnnotatableModuleElement
 
   public void setContext(IEolContext context) {
     this.context = context;
-  }
-
-  public void setParamName(String paramName) {
-    this.paramName = paramName;
   }
 }

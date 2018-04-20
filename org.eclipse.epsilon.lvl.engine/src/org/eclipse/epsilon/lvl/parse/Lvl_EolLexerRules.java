@@ -1,6 +1,6 @@
 package org.eclipse.epsilon.lvl.parse;
 
-// $ANTLR 3.1b1 EolLexerRules.g 2018-04-15 18:20:19
+// $ANTLR 3.1b1 EolLexerRules.g 2018-04-20 09:14:55
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -71,7 +71,7 @@ public class Lvl_EolLexerRules extends Lexer {
     public static final int TYPE=64;
     public static final int T__139=139;
     public static final int T__138=138;
-    public static final int Tokens=176;
+    public static final int Tokens=177;
     public static final int T__133=133;
     public static final int T__132=132;
     public static final int T__135=135;
@@ -134,7 +134,6 @@ public class Lvl_EolLexerRules extends Lexer {
     public static final int NAMESLIST=82;
     public static final int T__100=100;
     public static final int NAMESPACE=68;
-    public static final int T__92=92;
     public static final int COLLECTION=42;
     public static final int NEW=49;
     public static final int EXTENDS=79;
@@ -161,6 +160,7 @@ public class Lvl_EolLexerRules extends Lexer {
     public static final int StatementBlock=29;
     public static final int T__98=98;
     public static final int GRIDKEYS=87;
+    public static final int T__176=176;
     public static final int ABORT=43;
     public static final int T__173=173;
     public static final int StrangeNameLiteral=15;
@@ -179,7 +179,7 @@ public class Lvl_EolLexerRules extends Lexer {
     public static final int T__169=169;
     public static final int FeatureCall=60;
     public static final int T__122=122;
-    public static final int LVLMODULE=91;
+    public static final int LVLMODULE=92;
     public static final int T__121=121;
     public static final int T__124=124;
     public static final int FLOAT=4;
@@ -198,6 +198,7 @@ public class Lvl_EolLexerRules extends Lexer {
     public static final int T__118=118;
     public static final int T__115=115;
     public static final int WS=20;
+    public static final int NESTEDFROM=91;
     public static final int EOF=-1;
     public static final int T__114=114;
     public static final int T__117=117;

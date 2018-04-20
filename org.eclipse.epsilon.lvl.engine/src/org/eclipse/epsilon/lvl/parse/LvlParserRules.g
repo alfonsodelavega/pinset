@@ -51,6 +51,7 @@ tokens {
   GRIDHEADER;
   GRIDBODY;
   FROM;
+  NESTEDFROM;
 }
 
 datasetRule
@@ -69,7 +70,16 @@ datasetRule
 columnGenerator
   : reference |
     annotationBlock? column |
-    annotationBlock? grid
+    annotationBlock? grid |
+    nestedFrom
+  ;
+
+nestedFrom
+  : nf='from'^ NAME expressionOrStatementBlock '{'!
+    properties?
+    columnGenerator*
+  '}'!
+  {$nf.setType(NESTEDFROM);}
   ;
 
 nameslist

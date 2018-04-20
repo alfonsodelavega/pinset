@@ -44,7 +44,7 @@ public class Reference extends AnnotatableModuleElement
     if (refObject == null) {
       // No object present in reference, blank for all columns
       for (int i = 0; i < properties.size(); i++) {
-        res.add("");
+        res.add(null);
       }
     } else {
       for (String prop : properties) {

@@ -75,7 +75,7 @@ public class NestedFrom extends AnnotatableModuleElement
     if (fromElement == null) {
       // add a blank per defined column
       for (@SuppressWarnings("unused") String values: getNames()) {
-        rowValues.add("");
+        rowValues.add(null);
       }
     } else {
       context.getFrameStack().put(

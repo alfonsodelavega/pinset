@@ -139,7 +139,30 @@ public class DatasetRule extends AnnotatableModuleElement {
       }
       dataset.addColumnValues(getRowValues(context, oElem));
     }
+    postProcess(dataset);
     Persistence.persist(dataset, getFilePath(), ((LvlModule)module).getSeparator());
+  }
+
+  private void postProcess(Dataset dataset)
+      throws EolRuntimeException, RuntimeException {
+    for (ColumnGenerator colGen : generators) {
+      if (colGen instanceof Column || colGen instanceof Grid) {
+        if (((AnnotatableModuleElement)colGen).hasAnnotation(
+            LvlModule.NORMALIZE_ANNOTATION)) {
+          for (String colName : colGen.getNames()) {
+            PostProcessing.normalize(dataset.getValuesByColumn(colName));
+          }
+        }
+        if (((AnnotatableModuleElement)colGen).hasAnnotation(
+            LvlModule.FILL_NULLS_ANNOTATION)) {
+          for (String colName : colGen.getNames()) {
+            PostProcessing.fillNullValues(dataset.getValuesByColumn(colName),
+                                          PostProcessing.FillType.VALUE,
+                                          null);
+          }
+        }
+      }
+    }
   }
 
   private List<Object> getRowValues(IEolContext context, Object oElem)

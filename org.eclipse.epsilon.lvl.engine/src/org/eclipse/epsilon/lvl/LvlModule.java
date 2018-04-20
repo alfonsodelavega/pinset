@@ -39,6 +39,8 @@ import org.eclipse.epsilon.lvl.parse.LvlParser;
 public class LvlModule extends ErlModule {
 
   public static final String SILENT_ANNOTATION = "silent";
+  public static final String NORMALIZE_ANNOTATION = "normalize";
+  public static final String FILL_NULLS_ANNOTATION = "fillNulls";
 
   protected List<DatasetRule> declaredDatasetRules = new ArrayList<DatasetRule>();
   protected String outputFolder = "";

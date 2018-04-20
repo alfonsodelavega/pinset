@@ -108,3 +108,11 @@ dataset Dummy15_nestedFrom over a : A {
     }
   }
 }
+
+dataset Dummy16_postProcessing over a : A {
+  @normalize
+  column x : a.x
+  @fillNulls
+  @silent
+  column b_y : a.b.y
+}

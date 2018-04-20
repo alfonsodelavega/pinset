@@ -13,7 +13,6 @@ import org.eclipse.epsilon.eol.execute.context.FrameType;
 import org.eclipse.epsilon.eol.execute.context.IEolContext;
 import org.eclipse.epsilon.eol.execute.context.Variable;
 import org.eclipse.epsilon.lvl.LvlModule;
-import org.eclipse.epsilon.lvl.dom.DatasetRule;
 import org.eclipse.epsilon.lvl.output.ReturnValueParser;
 import org.eclipse.epsilon.lvl.parse.LvlParser;
 
@@ -25,11 +24,13 @@ public class Grid extends AnnotatableModuleElement
   protected IExecutableModuleElement keysBlock;
   protected IExecutableModuleElement headerBlock;
   protected IExecutableModuleElement bodyBlock;
+  protected boolean isSilent = false;
 
   protected List<Object> keys = null;
   protected List<String> headers = null;
 
   protected IEolContext context;
+
 
   @Override
   public void build(AST cst, IModule module) {
@@ -43,6 +44,7 @@ public class Grid extends AnnotatableModuleElement
     AST bodyAST = AstUtil.getChild(cst, LvlParser.GRIDBODY);
     bodyBlock = (IExecutableModuleElement)
         module.createAst(bodyAST.getFirstChild(), this);
+    isSilent = this.hasAnnotation(LvlModule.SILENT_ANNOTATION);
   }
 
   public List<String> getNames()
@@ -95,9 +97,7 @@ public class Grid extends AnnotatableModuleElement
       try {
         value = context.getExecutorFactory().execute(bodyBlock, context);
       } catch (EolRuntimeException e) {
-        if (!(this.hasAnnotation(LvlModule.SILENT_ANNOTATION)
-            || ((DatasetRule)parent).hasAnnotation(LvlModule.SILENT_ANNOTATION)
-            || ((LvlModule)module).isSilent())) {
+        if (!isSilent) {
           throw e;
         }
       }
@@ -109,5 +109,9 @@ public class Grid extends AnnotatableModuleElement
 
   public void setContext(IEolContext context) {
     this.context = context;
+  }
+
+  public void setSilent(boolean isSilent) {
+    this.isSilent |= isSilent;
   }
 }

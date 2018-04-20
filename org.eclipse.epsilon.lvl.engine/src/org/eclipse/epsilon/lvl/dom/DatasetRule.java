@@ -38,7 +38,6 @@ public class DatasetRule extends AnnotatableModuleElement {
   protected IExecutableModuleElement fromBlock = null;
   protected List<ColumnGenerator> generators = new ArrayList<ColumnGenerator>();
 
-
   @SuppressWarnings("unchecked")
   @Override
   public void build(AST cst, IModule module) {
@@ -52,11 +51,25 @@ public class DatasetRule extends AnnotatableModuleElement {
       fromBlock = (IExecutableModuleElement)
           module.createAst(fromAST.getFirstChild(), this);
     }
+    boolean isSilent = ((LvlModule)module).isSilent() ||
+        this.hasAnnotation(LvlModule.SILENT_ANNOTATION);
     // loop over children looking for column generators
     for (AST child : cst.getChildren()) {
       if (isColumnGenerator(child)) {
-        generators.add((ColumnGenerator) module.createAst(child, this));
+        ColumnGenerator gen = (ColumnGenerator) module.createAst(child, this);
+        setSilent(gen, isSilent);
+        generators.add(gen);
       }
+    }
+  }
+
+  public static void setSilent(ColumnGenerator colGen, boolean isSilent) {
+    if (colGen instanceof Column) {
+      ((Column)colGen).setSilent(isSilent);
+    } else if (colGen instanceof Grid) {
+      ((Grid)colGen).setSilent(isSilent);
+    } else if (colGen instanceof NestedFrom) {
+      ((NestedFrom)colGen).setSilent(isSilent);
     }
   }
 

@@ -11,7 +11,6 @@ import org.eclipse.epsilon.eol.exceptions.EolRuntimeException;
 import org.eclipse.epsilon.eol.execute.context.FrameType;
 import org.eclipse.epsilon.eol.execute.context.IEolContext;
 import org.eclipse.epsilon.lvl.LvlModule;
-import org.eclipse.epsilon.lvl.dom.DatasetRule;
 import org.eclipse.epsilon.lvl.output.ReturnValueParser;
 
 public class Column extends AnnotatableModuleElement
@@ -19,8 +18,10 @@ public class Column extends AnnotatableModuleElement
 
   protected String name;
   protected IExecutableModuleElement block;
+  protected boolean isSilent = false;
 
   protected IEolContext context;
+
 
   public void setName(String name) {
     this.name = name;
@@ -37,6 +38,7 @@ public class Column extends AnnotatableModuleElement
     super.build(cst, module);
     name = (String) cst.getFirstChild().getText();
     block = (IExecutableModuleElement) module.createAst(cst.getSecondChild(), this);
+    isSilent = this.hasAnnotation(LvlModule.SILENT_ANNOTATION);
   }
 
   public List<String> getNames() {
@@ -58,9 +60,7 @@ public class Column extends AnnotatableModuleElement
     try {
       res = context.getExecutorFactory().execute(block, context);
     } catch (EolRuntimeException e) {
-      if (!(this.hasAnnotation(LvlModule.SILENT_ANNOTATION)
-          || ((DatasetRule)parent).hasAnnotation(LvlModule.SILENT_ANNOTATION)
-          || ((LvlModule)module).isSilent())) {
+      if (!isSilent) {
         throw e;
       }
     }
@@ -70,5 +70,9 @@ public class Column extends AnnotatableModuleElement
 
   public void setContext(IEolContext context) {
     this.context = context;
+  }
+
+  public void setSilent(boolean isSilent) {
+    this.isSilent |= isSilent;
   }
 }

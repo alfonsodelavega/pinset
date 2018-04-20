@@ -12,6 +12,7 @@ import org.eclipse.epsilon.eol.execute.context.FrameType;
 import org.eclipse.epsilon.eol.execute.context.IEolContext;
 import org.eclipse.epsilon.eol.execute.context.Variable;
 import org.eclipse.epsilon.eol.execute.introspection.IPropertyGetter;
+import org.eclipse.epsilon.lvl.dom.DatasetRule;
 import org.eclipse.epsilon.lvl.parse.LvlParser;
 
 public class NestedFrom extends AnnotatableModuleElement
@@ -110,6 +111,12 @@ public class NestedFrom extends AnnotatableModuleElement
       } else if (generator instanceof NestedFrom) {
         ((NestedFrom)generator).initialise(context, getter);
       }
+    }
+  }
+
+  public void setSilent(boolean isSilent) {
+    for (ColumnGenerator colGen : generators) {
+      DatasetRule.setSilent(colGen, isSilent);
     }
   }
 

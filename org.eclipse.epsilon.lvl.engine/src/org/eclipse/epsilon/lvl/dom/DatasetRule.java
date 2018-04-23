@@ -147,18 +147,27 @@ public class DatasetRule extends AnnotatableModuleElement {
       throws EolRuntimeException, RuntimeException {
     for (ColumnGenerator colGen : generators) {
       if (colGen instanceof Column || colGen instanceof Grid) {
-        if (((AnnotatableModuleElement)colGen).hasAnnotation(
-            LvlModule.NORMALIZE_ANNOTATION)) {
+        AnnotatableModuleElement colGenElement =
+            ((AnnotatableModuleElement)colGen);
+        if (colGenElement.hasAnnotation(LvlModule.NORMALIZE_ANNOTATION)) {
           for (String colName : colGen.getNames()) {
             PostProcessing.normalize(dataset.getValuesByColumn(colName));
           }
         }
-        if (((AnnotatableModuleElement)colGen).hasAnnotation(
-            LvlModule.FILL_NULLS_ANNOTATION)) {
+        if (colGenElement.hasAnnotation(LvlModule.FILL_NULLS_ANNOTATION)) {
+          String value = (String)colGenElement
+                         .getAnnotationsValues(LvlModule.FILL_NULLS_ANNOTATION,
+                                               null)
+                         .get(0);
+          PostProcessing.FillType fType = PostProcessing.FillType.VALUE;
+          if (value != null && value.equals(LvlModule.FILL_NULLS_MODE)) {
+            fType = PostProcessing.FillType.MODE;
+          } else if (value != null && value.equals(LvlModule.FILL_NULLS_MEAN)) {
+            fType = PostProcessing.FillType.MEAN;
+          }
           for (String colName : colGen.getNames()) {
             PostProcessing.fillNullValues(dataset.getValuesByColumn(colName),
-                                          PostProcessing.FillType.VALUE,
-                                          null);
+                fType, value);
           }
         }
       }

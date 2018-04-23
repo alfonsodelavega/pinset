@@ -110,9 +110,25 @@ dataset Dummy15_nestedFrom over a : A {
 }
 
 dataset Dummy16_postProcessing over a : A {
+  properties[x]
+
   @normalize
-  column x : a.x
-  @fillNulls
+  column x_normalized : a.x
+
+  // check null value in fillnulls annotation
+  @fillNulls 
   @silent
-  column b_y : a.b.y
+  column b_y_fill_null : a.b.y
+
+  @fillNulls 0
+  @silent
+  column b_y_fill_0 : a.b.y
+
+  @fillNulls mean
+  @silent
+  column b_y_fill_mean : a.b.y
+
+  @fillNulls mode
+  @silent
+  column b_y_fill_mode : a.b.y
 }

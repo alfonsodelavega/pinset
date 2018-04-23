@@ -41,6 +41,8 @@ public class LvlModule extends ErlModule {
   public static final String SILENT_ANNOTATION = "silent";
   public static final String NORMALIZE_ANNOTATION = "normalize";
   public static final String FILL_NULLS_ANNOTATION = "fillNulls";
+  public static final String FILL_NULLS_MEAN = "mean";
+  public static final String FILL_NULLS_MODE = "mode";
 
   protected List<DatasetRule> declaredDatasetRules = new ArrayList<DatasetRule>();
   protected String outputFolder = "";

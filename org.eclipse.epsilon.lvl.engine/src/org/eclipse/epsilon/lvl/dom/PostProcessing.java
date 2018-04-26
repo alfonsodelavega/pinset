@@ -13,26 +13,34 @@ package org.eclipse.epsilon.lvl.dom;
 import java.util.HashMap;
 import java.util.List;
 
+import org.eclipse.epsilon.eol.exceptions.EolRuntimeException;
+
 public class PostProcessing {
 
   public enum FillType {MEAN, MODE, VALUE};
 
-  public static void normalize(List<ValueWrapper> values)
-      throws RuntimeException {
-    double max = max(values);
+  public static void normalize(List<ValueWrapper> values, Number value)
+      throws RuntimeException, EolRuntimeException {
+    double normValue;
+    if (value != null) {
+      normValue = value.doubleValue();
+    } else {
+      normValue = max(values);
+    }
     for (ValueWrapper wrapper : values) {
       if (wrapper.get() != null) {
-        wrapper.set(((Number)wrapper.get()).doubleValue() / max);
+        wrapper.set(((Number)wrapper.get()).doubleValue() / normValue);
       }
     }
   }
 
-  private static double max(List<ValueWrapper> values) {
+  private static double max(List<ValueWrapper> values)
+      throws EolRuntimeException {
     double max = Double.MIN_VALUE;
     for (ValueWrapper wrapper : values) {
       if (wrapper.get() != null) {
         if (!(wrapper.get() instanceof Number)) {
-          throw new RuntimeException(
+          throw new EolRuntimeException (
               "Cannot calculate mean over non-numeric elements");
         }
         double value = ((Number)wrapper.get()).doubleValue();

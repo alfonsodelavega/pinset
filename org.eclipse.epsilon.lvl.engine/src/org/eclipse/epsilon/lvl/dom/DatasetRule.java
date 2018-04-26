@@ -149,25 +149,38 @@ public class DatasetRule extends AnnotatableModuleElement {
       }
       dataset.addColumnValues(getRowValues(context, oElem));
     }
-    postProcess(dataset);
+    postProcess(context, dataset);
     Persistence.persist(dataset, getFilePath(), ((LvlModule)module).getSeparator());
   }
 
-  private void postProcess(Dataset dataset)
-      throws EolRuntimeException, RuntimeException {
+  private void postProcess(IEolContext context, Dataset dataset)
+      throws EolRuntimeException {
     for (ColumnGenerator colGen : generators) {
       if (colGen instanceof Column || colGen instanceof Grid) {
         AnnotatableModuleElement colGenElement =
             ((AnnotatableModuleElement)colGen);
         if (colGenElement.hasAnnotation(LvlModule.NORMALIZE_ANNOTATION)) {
+          Object value = colGenElement
+              .getAnnotationsValues(LvlModule.NORMALIZE_ANNOTATION,
+                                    context)
+              .get(0);
+          if (value instanceof String) {
+            try {
+              value = Double.parseDouble((String)value);
+            } catch (NumberFormatException nfe) {/* treated just below */}
+          }
+          if (value != null && !(value instanceof Number)) {
+            throw new EolRuntimeException("Normalization value must be a number");
+          }
           for (String colName : colGen.getNames()) {
-            PostProcessing.normalize(dataset.getValuesByColumn(colName));
+            PostProcessing.normalize(dataset.getValuesByColumn(colName),
+                                     (Number)value);
           }
         }
         if (colGenElement.hasAnnotation(LvlModule.FILL_NULLS_ANNOTATION)) {
           String value = (String)colGenElement
                          .getAnnotationsValues(LvlModule.FILL_NULLS_ANNOTATION,
-                                               null)
+                                               context)
                          .get(0);
           PostProcessing.FillType fType = PostProcessing.FillType.VALUE;
           if (value != null && value.equals(LvlModule.FILL_NULLS_MODE)) {

@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Pinset Language Engine
+Bundle-SymbolicName: es.unican.istr.pinset.engine
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: Eclipse.org
+Require-Bundle: org.eclipse.epsilon.eol.engine,
+ org.eclipse.epsilon.emc.emf,
+ org.eclipse.epsilon.erl.engine
+Export-Package: es.unican.istr.pinset,
+ es.unican.istr.pinset.columnGenerators,
+ es.unican.istr.pinset.dom,
+ es.unican.istr.pinset.parse
+Bundle-ClassPath: org.eclipse.epsilon.ecl.engine.jar
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

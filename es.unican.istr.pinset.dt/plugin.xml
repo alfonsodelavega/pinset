@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="es.unican.istr.pinset.dt.editor.PinsetEditor"
+            contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
+            default="true"
+            extensions="pset"
+            icon="icons/edl.png"
+            id="es.unican.istr.pinset.dt.editor.PinsetEditor"
+            name="Pinset Language Editor"/>
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTypeImages">
+      <launchConfigurationTypeImage
+            configTypeID="es.unican.istr.pinset.dt.launching.PinsetLaunchConfigurationDelegate"
+            icon="icons/edl.png"
+            id="Pinset File"/>
+   </extension>
+  
+   <extension
+         point="org.eclipse.debug.core.launchConfigurationTypes">
+      <launchConfigurationType
+            delegate="es.unican.istr.pinset.dt.launching.PinsetLaunchConfigurationDelegate"
+            id="es.unican.istr.pinset.dt.launching.PinsetLaunchConfigurationDelegate"
+            modes="run, debug"
+            name="Pinset File"/>
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+      <launchConfigurationTabGroup
+            class="es.unican.istr.pinset.dt.launching.PinsetLaunchConfigurationTabGroup"
+            description="Create a configuration to launch a Pinset File"
+            id="es.unican.istr.pinset.dt.launching.PinsetLaunchConfigurationTabGroup"
+            type="es.unican.istr.pinset.dt.launching.PinsetLaunchConfigurationDelegate"/>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <wizard
+            category="org.eclipse.epsilon.dt"
+            class="es.unican.istr.pinset.dt.wizards.NewPinsetFileWizard"
+            icon="icons/edl.png"
+            id="es.unican.istr.pinset.dt.wizards.NewPinsetFileWizard"
+            name="Pinset File"/>
+   </extension>
+
+</plugin>

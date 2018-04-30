@@ -1,0 +1,32 @@
+<project default="main">
+  <target name="main">
+    <sequential>
+      <property name="project_loc" location="../../../../../.." />
+      <echo message="${project_loc}" />
+      <property name="epsilon-antlr-dev-repo" location="${project_loc}/../../epsilon-antlr-dev" />
+      <echo message="${epsilon-antlr-dev-repo}" />
+      <property name="plugins_loc" location="${project_loc}/../../org.eclipse.epsilon/plugins" />
+      <echo message="${plugins_loc}" />
+      <echo message="Generating Pinset parser..." />
+
+      <java classname="org.eclipse.epsilon.antlr.dev.Tool">
+        <classpath>
+          <pathelement location="${epsilon-antlr-dev-repo}/org.eclipse.epsilon.antlr.dev/org.eclipse.epsilon.antlr.dev.jar" />
+          <pathelement location="${epsilon-antlr-dev-repo}/org.eclipse.epsilon.antlr.dev/lib/antlr-3.1b1.jar" />
+          <pathelement location="${epsilon-antlr-dev-repo}/org.eclipse.epsilon.antlr.dev/lib/stringtemplate-3.1.jar" />
+          <pathelement location="${epsilon-antlr-dev-repo}/org.eclipse.epsilon.antlr.dev/lib/antlr-2.7.7.jar" />
+        </classpath>
+
+        <arg value="-package" />
+        <arg value="es.unican.istr.pinset.parse" />
+        <arg value="-lib" />
+        <arg value="${project_loc}/src/es/unican/istr/pinset/parse/;${plugins_loc}/org.eclipse.epsilon.eol.engine/src/org/eclipse/epsilon/eol/parse/;${plugins_loc}/org.eclipse.epsilon.eol.engine/src/org/eclipse/epsilon/eol/parse/" />
+        <arg value="-o" />
+        <arg value="${project_loc}/src/es/unican/istr/pinset/parse/" />
+        <arg value="${project_loc}/src/es/unican/istr/pinset/parse/Pinset.g" />
+      </java>
+
+      <eclipse.refreshLocal resource="es.unican.istr.pinset.engine" />
+    </sequential>
+  </target>
+</project>

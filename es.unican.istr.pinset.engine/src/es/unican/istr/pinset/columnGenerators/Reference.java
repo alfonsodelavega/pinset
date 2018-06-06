@@ -26,6 +26,7 @@ import es.unican.istr.pinset.parse.PinsetParser;
 public class Reference extends AnnotatableModuleElement
       implements ColumnGenerator {
   protected String name;
+  protected List<String> columnNames = new ArrayList<String>();
   protected List<String> properties = new ArrayList<String>();
   protected IPropertyGetter getter;
 
@@ -33,19 +34,22 @@ public class Reference extends AnnotatableModuleElement
   public void build(AST cst, IModule module) {
     super.build(cst, module);
     name = (String) cst.getFirstChild().getText();
-    List<AST> children =
+    List<AST> aliasedNames =
         AstUtil.getChild(cst, PinsetParser.NAMESLIST).getChildren();
-    for (AST child : children) {
-      properties.add(child.getText());
+    for (AST aliasedName : aliasedNames) {
+      // fill column names: if an alias is defined, use it
+      if (aliasedName.getNumberOfChildren() > 0) {
+        columnNames.add(aliasedName.getFirstChild().getText());
+      } else {
+        columnNames.add(name + "_" + aliasedName.getText());
+      }
+      // keep property name for later access
+      properties.add(aliasedName.getText());
     }
   }
 
   public List<String> getNames() {
-    List<String> res = new ArrayList<String>();
-    for (String feature : properties) {
-      res.add(name + "_" + feature);
-    }
-    return res;
+    return columnNames;
   }
 
   public List<Object> getValues(Object o)

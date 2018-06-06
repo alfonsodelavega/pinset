@@ -44,6 +44,7 @@ public class PinsetEditor extends EolEditor{
     keywords.add("keys");
     keywords.add("header");
     keywords.add("body");
+    keywords.add("as");
     keywords.addAll(super.getKeywords());
     return keywords;
   }

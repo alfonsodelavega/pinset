@@ -43,6 +43,7 @@ options {backtrack=true; output=AST;}
 tokens {
   DATASET;
   NAMESLIST;
+  ALIASEDNAME;
   PROPERTIES;
   COLUMN;
   GUARD;
@@ -87,8 +88,13 @@ nameslist
    @after {
     $tree.getExtraTokens().add($cb);
   }
- : nl='['^ NAME (','! NAME)* cb=']'!
+ : nl='['^ aliasedName (','! aliasedName)* cb=']'!
    {$nl.setType(NAMESLIST);}
+ ;
+
+aliasedName
+ : an=NAME^ ('as'! NAME)?
+   {$an.setType(ALIASEDNAME);}
  ;
 
 properties

@@ -116,7 +116,7 @@ dataset Dummy16_postProcessing over a : A {
   column x_normalized : a.x
 
   // check null value in fillnulls annotation
-  @fillNulls 
+  @fillNulls
   @silent
   column b_y_fill_null : a.b.y
 
@@ -131,4 +131,13 @@ dataset Dummy16_postProcessing over a : A {
   @fillNulls mode
   @silent
   column b_y_fill_mode : a.b.y
+}
+
+dataset Dummy17_AliasedReference over a : A {
+  properties [x, en]
+  reference b[y as aliased_y]
+}
+
+dataset Dummy18_AliasedProperties over a : A {
+  properties [x as aliased_x, en]
 }

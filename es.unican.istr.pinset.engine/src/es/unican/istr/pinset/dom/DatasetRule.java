@@ -229,7 +229,8 @@ public class DatasetRule extends AnnotatableModuleElement {
 
   private String getFilePath() {
     return ((PinsetModule)module).getOutputFolder()
-        + "/" + name + ((PinsetModule)module).getExtension();
+        + "/" + ((PinsetModule)module).getPrefix() + name +
+        ((PinsetModule)module).getExtension();
   }
 
   private void initialiseGenerators(IEolContext context,

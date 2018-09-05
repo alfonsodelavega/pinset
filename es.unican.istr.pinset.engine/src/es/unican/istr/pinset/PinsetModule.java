@@ -50,6 +50,7 @@ public class PinsetModule extends ErlModule {
   protected String outputFolder = "";
   protected String separator = ",";
   protected String extension = ".csv";
+  protected String prefix = "";
   protected boolean silent = false;
 
   @Override
@@ -137,6 +138,14 @@ public class PinsetModule extends ErlModule {
 
   public String getSeparator() {
     return separator;
+  }
+
+  public String getPrefix() {
+    return prefix;
+  }
+
+  public void setPrefix(String prefix) {
+    this.prefix = prefix;
   }
 
   public void setSeparator(String separator) {

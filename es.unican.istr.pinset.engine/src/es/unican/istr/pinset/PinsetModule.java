@@ -25,7 +25,6 @@ import org.eclipse.epsilon.common.parse.EpsilonParser;
 import org.eclipse.epsilon.common.util.AstUtil;
 import org.eclipse.epsilon.eol.dom.ExecutableBlock;
 import org.eclipse.epsilon.eol.exceptions.EolRuntimeException;
-import org.eclipse.epsilon.eol.execute.context.IEolContext;
 import org.eclipse.epsilon.erl.ErlModule;
 
 import es.unican.istr.pinset.columnGenerators.Column;
@@ -105,18 +104,12 @@ public class PinsetModule extends ErlModule {
     return importConfiguration;
   }
 
-  public Object executeImpl() throws EolRuntimeException {
-    execute(getPre(), context);
+  @Override
+  protected Object processRules() throws EolRuntimeException {
     for (DatasetRule datasetRule : declaredDatasetRules) {
         datasetRule.execute(context);
     }
-    execute(getPost(), context);
     return null;
-  }
-
-  @Override
-  public void setContext(IEolContext context) {
-    this.context = context;
   }
 
   public List<DatasetRule> getDeclaredDatasetRules() {

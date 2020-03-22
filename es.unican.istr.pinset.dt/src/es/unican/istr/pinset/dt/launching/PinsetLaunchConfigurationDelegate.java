@@ -15,6 +15,8 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.debug.core.ILaunchConfiguration;
+import org.eclipse.epsilon.common.dt.launching.extensions.ModuleImplementationExtension;
 import org.eclipse.epsilon.eol.IEolModule;
 import org.eclipse.epsilon.eol.dt.debug.EolDebugger;
 import org.eclipse.epsilon.eol.dt.launching.EpsilonLaunchConfigurationDelegate;
@@ -50,6 +52,19 @@ public class PinsetLaunchConfigurationDelegate extends EpsilonLaunchConfiguratio
   @Override
   protected EolDebugger createDebugger() {
     return new PinsetDebugger();
+  }
+
+  public String getLanguage() {
+    return "Pinset";
+  }
+
+  @Override
+  public PinsetModule getDefaultModule(ILaunchConfiguration configuration) {
+    try {
+      return ModuleImplementationExtension.defaultImplementation(getLanguage()).createModule();
+    } catch (CoreException e) {
+    }
+    return null;
   }
 
 }

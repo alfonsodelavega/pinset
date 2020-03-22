@@ -45,5 +45,15 @@
             id="es.unican.istr.pinset.dt.wizards.NewPinsetFileWizard"
             name="Pinset File"/>
    </extension>
+   <extension
+         point="org.eclipse.epsilon.common.dt.moduleImplementation">
+      <implementation
+            class="es.unican.istr.pinset.PinsetModule"
+            default="false"
+            dialog="es.unican.istr.pinset.dt.launching.PinsetModuleConfiguration"
+            language="Pinset"
+            name="Pinset">
+      </implementation>
+   </extension>
 
 </plugin>

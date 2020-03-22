@@ -115,11 +115,6 @@ public class PinsetModule extends ErlModule {
   }
 
   @Override
-  public IEolContext getContext(){
-    return context;
-  }
-
-  @Override
   public void setContext(IEolContext context) {
     this.context = context;
   }

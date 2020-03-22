@@ -12,11 +12,11 @@
 package es.unican.istr.pinset.dt.launching.tabs;
 
 import org.eclipse.epsilon.common.dt.EpsilonPlugin;
-import org.eclipse.epsilon.common.dt.launching.AbstractSourceConfigurationTab;
+import org.eclipse.epsilon.common.dt.launching.tabs.AbstractSourceConfigurationTab;
 
 import es.unican.istr.pinset.dt.PinsetPlugin;
 
-public class PinsetSourceConfigurationTab extends AbstractSourceConfigurationTab{
+public class PinsetSourceConfigurationTab extends AbstractSourceConfigurationTab {
 
   @Override
   public EpsilonPlugin getPlugin() {

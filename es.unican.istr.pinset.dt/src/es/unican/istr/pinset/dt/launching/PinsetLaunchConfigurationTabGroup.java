@@ -14,6 +14,7 @@ package es.unican.istr.pinset.dt.launching;
 import org.eclipse.debug.ui.ILaunchConfigurationTab;
 import org.eclipse.epsilon.common.dt.launching.tabs.EpsilonLaunchConfigurationTabGroup;
 
+import es.unican.istr.pinset.dt.launching.tabs.PinsetAdvancedConfigurationTab;
 import es.unican.istr.pinset.dt.launching.tabs.PinsetOutputConfigurationTab;
 import es.unican.istr.pinset.dt.launching.tabs.PinsetSourceConfigurationTab;
 
@@ -27,6 +28,11 @@ public class PinsetLaunchConfigurationTabGroup extends EpsilonLaunchConfiguratio
   @Override
   public ILaunchConfigurationTab[] getOtherConfigurationTabs() {
     return new ILaunchConfigurationTab[]{new PinsetOutputConfigurationTab()};
+  }
+
+  @Override
+  public ILaunchConfigurationTab getAdvancedConfigurationTab() {
+    return new PinsetAdvancedConfigurationTab();
   }
 
 }

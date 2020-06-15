@@ -18,6 +18,7 @@ import org.eclipse.epsilon.common.parse.AST;
 import org.eclipse.epsilon.common.util.AstUtil;
 import org.eclipse.epsilon.eol.dom.AnnotatableModuleElement;
 import org.eclipse.epsilon.eol.exceptions.EolRuntimeException;
+import org.eclipse.epsilon.eol.execute.context.IEolContext;
 import org.eclipse.epsilon.eol.execute.introspection.IPropertyGetter;
 
 import es.unican.istr.pinset.output.ReturnValueParser;
@@ -29,6 +30,7 @@ public class Reference extends AnnotatableModuleElement
   protected List<String> columnNames = new ArrayList<String>();
   protected List<String> properties = new ArrayList<String>();
   protected IPropertyGetter getter;
+  protected IEolContext context;
 
   @Override
   public void build(AST cst, IModule module) {
@@ -64,7 +66,7 @@ public class Reference extends AnnotatableModuleElement
     } else {
       for (String prop : properties) {
         res.add(ReturnValueParser.obtainValue(
-            getter.invoke(refObject, prop)));
+            getter.invoke(refObject, prop, context)));
       }
     }
     return res;
@@ -72,5 +74,9 @@ public class Reference extends AnnotatableModuleElement
 
   public void setGetter(IPropertyGetter getter) {
     this.getter = getter;
+  }
+
+  public void setContext(IEolContext context) {
+    this.context = context;
   }
 }

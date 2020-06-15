@@ -121,7 +121,6 @@ public class DatasetRule extends AnnotatableModuleElement {
     } else {
       model = ((EolModelElementType)parameterType).getModel();
       getter = model.getPropertyGetter();
-      getter.setContext(context);
     }
     if (fromBlock == null) {
       oElements = ((EolModelElementType)parameterType).getAllOfKind();
@@ -243,8 +242,10 @@ public class DatasetRule extends AnnotatableModuleElement {
   public static void initialise(ColumnGenerator generator, IEolContext context,
       IPropertyGetter getter) {
     if (generator instanceof Properties) {
+      ((Properties) generator).setContext(context);
       ((Properties)generator).setGetter(getter);
     } else if (generator instanceof Reference) {
+      ((Reference) generator).setContext(context);
       ((Reference)generator).setGetter(getter);
     } else if (generator instanceof Column) {
       ((Column)generator).setContext(context);

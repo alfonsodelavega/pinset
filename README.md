@@ -5,7 +5,7 @@ It is implemented atop the [Epsilon](https://www.eclipse.org/epsilon/) platform.
 
 ## Requirements
 
-- Epsilon 1.5 (Interim Update Site). [[link](https://www.eclipse.org/epsilon/download/)]
+- Epsilon (Interim Update Site). [[link](https://www.eclipse.org/epsilon/download/)]
 
 ## Instructions
 

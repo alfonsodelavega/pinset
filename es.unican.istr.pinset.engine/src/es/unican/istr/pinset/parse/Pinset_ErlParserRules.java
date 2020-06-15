@@ -1,6 +1,6 @@
 package es.unican.istr.pinset.parse;
 
-// $ANTLR 3.1b1 ErlParserRules.g 2020-03-22 12:39:35
+// $ANTLR 3.1b1 ErlParserRules.g 2020-06-15 22:04:02
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -52,27 +52,28 @@ public class Pinset_ErlParserRules extends org.eclipse.epsilon.common.parse.Epsi
     public static final int T__144=144;
     public static final int T__143=143;
     public static final int T__146=146;
-    public static final int MODELDECLARATIONPARAMETER=73;
+    public static final int MODELDECLARATIONPARAMETER=77;
     public static final int T__145=145;
-    public static final int BREAKALL=39;
+    public static final int BREAKALL=43;
     public static final int T__140=140;
     public static final int T__142=142;
-    public static final int VAR=48;
-    public static final int MODELDECLARATIONPARAMETERS=72;
+    public static final int VAR=52;
+    public static final int MODELDECLARATIONPARAMETERS=76;
     public static final int T__141=141;
-    public static final int THROW=53;
-    public static final int ALIASEDNAME=84;
-    public static final int PARAMLIST=25;
-    public static final int EXPRLIST=54;
-    public static final int EXPRRANGE=55;
-    public static final int BREAK=38;
-    public static final int ELSE=32;
+    public static final int THROW=57;
+    public static final int SpecialTypeName=18;
+    public static final int ALIASEDNAME=88;
+    public static final int PARAMLIST=28;
+    public static final int EXPRLIST=58;
+    public static final int EXPRRANGE=59;
+    public static final int BREAK=42;
+    public static final int ELSE=35;
     public static final int T__137=137;
     public static final int T__136=136;
-    public static final int FORMAL=24;
-    public static final int IF=31;
-    public static final int MultiplicativeExpression=57;
-    public static final int TYPE=65;
+    public static final int FORMAL=27;
+    public static final int IF=34;
+    public static final int MultiplicativeExpression=61;
+    public static final int TYPE=69;
     public static final int T__139=139;
     public static final int T__138=138;
     public static final int T__133=133;
@@ -80,21 +81,21 @@ public class Pinset_ErlParserRules extends org.eclipse.epsilon.common.parse.Epsi
     public static final int T__135=135;
     public static final int T__134=134;
     public static final int T__131=131;
-    public static final int NewExpression=47;
+    public static final int NewExpression=51;
     public static final int T__130=130;
-    public static final int CASE=35;
-    public static final int Letter=16;
-    public static final int LINE_COMMENT=22;
+    public static final int CASE=39;
+    public static final int Letter=19;
+    public static final int LINE_COMMENT=25;
     public static final int T__129=129;
     public static final int T__126=126;
-    public static final int JavaIDDigit=18;
-    public static final int GRIDHEADER=90;
+    public static final int JavaIDDigit=21;
+    public static final int GRIDHEADER=94;
     public static final int T__125=125;
-    public static final int LAMBDAEXPR=64;
-    public static final int MAP=75;
+    public static final int LAMBDAEXPR=68;
+    public static final int MAP=79;
     public static final int T__128=128;
     public static final int T__127=127;
-    public static final int PINSETMODULE=94;
+    public static final int PINSETMODULE=98;
     public static final int T__166=166;
     public static final int T__165=165;
     public static final int T__168=168;
@@ -102,23 +103,25 @@ public class Pinset_ErlParserRules extends org.eclipse.epsilon.common.parse.Epsi
     public static final int T__162=162;
     public static final int T__161=161;
     public static final int T__164=164;
-    public static final int MODELDECLARATION=68;
+    public static final int MODELDECLARATION=72;
     public static final int T__163=163;
-    public static final int EXPRESSIONINBRACKETS=59;
-    public static final int GRIDBODY=91;
+    public static final int EXPRESSIONINBRACKETS=63;
+    public static final int GRIDBODY=95;
     public static final int T__160=160;
-    public static final int TRANSACTION=41;
+    public static final int TERNARY=36;
+    public static final int TRANSACTION=45;
     public static final int FLOAT_TYPE_SUFFIX=7;
-    public static final int ITEMSELECTOR=74;
-    public static final int COMMENT=21;
-    public static final int ModelElementType=45;
-    public static final int IMPORT=67;
-    public static final int DELETE=52;
+    public static final int ITEMSELECTOR=78;
+    public static final int COMMENT=24;
+    public static final int ModelElementType=49;
+    public static final int IMPORT=71;
+    public static final int DELETE=56;
     public static final int ARROW=11;
+    public static final int MapTypeName=17;
     public static final int T__159=159;
     public static final int T__158=158;
     public static final int T__155=155;
-    public static final int SPECIAL_ASSIGNMENT=27;
+    public static final int SPECIAL_ASSIGNMENT=30;
     public static final int T__154=154;
     public static final int T__157=157;
     public static final int T__156=156;
@@ -126,85 +129,79 @@ public class Pinset_ErlParserRules extends org.eclipse.epsilon.common.parse.Epsi
     public static final int T__150=150;
     public static final int T__153=153;
     public static final int T__152=152;
-    public static final int GRID=88;
-    public static final int Annotation=23;
-    public static final int CONTINUE=40;
-    public static final int ENUMERATION_VALUE=66;
-    public static final int OPERATOR=58;
+    public static final int GRID=92;
+    public static final int Annotation=26;
+    public static final int CONTINUE=44;
+    public static final int ENUMERATION_VALUE=70;
+    public static final int OPERATOR=62;
     public static final int EXPONENT=6;
     public static final int STRING=14;
     public static final int T__148=148;
     public static final int T__147=147;
     public static final int T__149=149;
-    public static final int NAMESLIST=83;
+    public static final int NAMESLIST=87;
     public static final int T__100=100;
-    public static final int NAMESPACE=69;
-    public static final int COLLECTION=42;
-    public static final int NEW=49;
-    public static final int EXTENDS=80;
+    public static final int NAMESPACE=73;
+    public static final int COLLECTION=46;
+    public static final int NEW=53;
+    public static final int EXTENDS=84;
     public static final int T__102=102;
-    public static final int PRE=78;
+    public static final int PRE=82;
     public static final int T__101=101;
-    public static final int PROPERTIES=85;
-    public static final int POST=79;
-    public static final int ALIAS=70;
-    public static final int DRIVER=71;
-    public static final int COLUMN=86;
-    public static final int T__180=180;
-    public static final int DATASET=82;
-    public static final int FROM=92;
-    public static final int KEYVAL=76;
+    public static final int PROPERTIES=89;
+    public static final int POST=83;
+    public static final int ALIAS=74;
+    public static final int DRIVER=75;
+    public static final int COLUMN=90;
+    public static final int DATASET=86;
+    public static final int FROM=96;
+    public static final int KEYVAL=80;
     public static final int POINT_POINT=10;
-    public static final int GUARD=81;
+    public static final int GUARD=85;
     public static final int T__99=99;
-    public static final int T__95=95;
-    public static final int HELPERMETHOD=28;
-    public static final int T__96=96;
-    public static final int T__97=97;
-    public static final int StatementBlock=29;
-    public static final int T__98=98;
-    public static final int GRIDKEYS=89;
+    public static final int HELPERMETHOD=31;
+    public static final int StatementBlock=32;
+    public static final int GRIDKEYS=93;
     public static final int T__177=177;
     public static final int T__176=176;
-    public static final int T__179=179;
     public static final int T__178=178;
-    public static final int ABORT=43;
+    public static final int ABORT=47;
     public static final int T__173=173;
     public static final int StrangeNameLiteral=15;
     public static final int T__172=172;
     public static final int T__175=175;
     public static final int T__174=174;
-    public static final int FOR=30;
-    public static final int BLOCK=62;
+    public static final int FOR=33;
+    public static final int BLOCK=66;
     public static final int T__171=171;
     public static final int T__170=170;
-    public static final int PARAMETERS=46;
-    public static final int SpecialNameChar=17;
+    public static final int PARAMETERS=50;
+    public static final int SpecialNameChar=20;
     public static final int BOOLEAN=12;
-    public static final int NAME=19;
-    public static final int SWITCH=34;
+    public static final int NAME=22;
+    public static final int SWITCH=38;
     public static final int T__169=169;
-    public static final int FeatureCall=60;
+    public static final int FeatureCall=64;
     public static final int T__122=122;
     public static final int T__121=121;
     public static final int T__124=124;
     public static final int FLOAT=4;
     public static final int T__123=123;
     public static final int T__120=120;
-    public static final int NativeType=56;
+    public static final int NativeType=60;
     public static final int INT=8;
-    public static final int ANNOTATIONBLOCK=50;
-    public static final int RETURN=37;
-    public static final int KEYVALLIST=77;
-    public static final int FEATURECALL=63;
-    public static final int CollectionType=44;
+    public static final int ANNOTATIONBLOCK=54;
+    public static final int RETURN=41;
+    public static final int KEYVALLIST=81;
+    public static final int FEATURECALL=67;
+    public static final int CollectionType=48;
     public static final int T__119=119;
-    public static final int ASSIGNMENT=26;
-    public static final int REFERENCE=87;
+    public static final int ASSIGNMENT=29;
+    public static final int REFERENCE=91;
     public static final int T__118=118;
     public static final int T__115=115;
-    public static final int WS=20;
-    public static final int NESTEDFROM=93;
+    public static final int WS=23;
+    public static final int NESTEDFROM=97;
     public static final int EOF=-1;
     public static final int T__114=114;
     public static final int T__117=117;
@@ -214,18 +211,19 @@ public class Pinset_ErlParserRules extends org.eclipse.epsilon.common.parse.Epsi
     public static final int T__113=113;
     public static final int T__112=112;
     public static final int EscapeSequence=13;
-    public static final int EOLMODULE=61;
+    public static final int EOLMODULE=65;
+    public static final int CollectionTypeName=16;
     public static final int DIGIT=5;
-    public static final int EXECUTABLEANNOTATION=51;
+    public static final int EXECUTABLEANNOTATION=55;
     public static final int T__108=108;
     public static final int T__107=107;
-    public static final int WHILE=33;
+    public static final int WHILE=37;
     public static final int T__109=109;
     public static final int T__104=104;
     public static final int POINT=9;
     public static final int T__103=103;
     public static final int T__106=106;
-    public static final int DEFAULT=36;
+    public static final int DEFAULT=40;
     public static final int T__105=105;
 
     // delegates
@@ -254,13 +252,149 @@ public class Pinset_ErlParserRules extends org.eclipse.epsilon.common.parse.Epsi
     public String getGrammarFileName() { return "ErlParserRules.g"; }
 
 
+    public static class erlModuleContent_return extends ParserRuleReturnScope {
+        org.eclipse.epsilon.common.parse.AST tree;
+        public Object getTree() { return tree; }
+    };
+
+    // $ANTLR start erlModuleContent
+    // ErlParserRules.g:48:1: erlModuleContent : ( pre | annotationBlock | operationDeclaration | post );
+    public final Pinset_ErlParserRules.erlModuleContent_return erlModuleContent() throws RecognitionException {
+        Pinset_ErlParserRules.erlModuleContent_return retval = new Pinset_ErlParserRules.erlModuleContent_return();
+        retval.start = input.LT(1);
+
+        org.eclipse.epsilon.common.parse.AST root_0 = null;
+
+        Pinset_ErlParserRules.pre_return pre1 = null;
+
+        Pinset_EolParserRules.annotationBlock_return annotationBlock2 = null;
+
+        Pinset_EolParserRules.operationDeclaration_return operationDeclaration3 = null;
+
+        Pinset_ErlParserRules.post_return post4 = null;
+
+
+
+        try {
+            // ErlParserRules.g:49:2: ( pre | annotationBlock | operationDeclaration | post )
+            int alt1=4;
+            switch ( input.LA(1) ) {
+            case 164:
+                {
+                alt1=1;
+                }
+                break;
+            case Annotation:
+            case 113:
+                {
+                alt1=2;
+                }
+                break;
+            case 107:
+            case 108:
+                {
+                alt1=3;
+                }
+                break;
+            case 165:
+                {
+                alt1=4;
+                }
+                break;
+            default:
+                if (state.backtracking>0) {state.failed=true; return retval;}
+                NoViableAltException nvae =
+                    new NoViableAltException("", 1, 0, input);
+
+                throw nvae;
+            }
+
+            switch (alt1) {
+                case 1 :
+                    // ErlParserRules.g:49:4: pre
+                    {
+                    root_0 = (org.eclipse.epsilon.common.parse.AST)adaptor.nil();
+
+                    pushFollow(FOLLOW_pre_in_erlModuleContent48);
+                    pre1=pre();
+
+                    state._fsp--;
+                    if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, pre1.getTree());
+
+                    }
+                    break;
+                case 2 :
+                    // ErlParserRules.g:49:10: annotationBlock
+                    {
+                    root_0 = (org.eclipse.epsilon.common.parse.AST)adaptor.nil();
+
+                    pushFollow(FOLLOW_annotationBlock_in_erlModuleContent52);
+                    annotationBlock2=gPinset.annotationBlock();
+
+                    state._fsp--;
+                    if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, annotationBlock2.getTree());
+
+                    }
+                    break;
+                case 3 :
+                    // ErlParserRules.g:49:28: operationDeclaration
+                    {
+                    root_0 = (org.eclipse.epsilon.common.parse.AST)adaptor.nil();
+
+                    pushFollow(FOLLOW_operationDeclaration_in_erlModuleContent56);
+                    operationDeclaration3=gPinset.operationDeclaration();
+
+                    state._fsp--;
+                    if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, operationDeclaration3.getTree());
+
+                    }
+                    break;
+                case 4 :
+                    // ErlParserRules.g:49:51: post
+                    {
+                    root_0 = (org.eclipse.epsilon.common.parse.AST)adaptor.nil();
+
+                    pushFollow(FOLLOW_post_in_erlModuleContent60);
+                    post4=post();
+
+                    state._fsp--;
+                    if (state.failed) return retval;
+                    if ( state.backtracking==0 ) adaptor.addChild(root_0, post4.getTree());
+
+                    }
+                    break;
+
+            }
+            retval.stop = input.LT(-1);
+
+            if ( state.backtracking==0 ) {
+
+            retval.tree = (org.eclipse.epsilon.common.parse.AST)adaptor.rulePostProcessing(root_0);
+            adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
+            }
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+    	retval.tree = (org.eclipse.epsilon.common.parse.AST)adaptor.errorNode(input, retval.start, input.LT(-1), re);
+
+        }
+        finally {
+        }
+        return retval;
+    }
+    // $ANTLR end erlModuleContent
+
     public static class pre_return extends ParserRuleReturnScope {
         org.eclipse.epsilon.common.parse.AST tree;
         public Object getTree() { return tree; }
     };
 
     // $ANTLR start pre
-    // ErlParserRules.g:48:1: pre : p= 'pre' ( NAME )? statementBlock ;
+    // ErlParserRules.g:52:1: pre : p= 'pre' ( NAME )? statementBlock ;
     public final Pinset_ErlParserRules.pre_return pre() throws RecognitionException {
         Pinset_ErlParserRules.pre_return retval = new Pinset_ErlParserRules.pre_return();
         retval.start = input.LT(1);
@@ -268,39 +402,39 @@ public class Pinset_ErlParserRules extends org.eclipse.epsilon.common.parse.Epsi
         org.eclipse.epsilon.common.parse.AST root_0 = null;
 
         Token p=null;
-        Token NAME1=null;
-        Pinset_EolParserRules.statementBlock_return statementBlock2 = null;
+        Token NAME5=null;
+        Pinset_EolParserRules.statementBlock_return statementBlock6 = null;
 
 
         org.eclipse.epsilon.common.parse.AST p_tree=null;
-        org.eclipse.epsilon.common.parse.AST NAME1_tree=null;
+        org.eclipse.epsilon.common.parse.AST NAME5_tree=null;
 
         try {
-            // ErlParserRules.g:49:2: (p= 'pre' ( NAME )? statementBlock )
-            // ErlParserRules.g:49:4: p= 'pre' ( NAME )? statementBlock
+            // ErlParserRules.g:53:2: (p= 'pre' ( NAME )? statementBlock )
+            // ErlParserRules.g:53:4: p= 'pre' ( NAME )? statementBlock
             {
             root_0 = (org.eclipse.epsilon.common.parse.AST)adaptor.nil();
 
-            p=(Token)match(input,166,FOLLOW_166_in_pre50); if (state.failed) return retval;
+            p=(Token)match(input,164,FOLLOW_164_in_pre73); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             p_tree = (org.eclipse.epsilon.common.parse.AST)adaptor.create(p);
             root_0 = (org.eclipse.epsilon.common.parse.AST)adaptor.becomeRoot(p_tree, root_0);
             }
-            // ErlParserRules.g:49:13: ( NAME )?
-            int alt1=2;
-            int LA1_0 = input.LA(1);
+            // ErlParserRules.g:53:13: ( NAME )?
+            int alt2=2;
+            int LA2_0 = input.LA(1);
 
-            if ( (LA1_0==NAME) ) {
-                alt1=1;
+            if ( (LA2_0==NAME) ) {
+                alt2=1;
             }
-            switch (alt1) {
+            switch (alt2) {
                 case 1 :
                     // ErlParserRules.g:0:0: NAME
                     {
-                    NAME1=(Token)match(input,NAME,FOLLOW_NAME_in_pre53); if (state.failed) return retval;
+                    NAME5=(Token)match(input,NAME,FOLLOW_NAME_in_pre76); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    NAME1_tree = (org.eclipse.epsilon.common.parse.AST)adaptor.create(NAME1);
-                    adaptor.addChild(root_0, NAME1_tree);
+                    NAME5_tree = (org.eclipse.epsilon.common.parse.AST)adaptor.create(NAME5);
+                    adaptor.addChild(root_0, NAME5_tree);
                     }
 
                     }
@@ -308,12 +442,12 @@ public class Pinset_ErlParserRules extends org.eclipse.epsilon.common.parse.Epsi
 
             }
 
-            pushFollow(FOLLOW_statementBlock_in_pre56);
-            statementBlock2=gPinset.statementBlock();
+            pushFollow(FOLLOW_statementBlock_in_pre79);
+            statementBlock6=gPinset.statementBlock();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, statementBlock2.getTree());
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, statementBlock6.getTree());
             if ( state.backtracking==0 ) {
               p.setType(PRE);
             }
@@ -346,7 +480,7 @@ public class Pinset_ErlParserRules extends org.eclipse.epsilon.common.parse.Epsi
     };
 
     // $ANTLR start post
-    // ErlParserRules.g:53:1: post : p= 'post' ( NAME )? statementBlock ;
+    // ErlParserRules.g:57:1: post : p= 'post' ( NAME )? statementBlock ;
     public final Pinset_ErlParserRules.post_return post() throws RecognitionException {
         Pinset_ErlParserRules.post_return retval = new Pinset_ErlParserRules.post_return();
         retval.start = input.LT(1);
@@ -354,39 +488,39 @@ public class Pinset_ErlParserRules extends org.eclipse.epsilon.common.parse.Epsi
         org.eclipse.epsilon.common.parse.AST root_0 = null;
 
         Token p=null;
-        Token NAME3=null;
-        Pinset_EolParserRules.statementBlock_return statementBlock4 = null;
+        Token NAME7=null;
+        Pinset_EolParserRules.statementBlock_return statementBlock8 = null;
 
 
         org.eclipse.epsilon.common.parse.AST p_tree=null;
-        org.eclipse.epsilon.common.parse.AST NAME3_tree=null;
+        org.eclipse.epsilon.common.parse.AST NAME7_tree=null;
 
         try {
-            // ErlParserRules.g:54:2: (p= 'post' ( NAME )? statementBlock )
-            // ErlParserRules.g:54:4: p= 'post' ( NAME )? statementBlock
+            // ErlParserRules.g:58:2: (p= 'post' ( NAME )? statementBlock )
+            // ErlParserRules.g:58:4: p= 'post' ( NAME )? statementBlock
             {
             root_0 = (org.eclipse.epsilon.common.parse.AST)adaptor.nil();
 
-            p=(Token)match(input,167,FOLLOW_167_in_post72); if (state.failed) return retval;
+            p=(Token)match(input,165,FOLLOW_165_in_post95); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             p_tree = (org.eclipse.epsilon.common.parse.AST)adaptor.create(p);
             root_0 = (org.eclipse.epsilon.common.parse.AST)adaptor.becomeRoot(p_tree, root_0);
             }
-            // ErlParserRules.g:54:14: ( NAME )?
-            int alt2=2;
-            int LA2_0 = input.LA(1);
+            // ErlParserRules.g:58:14: ( NAME )?
+            int alt3=2;
+            int LA3_0 = input.LA(1);
 
-            if ( (LA2_0==NAME) ) {
-                alt2=1;
+            if ( (LA3_0==NAME) ) {
+                alt3=1;
             }
-            switch (alt2) {
+            switch (alt3) {
                 case 1 :
                     // ErlParserRules.g:0:0: NAME
                     {
-                    NAME3=(Token)match(input,NAME,FOLLOW_NAME_in_post75); if (state.failed) return retval;
+                    NAME7=(Token)match(input,NAME,FOLLOW_NAME_in_post98); if (state.failed) return retval;
                     if ( state.backtracking==0 ) {
-                    NAME3_tree = (org.eclipse.epsilon.common.parse.AST)adaptor.create(NAME3);
-                    adaptor.addChild(root_0, NAME3_tree);
+                    NAME7_tree = (org.eclipse.epsilon.common.parse.AST)adaptor.create(NAME7);
+                    adaptor.addChild(root_0, NAME7_tree);
                     }
 
                     }
@@ -394,12 +528,12 @@ public class Pinset_ErlParserRules extends org.eclipse.epsilon.common.parse.Epsi
 
             }
 
-            pushFollow(FOLLOW_statementBlock_in_post78);
-            statementBlock4=gPinset.statementBlock();
+            pushFollow(FOLLOW_statementBlock_in_post101);
+            statementBlock8=gPinset.statementBlock();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, statementBlock4.getTree());
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, statementBlock8.getTree());
             if ( state.backtracking==0 ) {
               p.setType(POST);
             }
@@ -432,7 +566,7 @@ public class Pinset_ErlParserRules extends org.eclipse.epsilon.common.parse.Epsi
     };
 
     // $ANTLR start guard
-    // ErlParserRules.g:58:1: guard : g= 'guard' expressionOrStatementBlock ;
+    // ErlParserRules.g:62:1: guard : g= 'guard' expressionOrStatementBlock ;
     public final Pinset_ErlParserRules.guard_return guard() throws RecognitionException {
         Pinset_ErlParserRules.guard_return retval = new Pinset_ErlParserRules.guard_return();
         retval.start = input.LT(1);
@@ -440,28 +574,28 @@ public class Pinset_ErlParserRules extends org.eclipse.epsilon.common.parse.Epsi
         org.eclipse.epsilon.common.parse.AST root_0 = null;
 
         Token g=null;
-        Pinset_EolParserRules.expressionOrStatementBlock_return expressionOrStatementBlock5 = null;
+        Pinset_EolParserRules.expressionOrStatementBlock_return expressionOrStatementBlock9 = null;
 
 
         org.eclipse.epsilon.common.parse.AST g_tree=null;
 
         try {
-            // ErlParserRules.g:59:2: (g= 'guard' expressionOrStatementBlock )
-            // ErlParserRules.g:59:4: g= 'guard' expressionOrStatementBlock
+            // ErlParserRules.g:63:2: (g= 'guard' expressionOrStatementBlock )
+            // ErlParserRules.g:63:4: g= 'guard' expressionOrStatementBlock
             {
             root_0 = (org.eclipse.epsilon.common.parse.AST)adaptor.nil();
 
-            g=(Token)match(input,168,FOLLOW_168_in_guard94); if (state.failed) return retval;
+            g=(Token)match(input,166,FOLLOW_166_in_guard117); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             g_tree = (org.eclipse.epsilon.common.parse.AST)adaptor.create(g);
             root_0 = (org.eclipse.epsilon.common.parse.AST)adaptor.becomeRoot(g_tree, root_0);
             }
-            pushFollow(FOLLOW_expressionOrStatementBlock_in_guard97);
-            expressionOrStatementBlock5=gPinset.expressionOrStatementBlock();
+            pushFollow(FOLLOW_expressionOrStatementBlock_in_guard120);
+            expressionOrStatementBlock9=gPinset.expressionOrStatementBlock();
 
             state._fsp--;
             if (state.failed) return retval;
-            if ( state.backtracking==0 ) adaptor.addChild(root_0, expressionOrStatementBlock5.getTree());
+            if ( state.backtracking==0 ) adaptor.addChild(root_0, expressionOrStatementBlock9.getTree());
             if ( state.backtracking==0 ) {
               g.setType(GUARD);
             }
@@ -494,7 +628,7 @@ public class Pinset_ErlParserRules extends org.eclipse.epsilon.common.parse.Epsi
     };
 
     // $ANTLR start extendz
-    // ErlParserRules.g:63:1: extendz : e= 'extends' NAME ( ',' NAME )* ;
+    // ErlParserRules.g:67:1: extendz : e= 'extends' NAME ( ',' NAME )* ;
     public final Pinset_ErlParserRules.extendz_return extendz() throws RecognitionException {
         Pinset_ErlParserRules.extendz_return retval = new Pinset_ErlParserRules.extendz_return();
         retval.start = input.LT(1);
@@ -502,58 +636,58 @@ public class Pinset_ErlParserRules extends org.eclipse.epsilon.common.parse.Epsi
         org.eclipse.epsilon.common.parse.AST root_0 = null;
 
         Token e=null;
-        Token NAME6=null;
-        Token char_literal7=null;
-        Token NAME8=null;
+        Token NAME10=null;
+        Token char_literal11=null;
+        Token NAME12=null;
 
         org.eclipse.epsilon.common.parse.AST e_tree=null;
-        org.eclipse.epsilon.common.parse.AST NAME6_tree=null;
-        org.eclipse.epsilon.common.parse.AST char_literal7_tree=null;
-        org.eclipse.epsilon.common.parse.AST NAME8_tree=null;
+        org.eclipse.epsilon.common.parse.AST NAME10_tree=null;
+        org.eclipse.epsilon.common.parse.AST char_literal11_tree=null;
+        org.eclipse.epsilon.common.parse.AST NAME12_tree=null;
 
         try {
-            // ErlParserRules.g:64:2: (e= 'extends' NAME ( ',' NAME )* )
-            // ErlParserRules.g:64:4: e= 'extends' NAME ( ',' NAME )*
+            // ErlParserRules.g:68:2: (e= 'extends' NAME ( ',' NAME )* )
+            // ErlParserRules.g:68:4: e= 'extends' NAME ( ',' NAME )*
             {
             root_0 = (org.eclipse.epsilon.common.parse.AST)adaptor.nil();
 
-            e=(Token)match(input,169,FOLLOW_169_in_extendz113); if (state.failed) return retval;
+            e=(Token)match(input,167,FOLLOW_167_in_extendz136); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
             e_tree = (org.eclipse.epsilon.common.parse.AST)adaptor.create(e);
             root_0 = (org.eclipse.epsilon.common.parse.AST)adaptor.becomeRoot(e_tree, root_0);
             }
-            NAME6=(Token)match(input,NAME,FOLLOW_NAME_in_extendz116); if (state.failed) return retval;
+            NAME10=(Token)match(input,NAME,FOLLOW_NAME_in_extendz139); if (state.failed) return retval;
             if ( state.backtracking==0 ) {
-            NAME6_tree = (org.eclipse.epsilon.common.parse.AST)adaptor.create(NAME6);
-            adaptor.addChild(root_0, NAME6_tree);
+            NAME10_tree = (org.eclipse.epsilon.common.parse.AST)adaptor.create(NAME10);
+            adaptor.addChild(root_0, NAME10_tree);
             }
-            // ErlParserRules.g:64:22: ( ',' NAME )*
-            loop3:
+            // ErlParserRules.g:68:22: ( ',' NAME )*
+            loop4:
             do {
-                int alt3=2;
-                int LA3_0 = input.LA(1);
+                int alt4=2;
+                int LA4_0 = input.LA(1);
 
-                if ( (LA3_0==98) ) {
-                    alt3=1;
+                if ( (LA4_0==102) ) {
+                    alt4=1;
                 }
 
 
-                switch (alt3) {
+                switch (alt4) {
             	case 1 :
-            	    // ErlParserRules.g:64:23: ',' NAME
+            	    // ErlParserRules.g:68:23: ',' NAME
             	    {
-            	    char_literal7=(Token)match(input,98,FOLLOW_98_in_extendz119); if (state.failed) return retval;
-            	    NAME8=(Token)match(input,NAME,FOLLOW_NAME_in_extendz122); if (state.failed) return retval;
+            	    char_literal11=(Token)match(input,102,FOLLOW_102_in_extendz142); if (state.failed) return retval;
+            	    NAME12=(Token)match(input,NAME,FOLLOW_NAME_in_extendz145); if (state.failed) return retval;
             	    if ( state.backtracking==0 ) {
-            	    NAME8_tree = (org.eclipse.epsilon.common.parse.AST)adaptor.create(NAME8);
-            	    adaptor.addChild(root_0, NAME8_tree);
+            	    NAME12_tree = (org.eclipse.epsilon.common.parse.AST)adaptor.create(NAME12);
+            	    adaptor.addChild(root_0, NAME12_tree);
             	    }
 
             	    }
             	    break;
 
             	default :
-            	    break loop3;
+            	    break loop4;
                 }
             } while (true);
 
@@ -588,17 +722,21 @@ public class Pinset_ErlParserRules extends org.eclipse.epsilon.common.parse.Epsi
 
  
 
-    public static final BitSet FOLLOW_166_in_pre50 = new BitSet(new long[]{0x0000000000080000L,0x0000001000000000L});
-    public static final BitSet FOLLOW_NAME_in_pre53 = new BitSet(new long[]{0x0000000000080000L,0x0000001000000000L});
-    public static final BitSet FOLLOW_statementBlock_in_pre56 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_167_in_post72 = new BitSet(new long[]{0x0000000000080000L,0x0000001000000000L});
-    public static final BitSet FOLLOW_NAME_in_post75 = new BitSet(new long[]{0x0000000000080000L,0x0000001000000000L});
-    public static final BitSet FOLLOW_statementBlock_in_post78 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_168_in_guard94 = new BitSet(new long[]{0x0000000000080000L,0x0000081000000000L});
-    public static final BitSet FOLLOW_expressionOrStatementBlock_in_guard97 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_169_in_extendz113 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_NAME_in_extendz116 = new BitSet(new long[]{0x0000000000000002L,0x0000000400000000L});
-    public static final BitSet FOLLOW_98_in_extendz119 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_NAME_in_extendz122 = new BitSet(new long[]{0x0000000000000002L,0x0000000400000000L});
+    public static final BitSet FOLLOW_pre_in_erlModuleContent48 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_annotationBlock_in_erlModuleContent52 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_operationDeclaration_in_erlModuleContent56 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_post_in_erlModuleContent60 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_164_in_pre73 = new BitSet(new long[]{0x0000000000400000L,0x0000010000000000L});
+    public static final BitSet FOLLOW_NAME_in_pre76 = new BitSet(new long[]{0x0000000000400000L,0x0000010000000000L});
+    public static final BitSet FOLLOW_statementBlock_in_pre79 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_165_in_post95 = new BitSet(new long[]{0x0000000000400000L,0x0000010000000000L});
+    public static final BitSet FOLLOW_NAME_in_post98 = new BitSet(new long[]{0x0000000000400000L,0x0000010000000000L});
+    public static final BitSet FOLLOW_statementBlock_in_post101 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_166_in_guard117 = new BitSet(new long[]{0x0000000000400000L,0x0000810000000000L});
+    public static final BitSet FOLLOW_expressionOrStatementBlock_in_guard120 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_167_in_extendz136 = new BitSet(new long[]{0x0000000000400000L});
+    public static final BitSet FOLLOW_NAME_in_extendz139 = new BitSet(new long[]{0x0000000000000002L,0x0000004000000000L});
+    public static final BitSet FOLLOW_102_in_extendz142 = new BitSet(new long[]{0x0000000000400000L});
+    public static final BitSet FOLLOW_NAME_in_extendz145 = new BitSet(new long[]{0x0000000000000002L,0x0000004000000000L});
 
 }

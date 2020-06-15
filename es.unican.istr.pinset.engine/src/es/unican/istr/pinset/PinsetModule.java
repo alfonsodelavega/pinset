@@ -148,16 +148,6 @@ public class PinsetModule extends ErlModule {
     this.extension = extension;
   }
 
-  @Override
-  protected int getPreBlockTokenType() {
-    return PinsetParser.PRE;
-  }
-
-  @Override
-  protected int getPostBlockTokenType() {
-    return PinsetParser.POST;
-  }
-
   public boolean isSilent() {
     return silent;
   }

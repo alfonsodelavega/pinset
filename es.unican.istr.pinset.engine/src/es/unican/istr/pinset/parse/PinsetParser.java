@@ -1,4 +1,4 @@
-// $ANTLR 3.1b1 /home/fonso/repos/york/pinset/es.unican.istr.pinset.engine/src/es/unican/istr/pinset/parse/Pinset.g 2020-03-22 12:39:34
+// $ANTLR 3.1b1 Pinset.g 2020-06-15 22:04:01
 
 package es.unican.istr.pinset.parse;
 
@@ -52,32 +52,33 @@ import org.antlr.runtime.tree.*;
  ******************************************************************************/
 public class PinsetParser extends org.eclipse.epsilon.common.parse.EpsilonParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "FLOAT", "DIGIT", "EXPONENT", "FLOAT_TYPE_SUFFIX", "INT", "POINT", "POINT_POINT", "ARROW", "BOOLEAN", "EscapeSequence", "STRING", "StrangeNameLiteral", "Letter", "SpecialNameChar", "JavaIDDigit", "NAME", "WS", "COMMENT", "LINE_COMMENT", "Annotation", "FORMAL", "PARAMLIST", "ASSIGNMENT", "SPECIAL_ASSIGNMENT", "HELPERMETHOD", "StatementBlock", "FOR", "IF", "ELSE", "WHILE", "SWITCH", "CASE", "DEFAULT", "RETURN", "BREAK", "BREAKALL", "CONTINUE", "TRANSACTION", "COLLECTION", "ABORT", "CollectionType", "ModelElementType", "PARAMETERS", "NewExpression", "VAR", "NEW", "ANNOTATIONBLOCK", "EXECUTABLEANNOTATION", "DELETE", "THROW", "EXPRLIST", "EXPRRANGE", "NativeType", "MultiplicativeExpression", "OPERATOR", "EXPRESSIONINBRACKETS", "FeatureCall", "EOLMODULE", "BLOCK", "FEATURECALL", "LAMBDAEXPR", "TYPE", "ENUMERATION_VALUE", "IMPORT", "MODELDECLARATION", "NAMESPACE", "ALIAS", "DRIVER", "MODELDECLARATIONPARAMETERS", "MODELDECLARATIONPARAMETER", "ITEMSELECTOR", "MAP", "KEYVAL", "KEYVALLIST", "PRE", "POST", "EXTENDS", "GUARD", "DATASET", "NAMESLIST", "ALIASEDNAME", "PROPERTIES", "COLUMN", "REFERENCE", "GRID", "GRIDKEYS", "GRIDHEADER", "GRIDBODY", "FROM", "NESTEDFROM", "PINSETMODULE", "'model'", "';'", "'alias'", "','", "'driver'", "'{'", "'}'", "'='", "'operation'", "'function'", "'('", "')'", "':'", "'import'", "'$'", "'!'", "'#'", "'::'", "'Native'", "'Collection'", "'Sequence'", "'List'", "'Bag'", "'Set'", "'OrderedSet'", "'Map'", "'<'", "'>'", "'for'", "'in'", "'if'", "'switch'", "'case'", "'default'", "'else'", "'while'", "'return'", "'throw'", "'delete'", "'break'", "'breakAll'", "'continue'", "'abort'", "'transaction'", "':='", "'+='", "'-='", "'*='", "'/='", "'::='", "'or'", "'and'", "'xor'", "'implies'", "'=='", "'>='", "'<='", "'<>'", "'+'", "'-'", "'*'", "'/'", "'not'", "'++'", "'['", "']'", "'|'", "'=>'", "'new'", "'var'", "'ext'", "'pre'", "'post'", "'guard'", "'extends'", "'dataset'", "'over'", "'from'", "'as'", "'properties'", "'reference'", "'column'", "'grid'", "'keys'", "'header'", "'body'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "FLOAT", "DIGIT", "EXPONENT", "FLOAT_TYPE_SUFFIX", "INT", "POINT", "POINT_POINT", "ARROW", "BOOLEAN", "EscapeSequence", "STRING", "StrangeNameLiteral", "CollectionTypeName", "MapTypeName", "SpecialTypeName", "Letter", "SpecialNameChar", "JavaIDDigit", "NAME", "WS", "COMMENT", "LINE_COMMENT", "Annotation", "FORMAL", "PARAMLIST", "ASSIGNMENT", "SPECIAL_ASSIGNMENT", "HELPERMETHOD", "StatementBlock", "FOR", "IF", "ELSE", "TERNARY", "WHILE", "SWITCH", "CASE", "DEFAULT", "RETURN", "BREAK", "BREAKALL", "CONTINUE", "TRANSACTION", "COLLECTION", "ABORT", "CollectionType", "ModelElementType", "PARAMETERS", "NewExpression", "VAR", "NEW", "ANNOTATIONBLOCK", "EXECUTABLEANNOTATION", "DELETE", "THROW", "EXPRLIST", "EXPRRANGE", "NativeType", "MultiplicativeExpression", "OPERATOR", "EXPRESSIONINBRACKETS", "FeatureCall", "EOLMODULE", "BLOCK", "FEATURECALL", "LAMBDAEXPR", "TYPE", "ENUMERATION_VALUE", "IMPORT", "MODELDECLARATION", "NAMESPACE", "ALIAS", "DRIVER", "MODELDECLARATIONPARAMETERS", "MODELDECLARATIONPARAMETER", "ITEMSELECTOR", "MAP", "KEYVAL", "KEYVALLIST", "PRE", "POST", "EXTENDS", "GUARD", "DATASET", "NAMESLIST", "ALIASEDNAME", "PROPERTIES", "COLUMN", "REFERENCE", "GRID", "GRIDKEYS", "GRIDHEADER", "GRIDBODY", "FROM", "NESTEDFROM", "PINSETMODULE", "'model'", "';'", "'alias'", "','", "'driver'", "'{'", "'}'", "'='", "'operation'", "'function'", "'('", "')'", "':'", "'import'", "'$'", "'!'", "'#'", "'::'", "'<'", "'>'", "'if'", "'else'", "'switch'", "'case'", "'default'", "'for'", "'in'", "'while'", "'return'", "'throw'", "'delete'", "'break'", "'breakAll'", "'continue'", "'abort'", "'transaction'", "':='", "'+='", "'-='", "'*='", "'/='", "'::='", "'or'", "'and'", "'xor'", "'implies'", "'?'", "'=='", "'>='", "'<='", "'<>'", "'+'", "'-'", "'*'", "'/'", "'not'", "'++'", "'--'", "'['", "']'", "'|'", "'=>'", "'new'", "'var'", "'ext'", "'pre'", "'post'", "'guard'", "'extends'", "'dataset'", "'over'", "'from'", "'as'", "'properties'", "'reference'", "'column'", "'grid'", "'keys'", "'header'", "'body'"
     };
     public static final int T__144=144;
     public static final int T__143=143;
     public static final int T__146=146;
-    public static final int MODELDECLARATIONPARAMETER=73;
+    public static final int MODELDECLARATIONPARAMETER=77;
     public static final int T__145=145;
-    public static final int BREAKALL=39;
+    public static final int BREAKALL=43;
     public static final int T__140=140;
     public static final int T__142=142;
-    public static final int VAR=48;
-    public static final int MODELDECLARATIONPARAMETERS=72;
+    public static final int VAR=52;
+    public static final int MODELDECLARATIONPARAMETERS=76;
     public static final int T__141=141;
-    public static final int THROW=53;
-    public static final int ALIASEDNAME=84;
-    public static final int PARAMLIST=25;
-    public static final int EXPRLIST=54;
-    public static final int EXPRRANGE=55;
-    public static final int BREAK=38;
-    public static final int ELSE=32;
+    public static final int THROW=57;
+    public static final int SpecialTypeName=18;
+    public static final int ALIASEDNAME=88;
+    public static final int PARAMLIST=28;
+    public static final int EXPRLIST=58;
+    public static final int EXPRRANGE=59;
+    public static final int BREAK=42;
+    public static final int ELSE=35;
     public static final int T__137=137;
     public static final int T__136=136;
-    public static final int FORMAL=24;
-    public static final int IF=31;
-    public static final int MultiplicativeExpression=57;
-    public static final int TYPE=65;
+    public static final int FORMAL=27;
+    public static final int IF=34;
+    public static final int MultiplicativeExpression=61;
+    public static final int TYPE=69;
     public static final int T__139=139;
     public static final int T__138=138;
     public static final int T__133=133;
@@ -85,21 +86,21 @@ public class PinsetParser extends org.eclipse.epsilon.common.parse.EpsilonParser
     public static final int T__135=135;
     public static final int T__134=134;
     public static final int T__131=131;
-    public static final int NewExpression=47;
+    public static final int NewExpression=51;
     public static final int T__130=130;
-    public static final int CASE=35;
-    public static final int Letter=16;
-    public static final int LINE_COMMENT=22;
+    public static final int CASE=39;
+    public static final int Letter=19;
+    public static final int LINE_COMMENT=25;
     public static final int T__129=129;
     public static final int T__126=126;
-    public static final int JavaIDDigit=18;
-    public static final int GRIDHEADER=90;
+    public static final int JavaIDDigit=21;
+    public static final int GRIDHEADER=94;
     public static final int T__125=125;
-    public static final int LAMBDAEXPR=64;
-    public static final int MAP=75;
+    public static final int LAMBDAEXPR=68;
+    public static final int MAP=79;
     public static final int T__128=128;
     public static final int T__127=127;
-    public static final int PINSETMODULE=94;
+    public static final int PINSETMODULE=98;
     public static final int T__166=166;
     public static final int T__165=165;
     public static final int T__168=168;
@@ -107,23 +108,25 @@ public class PinsetParser extends org.eclipse.epsilon.common.parse.EpsilonParser
     public static final int T__162=162;
     public static final int T__161=161;
     public static final int T__164=164;
-    public static final int MODELDECLARATION=68;
+    public static final int MODELDECLARATION=72;
     public static final int T__163=163;
-    public static final int EXPRESSIONINBRACKETS=59;
-    public static final int GRIDBODY=91;
+    public static final int EXPRESSIONINBRACKETS=63;
+    public static final int GRIDBODY=95;
     public static final int T__160=160;
-    public static final int TRANSACTION=41;
+    public static final int TERNARY=36;
+    public static final int TRANSACTION=45;
     public static final int FLOAT_TYPE_SUFFIX=7;
-    public static final int ITEMSELECTOR=74;
-    public static final int COMMENT=21;
-    public static final int ModelElementType=45;
-    public static final int IMPORT=67;
-    public static final int DELETE=52;
+    public static final int ITEMSELECTOR=78;
+    public static final int COMMENT=24;
+    public static final int ModelElementType=49;
+    public static final int IMPORT=71;
+    public static final int DELETE=56;
     public static final int ARROW=11;
+    public static final int MapTypeName=17;
     public static final int T__159=159;
     public static final int T__158=158;
     public static final int T__155=155;
-    public static final int SPECIAL_ASSIGNMENT=27;
+    public static final int SPECIAL_ASSIGNMENT=30;
     public static final int T__154=154;
     public static final int T__157=157;
     public static final int T__156=156;
@@ -131,85 +134,79 @@ public class PinsetParser extends org.eclipse.epsilon.common.parse.EpsilonParser
     public static final int T__150=150;
     public static final int T__153=153;
     public static final int T__152=152;
-    public static final int GRID=88;
-    public static final int Annotation=23;
-    public static final int CONTINUE=40;
-    public static final int ENUMERATION_VALUE=66;
-    public static final int OPERATOR=58;
+    public static final int GRID=92;
+    public static final int Annotation=26;
+    public static final int CONTINUE=44;
+    public static final int ENUMERATION_VALUE=70;
+    public static final int OPERATOR=62;
     public static final int EXPONENT=6;
     public static final int STRING=14;
     public static final int T__148=148;
     public static final int T__147=147;
     public static final int T__149=149;
-    public static final int NAMESLIST=83;
+    public static final int NAMESLIST=87;
     public static final int T__100=100;
-    public static final int NAMESPACE=69;
-    public static final int COLLECTION=42;
-    public static final int NEW=49;
-    public static final int EXTENDS=80;
+    public static final int NAMESPACE=73;
+    public static final int COLLECTION=46;
+    public static final int NEW=53;
+    public static final int EXTENDS=84;
     public static final int T__102=102;
-    public static final int PRE=78;
+    public static final int PRE=82;
     public static final int T__101=101;
-    public static final int PROPERTIES=85;
-    public static final int POST=79;
-    public static final int ALIAS=70;
-    public static final int DRIVER=71;
-    public static final int COLUMN=86;
-    public static final int T__180=180;
-    public static final int DATASET=82;
-    public static final int FROM=92;
-    public static final int KEYVAL=76;
+    public static final int PROPERTIES=89;
+    public static final int POST=83;
+    public static final int ALIAS=74;
+    public static final int DRIVER=75;
+    public static final int COLUMN=90;
+    public static final int DATASET=86;
+    public static final int FROM=96;
+    public static final int KEYVAL=80;
     public static final int POINT_POINT=10;
-    public static final int GUARD=81;
+    public static final int GUARD=85;
     public static final int T__99=99;
-    public static final int T__95=95;
-    public static final int HELPERMETHOD=28;
-    public static final int T__96=96;
-    public static final int T__97=97;
-    public static final int StatementBlock=29;
-    public static final int T__98=98;
-    public static final int GRIDKEYS=89;
+    public static final int HELPERMETHOD=31;
+    public static final int StatementBlock=32;
+    public static final int GRIDKEYS=93;
     public static final int T__177=177;
     public static final int T__176=176;
-    public static final int T__179=179;
     public static final int T__178=178;
-    public static final int ABORT=43;
+    public static final int ABORT=47;
     public static final int T__173=173;
     public static final int StrangeNameLiteral=15;
     public static final int T__172=172;
     public static final int T__175=175;
     public static final int T__174=174;
-    public static final int FOR=30;
-    public static final int BLOCK=62;
+    public static final int FOR=33;
+    public static final int BLOCK=66;
     public static final int T__171=171;
     public static final int T__170=170;
-    public static final int PARAMETERS=46;
-    public static final int SpecialNameChar=17;
+    public static final int PARAMETERS=50;
+    public static final int SpecialNameChar=20;
     public static final int BOOLEAN=12;
-    public static final int NAME=19;
-    public static final int SWITCH=34;
+    public static final int NAME=22;
+    public static final int SWITCH=38;
     public static final int T__169=169;
-    public static final int FeatureCall=60;
+    public static final int FeatureCall=64;
     public static final int T__122=122;
     public static final int T__121=121;
     public static final int T__124=124;
     public static final int FLOAT=4;
     public static final int T__123=123;
     public static final int T__120=120;
-    public static final int NativeType=56;
+    public static final int NativeType=60;
     public static final int INT=8;
-    public static final int ANNOTATIONBLOCK=50;
-    public static final int RETURN=37;
-    public static final int KEYVALLIST=77;
-    public static final int FEATURECALL=63;
-    public static final int CollectionType=44;
+    public static final int ANNOTATIONBLOCK=54;
+    public static final int RETURN=41;
+    public static final int KEYVALLIST=81;
+    public static final int FEATURECALL=67;
+    public static final int CollectionType=48;
     public static final int T__119=119;
-    public static final int ASSIGNMENT=26;
-    public static final int REFERENCE=87;
+    public static final int ASSIGNMENT=29;
+    public static final int REFERENCE=91;
     public static final int T__118=118;
     public static final int T__115=115;
-    public static final int WS=20;
-    public static final int NESTEDFROM=93;
+    public static final int WS=23;
+    public static final int NESTEDFROM=97;
     public static final int EOF=-1;
     public static final int T__114=114;
     public static final int T__117=117;
@@ -219,18 +216,19 @@ public class PinsetParser extends org.eclipse.epsilon.common.parse.EpsilonParser
     public static final int T__113=113;
     public static final int T__112=112;
     public static final int EscapeSequence=13;
-    public static final int EOLMODULE=61;
+    public static final int EOLMODULE=65;
+    public static final int CollectionTypeName=16;
     public static final int DIGIT=5;
-    public static final int EXECUTABLEANNOTATION=51;
+    public static final int EXECUTABLEANNOTATION=55;
     public static final int T__108=108;
     public static final int T__107=107;
-    public static final int WHILE=33;
+    public static final int WHILE=37;
     public static final int T__109=109;
     public static final int T__104=104;
     public static final int POINT=9;
     public static final int T__103=103;
     public static final int T__106=106;
-    public static final int DEFAULT=36;
+    public static final int DEFAULT=40;
     public static final int T__105=105;
 
     // delegates
@@ -260,7 +258,7 @@ public class PinsetParser extends org.eclipse.epsilon.common.parse.EpsilonParser
     }
 
     public String[] getTokenNames() { return PinsetParser.tokenNames; }
-    public String getGrammarFileName() { return "/home/fonso/repos/york/pinset/es.unican.istr.pinset.engine/src/es/unican/istr/pinset/parse/Pinset.g"; }
+    public String getGrammarFileName() { return "Pinset.g"; }
 
 
     public static class pinsetModule_return extends ParserRuleReturnScope {
@@ -269,7 +267,7 @@ public class PinsetParser extends org.eclipse.epsilon.common.parse.EpsilonParser
     };
 
     // $ANTLR start pinsetModule
-    // /home/fonso/repos/york/pinset/es.unican.istr.pinset.engine/src/es/unican/istr/pinset/parse/Pinset.g:95:1: pinsetModule : ( importStatement )* ( pinsetModuleContent )* EOF -> ^( PINSETMODULE ( importStatement )* ( pinsetModuleContent )* ) ;
+    // Pinset.g:95:1: pinsetModule : ( importStatement )* ( pinsetModuleContent )* EOF -> ^( PINSETMODULE ( importStatement )* ( pinsetModuleContent )* ) ;
     public final PinsetParser.pinsetModule_return pinsetModule() throws RecognitionException {
         PinsetParser.pinsetModule_return retval = new PinsetParser.pinsetModule_return();
         retval.start = input.LT(1);
@@ -287,23 +285,23 @@ public class PinsetParser extends org.eclipse.epsilon.common.parse.EpsilonParser
         RewriteRuleSubtreeStream stream_pinsetModuleContent=new RewriteRuleSubtreeStream(adaptor,"rule pinsetModuleContent");
         RewriteRuleSubtreeStream stream_importStatement=new RewriteRuleSubtreeStream(adaptor,"rule importStatement");
         try {
-            // /home/fonso/repos/york/pinset/es.unican.istr.pinset.engine/src/es/unican/istr/pinset/parse/Pinset.g:96:3: ( ( importStatement )* ( pinsetModuleContent )* EOF -> ^( PINSETMODULE ( importStatement )* ( pinsetModuleContent )* ) )
-            // /home/fonso/repos/york/pinset/es.unican.istr.pinset.engine/src/es/unican/istr/pinset/parse/Pinset.g:96:5: ( importStatement )* ( pinsetModuleContent )* EOF
+            // Pinset.g:96:3: ( ( importStatement )* ( pinsetModuleContent )* EOF -> ^( PINSETMODULE ( importStatement )* ( pinsetModuleContent )* ) )
+            // Pinset.g:96:5: ( importStatement )* ( pinsetModuleContent )* EOF
             {
-            // /home/fonso/repos/york/pinset/es.unican.istr.pinset.engine/src/es/unican/istr/pinset/parse/Pinset.g:96:5: ( importStatement )*
+            // Pinset.g:96:5: ( importStatement )*
             loop1:
             do {
                 int alt1=2;
                 int LA1_0 = input.LA(1);
 
-                if ( (LA1_0==108) ) {
+                if ( (LA1_0==112) ) {
                     alt1=1;
                 }
 
 
                 switch (alt1) {
             	case 1 :
-            	    // /home/fonso/repos/york/pinset/es.unican.istr.pinset.engine/src/es/unican/istr/pinset/parse/Pinset.g:0:0: importStatement
+            	    // Pinset.g:0:0: importStatement
             	    {
             	    pushFollow(FOLLOW_importStatement_in_pinsetModule77);
             	    importStatement1=importStatement();
@@ -320,20 +318,20 @@ public class PinsetParser extends org.eclipse.epsilon.common.parse.EpsilonParser
                 }
             } while (true);
 
-            // /home/fonso/repos/york/pinset/es.unican.istr.pinset.engine/src/es/unican/istr/pinset/parse/Pinset.g:96:22: ( pinsetModuleContent )*
+            // Pinset.g:96:22: ( pinsetModuleContent )*
             loop2:
             do {
                 int alt2=2;
                 int LA2_0 = input.LA(1);
 
-                if ( (LA2_0==Annotation||(LA2_0>=103 && LA2_0<=104)||LA2_0==109||(LA2_0>=166 && LA2_0<=167)||LA2_0==170) ) {
+                if ( (LA2_0==Annotation||(LA2_0>=107 && LA2_0<=108)||LA2_0==113||(LA2_0>=164 && LA2_0<=165)||LA2_0==168) ) {
                     alt2=1;
                 }
 
 
                 switch (alt2) {
             	case 1 :
-            	    // /home/fonso/repos/york/pinset/es.unican.istr.pinset.engine/src/es/unican/istr/pinset/parse/Pinset.g:96:23: pinsetModuleContent
+            	    // Pinset.g:96:23: pinsetModuleContent
             	    {
             	    pushFollow(FOLLOW_pinsetModuleContent_in_pinsetModule81);
             	    pinsetModuleContent2=pinsetModuleContent();
@@ -356,7 +354,7 @@ public class PinsetParser extends org.eclipse.epsilon.common.parse.EpsilonParser
 
 
             // AST REWRITE
-            // elements: pinsetModuleContent, importStatement
+            // elements: importStatement, pinsetModuleContent
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -368,18 +366,18 @@ public class PinsetParser extends org.eclipse.epsilon.common.parse.EpsilonParser
             root_0 = (org.eclipse.epsilon.common.parse.AST)adaptor.nil();
             // 97:3: -> ^( PINSETMODULE ( importStatement )* ( pinsetModuleContent )* )
             {
-                // /home/fonso/repos/york/pinset/es.unican.istr.pinset.engine/src/es/unican/istr/pinset/parse/Pinset.g:97:6: ^( PINSETMODULE ( importStatement )* ( pinsetModuleContent )* )
+                // Pinset.g:97:6: ^( PINSETMODULE ( importStatement )* ( pinsetModuleContent )* )
                 {
                 org.eclipse.epsilon.common.parse.AST root_1 = (org.eclipse.epsilon.common.parse.AST)adaptor.nil();
                 root_1 = (org.eclipse.epsilon.common.parse.AST)adaptor.becomeRoot((org.eclipse.epsilon.common.parse.AST)adaptor.create(PINSETMODULE, "PINSETMODULE"), root_1);
 
-                // /home/fonso/repos/york/pinset/es.unican.istr.pinset.engine/src/es/unican/istr/pinset/parse/Pinset.g:97:21: ( importStatement )*
+                // Pinset.g:97:21: ( importStatement )*
                 while ( stream_importStatement.hasNext() ) {
                     adaptor.addChild(root_1, stream_importStatement.nextTree());
 
                 }
                 stream_importStatement.reset();
-                // /home/fonso/repos/york/pinset/es.unican.istr.pinset.engine/src/es/unican/istr/pinset/parse/Pinset.g:97:38: ( pinsetModuleContent )*
+                // Pinset.g:97:38: ( pinsetModuleContent )*
                 while ( stream_pinsetModuleContent.hasNext() ) {
                     adaptor.addChild(root_1, stream_pinsetModuleContent.nextTree());
 
@@ -420,7 +418,7 @@ public class PinsetParser extends org.eclipse.epsilon.common.parse.EpsilonParser
     };
 
     // $ANTLR start pinsetModuleContent
-    // /home/fonso/repos/york/pinset/es.unican.istr.pinset.engine/src/es/unican/istr/pinset/parse/Pinset.g:100:1: pinsetModuleContent : ( pre | post | datasetRule | annotationBlock | operationDeclaration );
+    // Pinset.g:100:1: pinsetModuleContent : ( pre | post | datasetRule | annotationBlock | operationDeclaration );
     public final PinsetParser.pinsetModuleContent_return pinsetModuleContent() throws RecognitionException {
         PinsetParser.pinsetModuleContent_return retval = new PinsetParser.pinsetModuleContent_return();
         retval.start = input.LT(1);
@@ -440,32 +438,32 @@ public class PinsetParser extends org.eclipse.epsilon.common.parse.EpsilonParser
 
 
         try {
-            // /home/fonso/repos/york/pinset/es.unican.istr.pinset.engine/src/es/unican/istr/pinset/parse/Pinset.g:101:3: ( pre | post | datasetRule | annotationBlock | operationDeclaration )
+            // Pinset.g:101:3: ( pre | post | datasetRule | annotationBlock | operationDeclaration )
             int alt3=5;
             switch ( input.LA(1) ) {
-            case 166:
+            case 164:
                 {
                 alt3=1;
                 }
                 break;
-            case 167:
+            case 165:
                 {
                 alt3=2;
                 }
                 break;
-            case 170:
+            case 168:
                 {
                 alt3=3;
                 }
                 break;
             case Annotation:
-            case 109:
+            case 113:
                 {
                 alt3=4;
                 }
                 break;
-            case 103:
-            case 104:
+            case 107:
+            case 108:
                 {
                 alt3=5;
                 }
@@ -480,7 +478,7 @@ public class PinsetParser extends org.eclipse.epsilon.common.parse.EpsilonParser
 
             switch (alt3) {
                 case 1 :
-                    // /home/fonso/repos/york/pinset/es.unican.istr.pinset.engine/src/es/unican/istr/pinset/parse/Pinset.g:101:5: pre
+                    // Pinset.g:101:5: pre
                     {
                     root_0 = (org.eclipse.epsilon.common.parse.AST)adaptor.nil();
 
@@ -494,7 +492,7 @@ public class PinsetParser extends org.eclipse.epsilon.common.parse.EpsilonParser
                     }
                     break;
                 case 2 :
-                    // /home/fonso/repos/york/pinset/es.unican.istr.pinset.engine/src/es/unican/istr/pinset/parse/Pinset.g:101:11: post
+                    // Pinset.g:101:11: post
                     {
                     root_0 = (org.eclipse.epsilon.common.parse.AST)adaptor.nil();
 
@@ -508,7 +506,7 @@ public class PinsetParser extends org.eclipse.epsilon.common.parse.EpsilonParser
                     }
                     break;
                 case 3 :
-                    // /home/fonso/repos/york/pinset/es.unican.istr.pinset.engine/src/es/unican/istr/pinset/parse/Pinset.g:101:18: datasetRule
+                    // Pinset.g:101:18: datasetRule
                     {
                     root_0 = (org.eclipse.epsilon.common.parse.AST)adaptor.nil();
 
@@ -522,7 +520,7 @@ public class PinsetParser extends org.eclipse.epsilon.common.parse.EpsilonParser
                     }
                     break;
                 case 4 :
-                    // /home/fonso/repos/york/pinset/es.unican.istr.pinset.engine/src/es/unican/istr/pinset/parse/Pinset.g:101:32: annotationBlock
+                    // Pinset.g:101:32: annotationBlock
                     {
                     root_0 = (org.eclipse.epsilon.common.parse.AST)adaptor.nil();
 
@@ -536,7 +534,7 @@ public class PinsetParser extends org.eclipse.epsilon.common.parse.EpsilonParser
                     }
                     break;
                 case 5 :
-                    // /home/fonso/repos/york/pinset/es.unican.istr.pinset.engine/src/es/unican/istr/pinset/parse/Pinset.g:101:50: operationDeclaration
+                    // Pinset.g:101:50: operationDeclaration
                     {
                     root_0 = (org.eclipse.epsilon.common.parse.AST)adaptor.nil();
 
@@ -572,97 +570,98 @@ public class PinsetParser extends org.eclipse.epsilon.common.parse.EpsilonParser
     // $ANTLR end pinsetModuleContent
 
     // Delegated rules
-    public Pinset_EolParserRules.nativeType_return nativeType() throws RecognitionException { return gEolParserRules.nativeType(); }
-    public Pinset_EolParserRules.statementA_return statementA() throws RecognitionException { return gEolParserRules.statementA(); }
-    public Pinset_EolParserRules.ifStatement_return ifStatement() throws RecognitionException { return gEolParserRules.ifStatement(); }
-    public Pinset_EolParserRules.keyvalExpression_return keyvalExpression() throws RecognitionException { return gEolParserRules.keyvalExpression(); }
-    public Pinset_EolParserRules.statementOrStatementBlock_return statementOrStatementBlock() throws RecognitionException { return gEolParserRules.statementOrStatementBlock(); }
-    public Pinset_EolParserRules.simpleFeatureCall_return simpleFeatureCall() throws RecognitionException { return gEolParserRules.simpleFeatureCall(); }
-    public Pinset_EolParserRules.formalParameterList_return formalParameterList() throws RecognitionException { return gEolParserRules.formalParameterList(); }
-    public Pinset_EolParserRules.modelDeclaration_return modelDeclaration() throws RecognitionException { return gEolParserRules.modelDeclaration(); }
-    public Pinset_EolParserRules.operationDeclarationOrAnnotationBlock_return operationDeclarationOrAnnotationBlock() throws RecognitionException { return gEolParserRules.operationDeclarationOrAnnotationBlock(); }
-    public Pinset_EolParserRules.unaryExpression_return unaryExpression() throws RecognitionException { return gEolParserRules.unaryExpression(); }
-    public Pinset_PinsetParserRules.properties_return properties() throws RecognitionException { return gPinsetParserRules.properties(); }
-    public Pinset_EolParserRules.keyvalExpressionList_return keyvalExpressionList() throws RecognitionException { return gEolParserRules.keyvalExpressionList(); }
-    public Pinset_EolParserRules.statement_return statement() throws RecognitionException { return gEolParserRules.statement(); }
-    public Pinset_EolParserRules.collectionType_return collectionType() throws RecognitionException { return gEolParserRules.collectionType(); }
-    public Pinset_EolParserRules.annotationBlock_return annotationBlock() throws RecognitionException { return gEolParserRules.annotationBlock(); }
-    public Pinset_EolParserRules.annotation_return annotation() throws RecognitionException { return gEolParserRules.annotation(); }
-    public Pinset_EolParserRules.block_return block() throws RecognitionException { return gEolParserRules.block(); }
-    public Pinset_EolParserRules.typeName_return typeName() throws RecognitionException { return gEolParserRules.typeName(); }
-    public Pinset_EolParserRules.breakStatement_return breakStatement() throws RecognitionException { return gEolParserRules.breakStatement(); }
-    public Pinset_EolParserRules.shortcutOperatorExpression_return shortcutOperatorExpression() throws RecognitionException { return gEolParserRules.shortcutOperatorExpression(); }
-    public Pinset_EolParserRules.literal_return literal() throws RecognitionException { return gEolParserRules.literal(); }
-    public Pinset_EolParserRules.modelDeclarationParameters_return modelDeclarationParameters() throws RecognitionException { return gEolParserRules.modelDeclarationParameters(); }
-    public Pinset_PinsetParserRules.gbody_return gbody() throws RecognitionException { return gPinsetParserRules.gbody(); }
-    public Pinset_EolParserRules.executableAnnotation_return executableAnnotation() throws RecognitionException { return gEolParserRules.executableAnnotation(); }
-    public Pinset_EolParserRules.continueStatement_return continueStatement() throws RecognitionException { return gEolParserRules.continueStatement(); }
-    public Pinset_EolParserRules.modelAlias_return modelAlias() throws RecognitionException { return gEolParserRules.modelAlias(); }
-    public Pinset_PinsetParserRules.aliasedName_return aliasedName() throws RecognitionException { return gPinsetParserRules.aliasedName(); }
-    public Pinset_PinsetParserRules.reference_return reference() throws RecognitionException { return gPinsetParserRules.reference(); }
-    public Pinset_EolParserRules.whileStatement_return whileStatement() throws RecognitionException { return gEolParserRules.whileStatement(); }
-    public Pinset_EolParserRules.returnStatement_return returnStatement() throws RecognitionException { return gEolParserRules.returnStatement(); }
-    public Pinset_EolParserRules.lambdaExpression_return lambdaExpression() throws RecognitionException { return gEolParserRules.lambdaExpression(); }
-    public Pinset_EolParserRules.literalMapCollection_return literalMapCollection() throws RecognitionException { return gEolParserRules.literalMapCollection(); }
-    public Pinset_ErlParserRules.post_return post() throws RecognitionException { return gErlParserRules.post(); }
-    public Pinset_EolParserRules.itemSelectorExpression_return itemSelectorExpression() throws RecognitionException { return gEolParserRules.itemSelectorExpression(); }
-    public Pinset_EolParserRules.switchStatement_return switchStatement() throws RecognitionException { return gEolParserRules.switchStatement(); }
-    public Pinset_EolParserRules.statementBlock_return statementBlock() throws RecognitionException { return gEolParserRules.statementBlock(); }
-    public Pinset_EolParserRules.throwStatement_return throwStatement() throws RecognitionException { return gEolParserRules.throwStatement(); }
-    public Pinset_PinsetParserRules.header_return header() throws RecognitionException { return gPinsetParserRules.header(); }
-    public Pinset_EolParserRules.multiplicativeExpression_return multiplicativeExpression() throws RecognitionException { return gEolParserRules.multiplicativeExpression(); }
-    public Pinset_ErlParserRules.guard_return guard() throws RecognitionException { return gErlParserRules.guard(); }
-    public Pinset_EolParserRules.complexFeatureCall_return complexFeatureCall() throws RecognitionException { return gEolParserRules.complexFeatureCall(); }
     public Pinset_EolParserRules.literalSequentialCollection_return literalSequentialCollection() throws RecognitionException { return gEolParserRules.literalSequentialCollection(); }
-    public Pinset_PinsetParserRules.from_return from() throws RecognitionException { return gPinsetParserRules.from(); }
-    public Pinset_EolParserRules.logicalExpression_return logicalExpression() throws RecognitionException { return gEolParserRules.logicalExpression(); }
-    public Pinset_EolParserRules.primitiveExpression_return primitiveExpression() throws RecognitionException { return gEolParserRules.primitiveExpression(); }
-    public Pinset_ErlParserRules.pre_return pre() throws RecognitionException { return gErlParserRules.pre(); }
-    public Pinset_EolParserRules.expressionRange_return expressionRange() throws RecognitionException { return gEolParserRules.expressionRange(); }
-    public Pinset_EolParserRules.statementB_return statementB() throws RecognitionException { return gEolParserRules.statementB(); }
-    public Pinset_ErlParserRules.extendz_return extendz() throws RecognitionException { return gErlParserRules.extendz(); }
-    public Pinset_EolParserRules.additiveExpression_return additiveExpression() throws RecognitionException { return gEolParserRules.additiveExpression(); }
-    public Pinset_EolParserRules.caseStatement_return caseStatement() throws RecognitionException { return gEolParserRules.caseStatement(); }
-    public Pinset_EolParserRules.logicalExpressionInBrackets_return logicalExpressionInBrackets() throws RecognitionException { return gEolParserRules.logicalExpressionInBrackets(); }
-    public Pinset_EolParserRules.expressionOrStatementBlock_return expressionOrStatementBlock() throws RecognitionException { return gEolParserRules.expressionOrStatementBlock(); }
-    public Pinset_EolParserRules.expressionStatement_return expressionStatement() throws RecognitionException { return gEolParserRules.expressionStatement(); }
-    public Pinset_EolParserRules.breakAllStatement_return breakAllStatement() throws RecognitionException { return gEolParserRules.breakAllStatement(); }
-    public Pinset_EolParserRules.abortStatement_return abortStatement() throws RecognitionException { return gEolParserRules.abortStatement(); }
-    public Pinset_EolParserRules.featureCall_return featureCall() throws RecognitionException { return gEolParserRules.featureCall(); }
-    public Pinset_EolParserRules.formalParameter_return formalParameter() throws RecognitionException { return gEolParserRules.formalParameter(); }
-    public Pinset_EolParserRules.expressionListOrRange_return expressionListOrRange() throws RecognitionException { return gEolParserRules.expressionListOrRange(); }
-    public Pinset_EolParserRules.deleteStatement_return deleteStatement() throws RecognitionException { return gEolParserRules.deleteStatement(); }
-    public Pinset_EolParserRules.modelDeclarationParameter_return modelDeclarationParameter() throws RecognitionException { return gEolParserRules.modelDeclarationParameter(); }
-    public Pinset_EolParserRules.importStatement_return importStatement() throws RecognitionException { return gEolParserRules.importStatement(); }
-    public Pinset_EolParserRules.operationDeclaration_return operationDeclaration() throws RecognitionException { return gEolParserRules.operationDeclaration(); }
-    public Pinset_EolParserRules.transactionStatement_return transactionStatement() throws RecognitionException { return gEolParserRules.transactionStatement(); }
-    public Pinset_PinsetParserRules.columnGenerator_return columnGenerator() throws RecognitionException { return gPinsetParserRules.columnGenerator(); }
-    public Pinset_EolParserRules.pathName_return pathName() throws RecognitionException { return gEolParserRules.pathName(); }
-    public Pinset_EolParserRules.defaultStatement_return defaultStatement() throws RecognitionException { return gEolParserRules.defaultStatement(); }
     public Pinset_EolParserRules.expressionList_return expressionList() throws RecognitionException { return gEolParserRules.expressionList(); }
-    public Pinset_PinsetParserRules.column_return column() throws RecognitionException { return gPinsetParserRules.column(); }
-    public Pinset_EolParserRules.lambdaExpressionInBrackets_return lambdaExpressionInBrackets() throws RecognitionException { return gEolParserRules.lambdaExpressionInBrackets(); }
-    public Pinset_EolParserRules.forStatement_return forStatement() throws RecognitionException { return gEolParserRules.forStatement(); }
-    public Pinset_EolParserRules.variableDeclarationExpression_return variableDeclarationExpression() throws RecognitionException { return gEolParserRules.variableDeclarationExpression(); }
-    public Pinset_EolParserRules.packagedType_return packagedType() throws RecognitionException { return gEolParserRules.packagedType(); }
+    public Pinset_EolParserRules.executableAnnotation_return executableAnnotation() throws RecognitionException { return gEolParserRules.executableAnnotation(); }
+    public Pinset_EolParserRules.literal_return literal() throws RecognitionException { return gEolParserRules.literal(); }
+    public Pinset_EolParserRules.switchStatement_return switchStatement() throws RecognitionException { return gEolParserRules.switchStatement(); }
     public Pinset_EolParserRules.relationalExpression_return relationalExpression() throws RecognitionException { return gEolParserRules.relationalExpression(); }
-    public Pinset_PinsetParserRules.nestedFrom_return nestedFrom() throws RecognitionException { return gPinsetParserRules.nestedFrom(); }
-    public Pinset_EolParserRules.elseStatement_return elseStatement() throws RecognitionException { return gEolParserRules.elseStatement(); }
-    public Pinset_EolParserRules.assignmentStatement_return assignmentStatement() throws RecognitionException { return gEolParserRules.assignmentStatement(); }
+    public Pinset_EolParserRules.importStatement_return importStatement() throws RecognitionException { return gEolParserRules.importStatement(); }
+    public Pinset_EolParserRules.continueStatement_return continueStatement() throws RecognitionException { return gEolParserRules.continueStatement(); }
+    public Pinset_EolParserRules.expressionRange_return expressionRange() throws RecognitionException { return gEolParserRules.expressionRange(); }
+    public Pinset_PinsetParserRules.header_return header() throws RecognitionException { return gPinsetParserRules.header(); }
+    public Pinset_EolParserRules.keyvalExpressionList_return keyvalExpressionList() throws RecognitionException { return gEolParserRules.keyvalExpressionList(); }
+    public Pinset_EolParserRules.operationDeclaration_return operationDeclaration() throws RecognitionException { return gEolParserRules.operationDeclaration(); }
     public Pinset_EolParserRules.postfixExpression_return postfixExpression() throws RecognitionException { return gEolParserRules.postfixExpression(); }
+    public Pinset_EolParserRules.formalParameterList_return formalParameterList() throws RecognitionException { return gEolParserRules.formalParameterList(); }
+    public Pinset_EolParserRules.operationDeclarationOrAnnotationBlock_return operationDeclarationOrAnnotationBlock() throws RecognitionException { return gEolParserRules.operationDeclarationOrAnnotationBlock(); }
+    public Pinset_ErlParserRules.post_return post() throws RecognitionException { return gErlParserRules.post(); }
+    public Pinset_EolParserRules.formalParameter_return formalParameter() throws RecognitionException { return gEolParserRules.formalParameter(); }
+    public Pinset_EolParserRules.additiveExpression_return additiveExpression() throws RecognitionException { return gEolParserRules.additiveExpression(); }
+    public Pinset_EolParserRules.specialType_return specialType() throws RecognitionException { return gEolParserRules.specialType(); }
+    public Pinset_EolParserRules.assignmentStatement_return assignmentStatement() throws RecognitionException { return gEolParserRules.assignmentStatement(); }
+    public Pinset_EolParserRules.variableDeclarationExpression_return variableDeclarationExpression() throws RecognitionException { return gEolParserRules.variableDeclarationExpression(); }
+    public Pinset_EolParserRules.modelDeclaration_return modelDeclaration() throws RecognitionException { return gEolParserRules.modelDeclaration(); }
     public Pinset_PinsetParserRules.grid_return grid() throws RecognitionException { return gPinsetParserRules.grid(); }
+    public Pinset_EolParserRules.forStatement_return forStatement() throws RecognitionException { return gEolParserRules.forStatement(); }
+    public Pinset_EolParserRules.statementBlock_return statementBlock() throws RecognitionException { return gEolParserRules.statementBlock(); }
+    public Pinset_PinsetParserRules.aliasedName_return aliasedName() throws RecognitionException { return gPinsetParserRules.aliasedName(); }
+    public Pinset_EolParserRules.pathName_return pathName() throws RecognitionException { return gEolParserRules.pathName(); }
+    public Pinset_EolParserRules.featureCall_return featureCall() throws RecognitionException { return gEolParserRules.featureCall(); }
+    public Pinset_EolParserRules.breakAllStatement_return breakAllStatement() throws RecognitionException { return gEolParserRules.breakAllStatement(); }
+    public Pinset_EolParserRules.annotation_return annotation() throws RecognitionException { return gEolParserRules.annotation(); }
+    public Pinset_PinsetParserRules.from_return from() throws RecognitionException { return gPinsetParserRules.from(); }
+    public Pinset_ErlParserRules.guard_return guard() throws RecognitionException { return gErlParserRules.guard(); }
+    public Pinset_ErlParserRules.pre_return pre() throws RecognitionException { return gErlParserRules.pre(); }
+    public Pinset_ErlParserRules.extendz_return extendz() throws RecognitionException { return gErlParserRules.extendz(); }
+    public Pinset_EolParserRules.block_return block() throws RecognitionException { return gEolParserRules.block(); }
+    public Pinset_EolParserRules.expressionOrStatementBlock_return expressionOrStatementBlock() throws RecognitionException { return gEolParserRules.expressionOrStatementBlock(); }
+    public Pinset_EolParserRules.elseStatement_return elseStatement() throws RecognitionException { return gEolParserRules.elseStatement(); }
+    public Pinset_EolParserRules.logicalExpressionInBrackets_return logicalExpressionInBrackets() throws RecognitionException { return gEolParserRules.logicalExpressionInBrackets(); }
+    public Pinset_EolParserRules.lambdaExpression_return lambdaExpression() throws RecognitionException { return gEolParserRules.lambdaExpression(); }
+    public Pinset_EolParserRules.lambdaExpressionInBrackets_return lambdaExpressionInBrackets() throws RecognitionException { return gEolParserRules.lambdaExpressionInBrackets(); }
+    public Pinset_EolParserRules.literalMapCollection_return literalMapCollection() throws RecognitionException { return gEolParserRules.literalMapCollection(); }
+    public Pinset_EolParserRules.collectionType_return collectionType() throws RecognitionException { return gEolParserRules.collectionType(); }
+    public Pinset_EolParserRules.typeName_return typeName() throws RecognitionException { return gEolParserRules.typeName(); }
+    public Pinset_EolParserRules.packagedType_return packagedType() throws RecognitionException { return gEolParserRules.packagedType(); }
+    public Pinset_EolParserRules.shortcutOperatorExpression_return shortcutOperatorExpression() throws RecognitionException { return gEolParserRules.shortcutOperatorExpression(); }
+    public Pinset_EolParserRules.whileStatement_return whileStatement() throws RecognitionException { return gEolParserRules.whileStatement(); }
+    public Pinset_EolParserRules.modelDeclarationParameters_return modelDeclarationParameters() throws RecognitionException { return gEolParserRules.modelDeclarationParameters(); }
+    public Pinset_EolParserRules.statementOrStatementBlock_return statementOrStatementBlock() throws RecognitionException { return gEolParserRules.statementOrStatementBlock(); }
+    public Pinset_EolParserRules.breakStatement_return breakStatement() throws RecognitionException { return gEolParserRules.breakStatement(); }
+    public Pinset_PinsetParserRules.nestedFrom_return nestedFrom() throws RecognitionException { return gPinsetParserRules.nestedFrom(); }
+    public Pinset_EolParserRules.caseStatement_return caseStatement() throws RecognitionException { return gEolParserRules.caseStatement(); }
+    public Pinset_EolParserRules.multiplicativeExpression_return multiplicativeExpression() throws RecognitionException { return gEolParserRules.multiplicativeExpression(); }
+    public Pinset_EolParserRules.modelAlias_return modelAlias() throws RecognitionException { return gEolParserRules.modelAlias(); }
+    public Pinset_EolParserRules.defaultStatement_return defaultStatement() throws RecognitionException { return gEolParserRules.defaultStatement(); }
+    public Pinset_EolParserRules.expressionListOrRange_return expressionListOrRange() throws RecognitionException { return gEolParserRules.expressionListOrRange(); }
     public Pinset_EolParserRules.newExpression_return newExpression() throws RecognitionException { return gEolParserRules.newExpression(); }
-    public Pinset_PinsetParserRules.gkeys_return gkeys() throws RecognitionException { return gPinsetParserRules.gkeys(); }
-    public Pinset_PinsetParserRules.datasetRule_return datasetRule() throws RecognitionException { return gPinsetParserRules.datasetRule(); }
-    public Pinset_EolParserRules.parameterList_return parameterList() throws RecognitionException { return gEolParserRules.parameterList(); }
     public Pinset_EolParserRules.modelDriver_return modelDriver() throws RecognitionException { return gEolParserRules.modelDriver(); }
+    public Pinset_PinsetParserRules.datasetRule_return datasetRule() throws RecognitionException { return gPinsetParserRules.datasetRule(); }
+    public Pinset_EolParserRules.deleteStatement_return deleteStatement() throws RecognitionException { return gEolParserRules.deleteStatement(); }
+    public Pinset_EolParserRules.transactionStatement_return transactionStatement() throws RecognitionException { return gEolParserRules.transactionStatement(); }
+    public Pinset_EolParserRules.keyvalExpression_return keyvalExpression() throws RecognitionException { return gEolParserRules.keyvalExpression(); }
+    public Pinset_EolParserRules.modelDeclarationParameter_return modelDeclarationParameter() throws RecognitionException { return gEolParserRules.modelDeclarationParameter(); }
+    public Pinset_EolParserRules.complexFeatureCall_return complexFeatureCall() throws RecognitionException { return gEolParserRules.complexFeatureCall(); }
+    public Pinset_PinsetParserRules.column_return column() throws RecognitionException { return gPinsetParserRules.column(); }
+    public Pinset_PinsetParserRules.reference_return reference() throws RecognitionException { return gPinsetParserRules.reference(); }
+    public Pinset_EolParserRules.statementA_return statementA() throws RecognitionException { return gEolParserRules.statementA(); }
     public Pinset_PinsetParserRules.nameslist_return nameslist() throws RecognitionException { return gPinsetParserRules.nameslist(); }
+    public Pinset_EolParserRules.primitiveExpression_return primitiveExpression() throws RecognitionException { return gEolParserRules.primitiveExpression(); }
+    public Pinset_EolParserRules.statement_return statement() throws RecognitionException { return gEolParserRules.statement(); }
+    public Pinset_EolParserRules.abortStatement_return abortStatement() throws RecognitionException { return gEolParserRules.abortStatement(); }
+    public Pinset_EolParserRules.simpleFeatureCall_return simpleFeatureCall() throws RecognitionException { return gEolParserRules.simpleFeatureCall(); }
+    public Pinset_EolParserRules.parameterList_return parameterList() throws RecognitionException { return gEolParserRules.parameterList(); }
+    public Pinset_ErlParserRules.erlModuleContent_return erlModuleContent() throws RecognitionException { return gErlParserRules.erlModuleContent(); }
+    public Pinset_EolParserRules.statementB_return statementB() throws RecognitionException { return gEolParserRules.statementB(); }
+    public Pinset_PinsetParserRules.columnGenerator_return columnGenerator() throws RecognitionException { return gPinsetParserRules.columnGenerator(); }
+    public Pinset_EolParserRules.itemSelectorExpression_return itemSelectorExpression() throws RecognitionException { return gEolParserRules.itemSelectorExpression(); }
+    public Pinset_EolParserRules.unaryExpression_return unaryExpression() throws RecognitionException { return gEolParserRules.unaryExpression(); }
+    public Pinset_EolParserRules.ifStatement_return ifStatement() throws RecognitionException { return gEolParserRules.ifStatement(); }
+    public Pinset_PinsetParserRules.properties_return properties() throws RecognitionException { return gPinsetParserRules.properties(); }
+    public Pinset_EolParserRules.returnStatement_return returnStatement() throws RecognitionException { return gEolParserRules.returnStatement(); }
+    public Pinset_EolParserRules.throwStatement_return throwStatement() throws RecognitionException { return gEolParserRules.throwStatement(); }
+    public Pinset_PinsetParserRules.gbody_return gbody() throws RecognitionException { return gPinsetParserRules.gbody(); }
+    public Pinset_EolParserRules.annotationBlock_return annotationBlock() throws RecognitionException { return gEolParserRules.annotationBlock(); }
+    public Pinset_PinsetParserRules.gkeys_return gkeys() throws RecognitionException { return gPinsetParserRules.gkeys(); }
+    public Pinset_EolParserRules.logicalExpression_return logicalExpression() throws RecognitionException { return gEolParserRules.logicalExpression(); }
+    public Pinset_EolParserRules.expressionStatement_return expressionStatement() throws RecognitionException { return gEolParserRules.expressionStatement(); }
 
 
  
 
-    public static final BitSet FOLLOW_importStatement_in_pinsetModule77 = new BitSet(new long[]{0x0000000000800000L,0x0000318000000000L,0x000004C000000000L});
-    public static final BitSet FOLLOW_pinsetModuleContent_in_pinsetModule81 = new BitSet(new long[]{0x0000000000800000L,0x0000218000000000L,0x000004C000000000L});
+    public static final BitSet FOLLOW_importStatement_in_pinsetModule77 = new BitSet(new long[]{0x0000000004000000L,0x0003180000000000L,0x0000013000000000L});
+    public static final BitSet FOLLOW_pinsetModuleContent_in_pinsetModule81 = new BitSet(new long[]{0x0000000004000000L,0x0002180000000000L,0x0000013000000000L});
     public static final BitSet FOLLOW_EOF_in_pinsetModule85 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_pre_in_pinsetModuleContent112 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_post_in_pinsetModuleContent116 = new BitSet(new long[]{0x0000000000000002L});

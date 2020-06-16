@@ -7,7 +7,7 @@
             class="es.unican.istr.pinset.dt.editor.PinsetEditor"
             contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
             default="true"
-            extensions="pset"
+            extensions="pinset"
             icon="icons/edl.png"
             id="es.unican.istr.pinset.dt.editor.PinsetEditor"
             name="Pinset Language Editor"/>

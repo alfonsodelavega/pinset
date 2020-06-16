@@ -19,7 +19,7 @@ public class TestDummy {
     String rootPath = "src/es/unican/istr/pinset/test/";
     PinsetModule module = new PinsetModule();
     module.setOutputFolder("gen");
-    module.parse(new File(rootPath + "dummy.pset"));
+    module.parse(new File(rootPath + "dummy.pinset"));
     if (!module.getParseProblems().isEmpty()) {
       System.err.println("The following errors were identified");
       for (ParseProblem parseProblem : module.getParseProblems()) {

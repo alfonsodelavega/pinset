@@ -22,12 +22,12 @@ public class NewPinsetFileWizard extends AbstractNewFileWizard2 {
 
   @Override
   public String getExtension() {
-    return "pset";
+    return "pinset";
   }
 
   @Override
   public String getDescription() {
-    return "This wizard creates a new Pinset file with *.pset extension.";
+    return "This wizard creates a new Pinset file with *.pinset extension.";
   }
 
 }

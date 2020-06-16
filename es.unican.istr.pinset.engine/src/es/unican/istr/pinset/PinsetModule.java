@@ -100,7 +100,7 @@ public class PinsetModule extends ErlModule {
   @Override
   public HashMap<String, Class<?>> getImportConfiguration() {
     HashMap<String, Class<?>> importConfiguration = super.getImportConfiguration();
-    importConfiguration.put("pset", PinsetModule.class);
+    importConfiguration.put("pinset", PinsetModule.class);
     return importConfiguration;
   }
 

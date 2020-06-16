@@ -30,7 +30,7 @@ public class PinsetSourceConfigurationTab extends AbstractSourceConfigurationTab
 
   @Override
   public String getFileExtension() {
-    return "pset";
+    return "pinset";
   }
 
   @Override

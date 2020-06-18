@@ -4,6 +4,7 @@ Bundle-Name: Pinset Language Development Tools
 Bundle-SymbolicName: es.unican.istr.pinset.dt;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: es.unican.istr.pinset.dt.PinsetPlugin
+Automatic-Module-Name: es.unican.istr.pinset.dt.PinsetPlugin
 Bundle-Vendor: Eclipse.org
 Require-Bundle: org.eclipse.epsilon.eol.dt,
  org.eclipse.jface.text,
@@ -17,4 +18,4 @@ Export-Package: es.unican.istr.pinset.dt,
  es.unican.istr.pinset.dt.launching,
  es.unican.istr.pinset.dt.launching.tabs,
  es.unican.istr.pinset.dt.wizards
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8

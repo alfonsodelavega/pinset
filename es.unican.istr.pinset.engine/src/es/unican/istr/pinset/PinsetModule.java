@@ -32,7 +32,6 @@ import es.unican.istr.pinset.columnGenerators.Grid;
 import es.unican.istr.pinset.columnGenerators.NestedFrom;
 import es.unican.istr.pinset.columnGenerators.Properties;
 import es.unican.istr.pinset.columnGenerators.Reference;
-import es.unican.istr.pinset.dom.DatasetRule;
 import es.unican.istr.pinset.parse.PinsetLexer;
 import es.unican.istr.pinset.parse.PinsetParser;
 

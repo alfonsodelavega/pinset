@@ -16,8 +16,8 @@ import java.util.List;
 import org.eclipse.epsilon.common.module.ModuleElement;
 import org.eclipse.epsilon.eol.dt.editor.outline.EolModuleContentProvider;
 
+import es.unican.istr.pinset.DatasetRule;
 import es.unican.istr.pinset.PinsetModule;
-import es.unican.istr.pinset.dom.DatasetRule;
 
 public class PinsetModuleContentProvider extends EolModuleContentProvider {
 

@@ -14,7 +14,7 @@ package es.unican.istr.pinset.dt.launching;
 import org.eclipse.epsilon.common.module.ModuleElement;
 import org.eclipse.epsilon.eol.dt.debug.EolDebugger;
 
-import es.unican.istr.pinset.dom.DatasetRule;
+import es.unican.istr.pinset.DatasetRule;
 
 public class PinsetDebugger extends EolDebugger {
 

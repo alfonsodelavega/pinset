@@ -23,7 +23,7 @@ import org.eclipse.epsilon.eol.execute.context.IEolContext;
 import org.eclipse.epsilon.eol.execute.context.Variable;
 import org.eclipse.epsilon.eol.execute.introspection.IPropertyGetter;
 
-import es.unican.istr.pinset.dom.DatasetRule;
+import es.unican.istr.pinset.DatasetRule;
 
 public class NestedFrom extends AnnotatableModuleElement
     implements ColumnGenerator {

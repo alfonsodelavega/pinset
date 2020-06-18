@@ -8,7 +8,7 @@
  * Contributors:
  *     Alfonso de la Vega - initial API and implementation
  ******************************************************************************/
-package es.unican.istr.pinset.dom;
+package es.unican.istr.pinset;
 
 import java.util.HashMap;
 import java.util.List;

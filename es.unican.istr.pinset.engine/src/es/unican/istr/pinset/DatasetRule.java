@@ -8,7 +8,7 @@
  * Contributors:
  *     Alfonso de la Vega - initial API and implementation
  ******************************************************************************/
-package es.unican.istr.pinset.dom;
+package es.unican.istr.pinset;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -30,7 +30,6 @@ import org.eclipse.epsilon.eol.models.IModel;
 import org.eclipse.epsilon.eol.types.EolModelElementType;
 import org.eclipse.epsilon.eol.types.EolType;
 
-import es.unican.istr.pinset.PinsetModule;
 import es.unican.istr.pinset.columnGenerators.Column;
 import es.unican.istr.pinset.columnGenerators.ColumnGenerator;
 import es.unican.istr.pinset.columnGenerators.Grid;
@@ -38,7 +37,6 @@ import es.unican.istr.pinset.columnGenerators.NestedFrom;
 import es.unican.istr.pinset.columnGenerators.Properties;
 import es.unican.istr.pinset.columnGenerators.Reference;
 import es.unican.istr.pinset.output.Persistence;
-import es.unican.istr.pinset.output.ReturnValueParser;
 import es.unican.istr.pinset.parse.PinsetParser;
 
 public class DatasetRule extends AnnotatableModuleElement {

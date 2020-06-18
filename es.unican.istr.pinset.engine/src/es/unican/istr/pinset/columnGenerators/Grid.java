@@ -24,7 +24,7 @@ import org.eclipse.epsilon.eol.execute.context.IEolContext;
 import org.eclipse.epsilon.eol.execute.context.Variable;
 
 import es.unican.istr.pinset.PinsetModule;
-import es.unican.istr.pinset.output.ReturnValueParser;
+import es.unican.istr.pinset.ReturnValueParser;
 import es.unican.istr.pinset.parse.PinsetParser;
 
 public class Grid extends AnnotatableModuleElement

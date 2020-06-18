@@ -16,7 +16,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-import es.unican.istr.pinset.dom.ValueWrapper;
+import es.unican.istr.pinset.ValueWrapper;
 
 public class DatasetFile {
   protected PrintWriter pw = null;

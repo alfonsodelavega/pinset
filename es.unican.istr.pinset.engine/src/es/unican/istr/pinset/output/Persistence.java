@@ -13,8 +13,8 @@ package es.unican.istr.pinset.output;
 import java.io.FileNotFoundException;
 import java.util.List;
 
-import es.unican.istr.pinset.dom.Dataset;
-import es.unican.istr.pinset.dom.ValueWrapper;
+import es.unican.istr.pinset.Dataset;
+import es.unican.istr.pinset.ValueWrapper;
 
 public class Persistence {
 

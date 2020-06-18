@@ -8,27 +8,29 @@
  * Contributors:
  *     Alfonso de la Vega - initial API and implementation
  ******************************************************************************/
-package es.unican.istr.pinset.output;
+package es.unican.istr.pinset;
 
-import java.util.ArrayList;
-import java.util.List;
+/**
+ * Allows referencing a value from several structures to change, even in type
+ */
+public class ValueWrapper {
+  private Object value;
 
-import org.eclipse.epsilon.eol.execute.Return;
-
-public class ReturnValueParser {
-
-  public static Object obtainValue(Object obj) {
-    if (obj instanceof Return) {
-        return ((Return) obj).getValue();
-    }
-    return obj;
+  public ValueWrapper(Object value) {
+    super();
+    this.value = value;
   }
 
-  public static List<Object> getValues(List<Object> elements) {
-    List<Object> res = new ArrayList<Object>();
-    for (Object elem : elements) {
-      res.add(obtainValue(elem));
-    }
-    return res;
+  public Object get() {
+    return value;
+  }
+
+  public void set(Object value) {
+    this.value = value;
+  }
+
+  @Override
+  public String toString() {
+    return (value == null) ? "" : value.toString();
   }
 }

@@ -21,7 +21,7 @@ import org.eclipse.epsilon.eol.exceptions.EolRuntimeException;
 import org.eclipse.epsilon.eol.execute.context.IEolContext;
 import org.eclipse.epsilon.eol.execute.introspection.IPropertyGetter;
 
-import es.unican.istr.pinset.output.ReturnValueParser;
+import es.unican.istr.pinset.ReturnValueParser;
 import es.unican.istr.pinset.parse.PinsetParser;
 
 public class Reference extends AnnotatableModuleElement

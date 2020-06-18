@@ -14,7 +14,7 @@ package es.unican.istr.pinset.dt.editor.outline;
 import org.eclipse.epsilon.eol.dt.editor.outline.EolModuleElementLabelProvider;
 import org.eclipse.swt.graphics.Image;
 
-import es.unican.istr.pinset.dom.DatasetRule;
+import es.unican.istr.pinset.DatasetRule;
 import es.unican.istr.pinset.dt.PinsetPlugin;
 
 public class PinsetModuleElementLabelProvider extends EolModuleElementLabelProvider {

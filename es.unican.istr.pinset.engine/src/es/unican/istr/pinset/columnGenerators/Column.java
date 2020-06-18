@@ -22,7 +22,7 @@ import org.eclipse.epsilon.eol.execute.context.FrameType;
 import org.eclipse.epsilon.eol.execute.context.IEolContext;
 
 import es.unican.istr.pinset.PinsetModule;
-import es.unican.istr.pinset.output.ReturnValueParser;
+import es.unican.istr.pinset.ReturnValueParser;
 
 public class Column extends AnnotatableModuleElement
     implements ColumnGenerator {
